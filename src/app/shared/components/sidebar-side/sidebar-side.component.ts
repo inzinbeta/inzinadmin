@@ -15,6 +15,7 @@ export class SidebarSideComponent implements OnInit, OnDestroy, AfterViewInit {
   private menuItemsSub: Subscription;
   public layoutConf: ILayoutConf;
 
+
   constructor(
     private navService: NavigationService,
     public themeService: ThemeService,

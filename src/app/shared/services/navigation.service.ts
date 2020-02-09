@@ -28,31 +28,7 @@ interface IBadge {
 export class NavigationService {
   constructor() {}
   iconMenu: IMenuItem[] = [
-    {
-      name: "HOME",
-      type: "icon",
-      tooltip: "Home",
-      icon: "home",
-      state: "home"
-    },
-    {
-      name: "PROFILE",
-      type: "icon",
-      tooltip: "Profile",
-      icon: "person",
-      state: "profile/overview"
-    },
-    {
-      name: "TOUR",
-      type: "icon",
-      tooltip: "Tour",
-      icon: "flight_takeoff",
-      state: "tour"
-    },
-    {
-      type: "separator",
-      name: "Main Items"
-    },
+   
     {
       name: "Products",
       type: "dropDown",

@@ -30,6 +30,12 @@ import { ManageTablePopupComponent } from './manageproducts/manage-table-popup/m
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoriesTablePopupComponent } from './categories/categories-table-popup/categories-table-popup.component';
+import { TagsComponent } from './tags/tags.component';
+import { TagsTableGroupComponent } from './tags/tags-table-group/tags-table-group.component';
+import { ManagebrandsComponent } from './managebrands/managebrands.component';
+import { ManagebrandsTablePopupComponent } from './managebrands/managebrands-table-popup/managebrands-table-popup.component';
+
+
 
 @NgModule({
   imports: [
@@ -52,8 +58,8 @@ import { CategoriesTablePopupComponent } from './categories/categories-table-pop
     SharedModule,
     RouterModule.forChild(CrudsRoutes)
   ],
-  declarations: [CrudNgxTableComponent, ManageproductsComponent, ManageTablePopupComponent, CategoriesComponent, CategoriesTablePopupComponent],
+  declarations: [CrudNgxTableComponent, ManageproductsComponent, ManageTablePopupComponent, CategoriesComponent, CategoriesTablePopupComponent, TagsComponent, TagsTableGroupComponent, ManagebrandsComponent, ManagebrandsTablePopupComponent],
   providers: [ProductService],
-  entryComponents: [ManageTablePopupComponent,CategoriesTablePopupComponent]
+  entryComponents: [ManageTablePopupComponent,CategoriesTablePopupComponent,TagsTableGroupComponent, ManagebrandsTablePopupComponent]
 })
 export class ProductsModule { }

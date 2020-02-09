@@ -3,18 +3,19 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialogRef, MatDialog, MatSnackBar } from '@angular/material';
 import { AppConfirmService } from '../../../shared/services/app-confirm/app-confirm.service';
 import { AppLoaderService } from '../../../shared/services/app-loader/app-loader.service';
-import { ManageTablePopupComponent } from './manage-table-popup/manage-table-popup.component';
+
 import { Subscription } from 'rxjs';
 import { egretAnimations } from "../../../shared/animations/egret-animations";
 import { ProductService } from '../product.service';
+import { CategoriesTablePopupComponent } from './categories-table-popup/categories-table-popup.component';
 
 @Component({
-  selector: 'app-manageproducts',
-  templateUrl: './manageproducts.component.html',
-  styleUrls: ['./manageproducts.component.scss'],
+  selector: 'app-categories',
+  templateUrl: './categories.component.html',
+  styleUrls: ['./categories.component.scss'],
   animations: egretAnimations
 })
-export class ManageproductsComponent implements OnInit ,OnDestroy{
+export class CategoriesComponent implements OnInit ,OnDestroy{
 
   public items: any[];
   public getItemSub: Subscription;
@@ -43,7 +44,7 @@ export class ManageproductsComponent implements OnInit ,OnDestroy{
 
   openPopUp(data: any = {}, isNew?) {
     let title = isNew ? 'Add new member' : 'Update member';
-    let dialogRef: MatDialogRef<any> = this.dialog.open(ManageTablePopupComponent, {
+    let dialogRef: MatDialogRef<any> = this.dialog.open(CategoriesTablePopupComponent, {
       width: '720px',
       disableClose: true,
       data: { title: title, payload: data }
@@ -86,4 +87,5 @@ export class ManageproductsComponent implements OnInit ,OnDestroy{
         }
       })
   }
+
 }

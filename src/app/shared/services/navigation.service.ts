@@ -60,9 +60,9 @@ export class NavigationService {
       icon: "dashboard",
       state: "products",
       sub: [
-        { name: "All Products",  state: "products/manageproducts" },
+        { name: "All Products",  state: "manageproducts" },
         { name: "Tags",  state: "cruds/ngx-table" },
-        { name: "Categories",  state: "cruds/ngx-table" },
+        { name: "Categories",  state: "categories" },
         { name: "Manage Brand", state: "cruds/ngx-table" }
       ]
     },

@@ -24,6 +24,7 @@ import { ErrorHandlerService } from './shared/services/error-handler.service';
 import { JwtModule } from '@auth0/angular-jwt';
 
 
+
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -40,7 +41,7 @@ export function getToken() {
 @NgModule({
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
+   BrowserAnimationsModule,
     SharedModule,
     HttpClientModule,
     PerfectScrollbarModule,

@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { CrudNgxTableComponent } from './crud-ngx-table/crud-ngx-table.component';
 import { ManageproductsComponent } from './manageproducts/manageproducts.component';
+import { CategoriesComponent } from './categories/categories.component';
+
 
 export const CrudsRoutes: Routes = [
   { 
@@ -12,5 +14,10 @@ export const CrudsRoutes: Routes = [
     path: 'manageproducts', 
     component:ManageproductsComponent, 
     data: { title: 'Manage Products', breadcrumb: 'Manage Products' } 
-  }
+  },
+  { 
+    path: 'categories', 
+    component:CategoriesComponent, 
+    data: { title: 'Categories', breadcrumb: 'Manage Categories' } 
+  },
 ];

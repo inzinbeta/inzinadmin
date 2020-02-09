@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   selector: 'app-signin4',
   templateUrl: './signin4.component.html',
   styleUrls: ['./signin4.component.scss'],
-  animations: egretAnimations
+  animations: [egretAnimations]
 })
 export class Signin4Component implements OnInit {
 

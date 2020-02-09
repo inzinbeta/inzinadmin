@@ -27,6 +27,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ProductService } from './product.service';
 import { ManageproductsComponent } from './manageproducts/manageproducts.component';
 import { ManageTablePopupComponent } from './manageproducts/manage-table-popup/manage-table-popup.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CategoriesComponent } from './categories/categories.component';
+import { CategoriesTablePopupComponent } from './categories/categories-table-popup/categories-table-popup.component';
 
 @NgModule({
   imports: [
@@ -49,8 +52,8 @@ import { ManageTablePopupComponent } from './manageproducts/manage-table-popup/m
     SharedModule,
     RouterModule.forChild(CrudsRoutes)
   ],
-  declarations: [CrudNgxTableComponent, NgxTablePopupComponent, ManageproductsComponent, ManageTablePopupComponent],
+  declarations: [CrudNgxTableComponent, ManageproductsComponent, ManageTablePopupComponent, CategoriesComponent, CategoriesTablePopupComponent],
   providers: [ProductService],
-  entryComponents: [NgxTablePopupComponent]
+  entryComponents: [ManageTablePopupComponent,CategoriesTablePopupComponent]
 })
 export class ProductsModule { }

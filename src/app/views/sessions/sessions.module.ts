@@ -13,6 +13,7 @@ import { SessionsRoutes } from "./sessions.routing";
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ErrorComponent } from './error/error.component';
 import { Signin4Component } from './signin4/signin4.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { Signin4Component } from './signin4/signin4.component';
     SharedMaterialModule,
     FlexLayoutModule,
     PerfectScrollbarModule,
-    RouterModule.forChild(SessionsRoutes)
+    RouterModule.forChild(SessionsRoutes),
+  
   ],
   declarations: [ForgotPasswordComponent, NotFoundComponent,ErrorComponent,Signin4Component]
 })

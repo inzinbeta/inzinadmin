@@ -37,9 +37,9 @@ export class NavigationService {
       state: "products",
       sub: [
         { name: "All Products",  state: "manageproducts" },
-        { name: "Tags",  state: "cruds/ngx-table" },
+        { name: "Tags",  state: "tags" },
         { name: "Categories",  state: "categories" },
-        { name: "Manage Brand", state: "cruds/ngx-table" }
+        { name: "Manage Brand", state: "managebrands" }
       ]
     },
     {

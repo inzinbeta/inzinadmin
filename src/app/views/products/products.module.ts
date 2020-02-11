@@ -15,8 +15,12 @@ import {
   MatSnackBarModule,
   MatSlideToggleModule,
   MatSelectModule,
+<<<<<<< HEAD
   MatGridTile,
   MatGridListModule
+=======
+  MatOptionModule
+>>>>>>> 1b1b8ec8c1a6b3714937d28ca3bc4d95186f1ed9
  } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
@@ -37,6 +41,8 @@ import { TagsComponent } from './tags/tags.component';
 import { TagsTableGroupComponent } from './tags/tags-table-group/tags-table-group.component';
 import { ManagebrandsComponent } from './managebrands/managebrands.component';
 import { ManagebrandsTablePopupComponent } from './managebrands/managebrands-table-popup/managebrands-table-popup.component';
+import { QuillEditorComponent, QuillModule } from 'ngx-quill';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 
 
 
@@ -52,14 +58,22 @@ import { ManagebrandsTablePopupComponent } from './managebrands/managebrands-tab
     MatMenuModule,
     MatButtonModule,
     MatChipsModule,
+   
     MatListModule,
     MatTooltipModule,
     MatDialogModule,
+    MatSelectModule,
+    MatOptionModule,
     MatSnackBarModule,
     MatSlideToggleModule,
+<<<<<<< HEAD
     MatSelectModule,
     MatListModule,
     MatGridListModule,
+=======
+    QuillModule,
+    
+>>>>>>> 1b1b8ec8c1a6b3714937d28ca3bc4d95186f1ed9
     TranslateModule,
     SharedModule,
     RouterModule.forChild(CrudsRoutes)

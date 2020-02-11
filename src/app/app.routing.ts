@@ -33,8 +33,8 @@ export const rootRouterConfig: Routes = [
         data: { title: 'Products', breadcrumb: 'Product'}
       },
       {
-        path: 'material', 
-        loadChildren: () => import('./views/material-example-view/material-example-view.module').then(m => m.MaterialExampleViewModule), 
+        path: 'brands', 
+        loadChildren: () => import('./views/brands/brands.module').then(m => m.BrandsModule), 
         data: { title: 'Material', breadcrumb: 'MATERIAL'}
       },
       {

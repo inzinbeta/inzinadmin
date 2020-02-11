@@ -13,13 +13,25 @@
     </div>
 
     <div fxFlex="50"  class="pr-1">
+
+      <mat-form-field>
+        <mat-label>Toppings</mat-label>
+        <mat-select [formControl]="itemForm.controls['brands']" multiple>
+          <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+ 
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
       <mat-form-field class="full-width">
         <input
         matInput
-        type="number"
-        name="age"
-        [formControl]="itemForm.controls['age']"
-        placeholder="Age">
+        type="text"
+        name="metatitle"
+        [formControl]="itemForm.controls['metatitle']"
+        placeholder="Metatitle">
       </mat-form-field>
     </div>
 
@@ -27,20 +39,9 @@
       <mat-form-field class="full-width">
         <input
         matInput
-        type="email"
-        name="email"
-        [formControl]="itemForm.controls['email']"
-        placeholder="Email">
-      </mat-form-field>
-    </div>
-
-    <div fxFlex="50"  class="pr-1">
-      <mat-form-field class="full-width">
-        <input
-        matInput
-        name="company"
-        [formControl]="itemForm.controls['company']"
-        placeholder="Company">
+        name="heading"
+        [formControl]="itemForm.controls['heading']"
+        placeholder="Heading">
       </mat-form-field>
     </div>
     <div fxFlex="50"  class="pr-1">
@@ -83,3 +84,19 @@
     </div>
   </div>
   </form>
+
+  <mat-card class="default">
+   
+    <mat-card-content class="p-0">
+        <mat-grid-list cols="2" rowHeight="1:1" class="app-gallery">
+            <!-- Gallery item -->
+            <mat-grid-tile *ngFor="let photo of photos">
+              <img [src]="photo.url" alt="">
+              <!-- item detail, show on hover -->
+             
+            </mat-grid-tile>
+            <button mat-button color="warn" type="button">Upload</button>
+
+          </mat-grid-list>
+    </mat-card-content>
+  </mat-card>

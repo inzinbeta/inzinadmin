@@ -11,6 +11,15 @@ export class CategoriesTablePopupComponent implements OnInit {
 
   
   public itemForm: FormGroup;
+  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+  photos = [{
+    name: 'Photo 1',
+    url: 'assets/images/sq-15.jpg'
+  }, {
+    name: 'Photo 2',
+    url: 'assets/images/sq-8.jpg'
+  }]
+  
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<CategoriesTablePopupComponent>,
@@ -23,9 +32,9 @@ export class CategoriesTablePopupComponent implements OnInit {
   buildItemForm(item) {
     this.itemForm = this.fb.group({
       name: [item.name || '', Validators.required],
-      age: [item.age || ''],
-      email: [item.email || ''],
-      company: [item.company || ''],
+      brands: [item.brands || ''],
+      metatitle: [item.metatitle || ''],
+      heading: [item.heading || ''],
       phone: [item.phone || ''],
       address: [item.address || ''],
       balance: [item.balance || ''],

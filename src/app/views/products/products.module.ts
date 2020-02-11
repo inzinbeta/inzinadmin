@@ -13,7 +13,10 @@ import {
   MatTooltipModule,
   MatDialogModule,
   MatSnackBarModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatSelectModule,
+  MatGridTile,
+  MatGridListModule
  } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
@@ -54,6 +57,9 @@ import { ManagebrandsTablePopupComponent } from './managebrands/managebrands-tab
     MatDialogModule,
     MatSnackBarModule,
     MatSlideToggleModule,
+    MatSelectModule,
+    MatListModule,
+    MatGridListModule,
     TranslateModule,
     SharedModule,
     RouterModule.forChild(CrudsRoutes)

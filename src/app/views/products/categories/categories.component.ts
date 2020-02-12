@@ -43,7 +43,7 @@ export class CategoriesComponent implements OnInit ,OnDestroy{
   }
 
   openPopUp(data: any = {}, isNew?) {
-    let title = isNew ? 'Add new member' : 'Update member';
+    let title = isNew ? 'Add New Category' : 'Update Category';
     let dialogRef: MatDialogRef<any> = this.dialog.open(CategoriesTablePopupComponent, {
       width: '720px',
       disableClose: true,

@@ -44,7 +44,7 @@ export class TagsComponent implements OnInit , OnDestroy {
   }
 
   openPopUp(data: any = {}, isNew?) {
-    let title = isNew ? 'Add new member' : 'Update member';
+    let title = isNew ? 'Add New  Tag' : 'Update Tag';
     let dialogRef: MatDialogRef<any> = this.dialog.open(TagsTableGroupComponent, {
       width: '720px',
       disableClose: true,

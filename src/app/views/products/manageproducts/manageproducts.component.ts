@@ -42,7 +42,7 @@ export class ManageproductsComponent implements OnInit ,OnDestroy{
   }
 
   openPopUp(data: any = {}, isNew?) {
-    let title = isNew ? 'Add new member' : 'Update member';
+    let title = isNew ? 'Add New Product' : 'Update Product';
     let dialogRef: MatDialogRef<any> = this.dialog.open(ManageTablePopupComponent, {
       width: '720px',
       disableClose: true,

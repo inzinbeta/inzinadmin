@@ -15,12 +15,9 @@ import {
   MatSnackBarModule,
   MatSlideToggleModule,
   MatSelectModule,
-<<<<<<< HEAD
+  MatOptionModule,
   MatGridTile,
   MatGridListModule
-=======
-  MatOptionModule
->>>>>>> 1b1b8ec8c1a6b3714937d28ca3bc4d95186f1ed9
  } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
@@ -66,14 +63,9 @@ import { CdkTextareaAutosize } from '@angular/cdk/text-field';
     MatOptionModule,
     MatSnackBarModule,
     MatSlideToggleModule,
-<<<<<<< HEAD
-    MatSelectModule,
+    QuillModule,
     MatListModule,
     MatGridListModule,
-=======
-    QuillModule,
-    
->>>>>>> 1b1b8ec8c1a6b3714937d28ca3bc4d95186f1ed9
     TranslateModule,
     SharedModule,
     RouterModule.forChild(CrudsRoutes)

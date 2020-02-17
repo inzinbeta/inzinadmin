@@ -2,7 +2,7 @@
 {{"ADD" | translate }} {{"TAG" | translate }}
   <form [formGroup]="itemForm" (ngSubmit)="submit()">
   <div fxLayout="row wrap" fxLayout.lt-sm="column">
-    <div fxFlex="50"  class="pr-1">
+    <div fxFlex="100"  class="pr-1">
       <mat-form-field class="full-width">
         <input
         matInput
@@ -11,90 +11,17 @@
         placeholder="Name">
       </mat-form-field>
     </div>
-    <div>
-    <mat-form-field>
-      <mat-label>Brands</mat-label>
-      <mat-select [formControl]="itemForm.controls['brand']" multiple>
-        <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
+   
 
-    <div fxFlex="50"  class="pr-1">
-      <mat-form-field class="full-width">
-        <input
-        matInput
-        name="heading"
-       
-        [formControl]="itemForm.controls['heading']"
-        placeholder="Heading">
-      </mat-form-field>
-    </div>
-    <div fxFlex="50"  class="pr-1">
-        <mat-form-field class="full-width">
-          <input
-          matInput
-          type="number"
-          width="120"
-          name="parentcategory"
-          [formControl]="itemForm.controls['parentcategory']"
-          placeholder="Parent Category">
-        </mat-form-field>
-      </div>
-
-  
-  
-    <div fxFlex="50"  class="pr-1">
-        <mat-form-field class="example-full-width">
-            <textarea matInput placeholder="Keywords"></textarea>
-          </mat-form-field>
-        </div>
-        <div fxFlex="50"  class="pr-1">
+        <div fxFlex="100"  class="pr-1">
             <mat-form-field class="example-full-width">
-                <textarea matInput placeholder="Description"></textarea>
+                <textarea matInput placeholder="Description" [formControl]="itemForm.controls['description']"></textarea>
               </mat-form-field>
             </div>
 
-            <div fxFlex="50"  class="pr-1">
-                <mat-form-field class="example-full-width">
-                    <textarea matInput placeholder="Content"></textarea>
-                  </mat-form-field>
-                </div>
+            
                 
-                <div fxFlex="50"  class="pr-1">
-                <h3>Logo Upload</h3>            
-                <div class="form-group">
-                    <input type="file" name="image" (change)="fileProgress1($event)" />
-                </div>
-                <div *ngIf="fileUploadProgress1">
-                    Upload progress: {{ fileUploadProgress1 }}
-                </div>
-                <div class="image-preview mb-3" *ngIf="previewUrlLogo">
-                    <img [src]="previewUrlLogo" height="100" />                 
-                </div>
-     
-                <div class="mb-3" *ngIf="uploadedFileLogo">
-                    {{uploadedFileLogo}}
-                </div>
-
-              </div>
-              <div fxFlex="50"  class="pr-1">
-                  <h3>Sidebar Upload</h3>            
-                  <div class="form-group">
-                      <input type="file" name="image" (change)="fileProgress($event)" />
-                  </div>
-                  <div *ngIf="fileUploadProgress">
-                      Upload progress: {{ fileUploadProgress }}
-                  </div>
-                  <div class="image-preview mb-3" *ngIf="previewUrl">
-                      <img [src]="previewUrl" height="100" />                 
-                  </div>
-       
-                  <div class="mb-3" *ngIf="uploadedFilePath">
-                      {{uploadedFilePath}}
-                  </div>
-  
-                </div>
+              
     <div fxFlex="100" class="mt-1">
       <button mat-raised-button color="primary" [disabled]="itemForm.invalid">{{"SAVE" | translate }}</button>
       <span fxFlex></span>

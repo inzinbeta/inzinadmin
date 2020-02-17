@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { egretAnimations } from "../../../shared/animations/egret-animations";
 import { ProductService } from '../product.service';
 import { TagsTableGroupComponent } from './tags-table-group/tags-table-group.component';
+import { HttpService } from 'app/shared/services/http.service';
 
 
 @Component({
@@ -25,7 +26,8 @@ export class TagsComponent implements OnInit , OnDestroy {
     private snack: MatSnackBar,
     private crudService: ProductService,
     private confirmService: AppConfirmService,
-    private loader: AppLoaderService
+    private loader: AppLoaderService,
+    private service:HttpService
   ) { }
 
   ngOnInit() {
@@ -37,13 +39,13 @@ export class TagsComponent implements OnInit , OnDestroy {
     }
   }
   getItems() {
-    this.getItemSub = this.crudService.getItems()
+    this.getItemSub = this.service.getAllTags()
       .subscribe(data => {
-        this.items = data;
+        this.items = data["data"];
       })
   }
 
-  openPopUp(data: any = {}, isNew?) {
+  openPopUp(data: any = {}, isNew?,row:any="") {
     let title = isNew ? 'Add New  Tag' : 'Update Tag';
     let dialogRef: MatDialogRef<any> = this.dialog.open(TagsTableGroupComponent, {
       width: '720px',
@@ -58,18 +60,26 @@ export class TagsComponent implements OnInit , OnDestroy {
         }
         this.loader.open();
         if (isNew) {
-          this.crudService.addItem(res)
+          let tempobj={};
+          tempobj["save"]="yes";
+          tempobj["tag"]=res;
+
+          this.service.saveTags(tempobj)
             .subscribe(data => {
-              this.items = data;
+              this.items = data["data"];
               this.loader.close();
-              this.snack.open('Member Added!', 'OK', { duration: 4000 })
+              this.snack.open(data["message"], 'OK', { duration: 4000 })
             })
         } else {
-          this.crudService.updateItem(data._id, res)
+          let tempobj={};
+          tempobj["update"]="yes";
+          tempobj["tag"]=res;
+          tempobj["_id"]=row;
+          this.service.saveTags(tempobj)
             .subscribe(data => {
-              this.items = data;
+              this.items = data["data"];
               this.loader.close();
-              this.snack.open('Member Updated!', 'OK', { duration: 4000 })
+              this.snack.open(data["message"], 'OK', { duration: 4000 })
             })
         }
       })
@@ -79,11 +89,11 @@ export class TagsComponent implements OnInit , OnDestroy {
       .subscribe(res => {
         if (res) {
           this.loader.open();
-          this.crudService.removeItem(row)
+          this.service.deleteTags(row)
             .subscribe(data => {
-              this.items = data;
+              this.items = data["data"];
               this.loader.close();
-              this.snack.open('Member deleted!', 'OK', { duration: 4000 })
+              this.snack.open(data["message"], 'OK', { duration: 4000 })
             })
         }
       })

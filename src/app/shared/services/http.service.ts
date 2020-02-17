@@ -153,6 +153,34 @@ return this.http.post(`http://${environment.url}:${environment.port}/admin/updat
 }
 
 
+/**
+ * Tags
+ */
+
+
+
+
+getAllTags()
+{
+return this.http.post<BrandsModel[]>(`http://${environment.url}:${environment.port}/admin/getAllTags`,{});
+
+}
+
+
+saveTags(formdata)
+{
+console.log("fd",formdata);
+return this.http.post(`http://${environment.url}:${environment.port}/admin/saveTags`,formdata);
+
+}
+
+
+deleteTags(category)
+{
+return this.http.post(`http://${environment.url}:${environment.port}/admin/deleteTags`,category);
+
+}
+
 
 
 /**

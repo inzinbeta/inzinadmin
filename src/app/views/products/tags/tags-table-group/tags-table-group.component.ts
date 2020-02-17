@@ -68,12 +68,6 @@ reader.onload = (_event) => {
   buildItemForm(item) {
     this.itemForm = this.fb.group({
       name: [item.name || '', Validators.required],
-      brand: [item.brand || ''],
-      metatitle: [item.metatitle || ''],
-      heading: [item.heading || ''],
-      parentcategory : [item.parentcategory || ''],
-     
-      keyword: [item.keyword || ''],
       description: [item.description || '']
     })
   }

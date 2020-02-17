@@ -7,6 +7,8 @@ import { AppLoaderService } from '../../../shared/services/app-loader/app-loader
 import { Subscription } from 'rxjs';
 import { egretAnimations } from "../../../shared/animations/egret-animations";
 import { ProductService } from '../product.service';
+import { ManagebrandsTablePopupComponent } from './managebrands-table-popup/managebrands-table-popup.component';
+import { HttpService } from 'app/shared/services/http.service';
 
 
 @Component({
@@ -25,8 +27,16 @@ export class ManagebrandsComponent implements OnInit {
     private snack: MatSnackBar,
     private crudService: ProductService,
     private confirmService: AppConfirmService,
-    private loader: AppLoaderService
+    private loader: AppLoaderService,
+    private service : HttpService
   ) { }
+
+
+  linkImg(fileName) {
+    let file=fileName.replace(/\\/g, '/').split("/")[1];
+    // base_URL returns localhost:3000 or the production URL
+        return `http://localhost:3900/${file}`;
+      }
 
   ngOnInit() {
     this.getItems()
@@ -37,15 +47,16 @@ export class ManagebrandsComponent implements OnInit {
     }
   }
   getItems() {
-    this.getItemSub = this.crudService.getItems()
+    this.getItemSub = this.service.getAllBrands()
       .subscribe(data => {
         this.items = data;
       })
   }
 
-  openPopUp(data: any = {}, isNew?) {
-    let title = isNew ? 'Add New Brand' : 'Update Brand';
-    let dialogRef: MatDialogRef<any> = this.dialog.open(ManagebrandsComponent, {
+  openPopUp(data: any = {}, isNew?,_id:any="") {
+    console.log("isnew",isNew);
+    let title = isNew ? 'Add New Category' : 'Update Category';
+    let dialogRef: MatDialogRef<any> = this.dialog.open(ManagebrandsTablePopupComponent, {
       width: '720px',
       disableClose: true,
       data: { title: title, payload: data }
@@ -58,32 +69,43 @@ export class ManagebrandsComponent implements OnInit {
         }
         this.loader.open();
         if (isNew) {
-          this.crudService.addItem(res)
+          // Adding item here in the database
+          console.log("the data entered by user",res);
+          res.append("save","yes");
+          this.service.saveBrand(res)
             .subscribe(data => {
-              this.items = data;
+              console.log("incoming data after save",data);
+              this.items = data["data"];
               this.loader.close();
-              this.snack.open('Member Added!', 'OK', { duration: 4000 })
+              this.snack.open(data["message"], 'OK', { duration: 4000 })
             })
         } else {
-          this.crudService.updateItem(data._id, res)
+          console.log("update called",_id);
+          res.forEach(element => {
+            console.log(element);
+          });
+          res.append("update","yes");
+          res.append("_id",_id);
+          this.service.saveBrand(res)
             .subscribe(data => {
-              this.items = data;
+              this.items = data["data"];
               this.loader.close();
-              this.snack.open('Member Updated!', 'OK', { duration: 4000 })
+              this.snack.open(data["message"], 'OK', { duration: 4000 })
             })
         }
       })
   }
   deleteItem(row) {
+    console.log(row);
     this.confirmService.confirm({message: `Delete ${row.name}?`})
       .subscribe(res => {
         if (res) {
           this.loader.open();
-          this.crudService.removeItem(row)
+          this.service.deleteBrand({brandid:row})
             .subscribe(data => {
-              this.items = data;
+              this.items = data["data"];
               this.loader.close();
-              this.snack.open('Member deleted!', 'OK', { duration: 4000 })
+              this.snack.open(data["message"], 'OK', { duration: 4000 })
             })
         }
       })

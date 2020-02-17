@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
+import { HttpService } from 'app/shared/services/http.service';
 
 
 @Component({
@@ -11,81 +12,149 @@ import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
 export class ManagebrandsTablePopupComponent implements OnInit {
 
   toppings = new FormControl();
-  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+  toppingList: string[] = ['Premium','Non-Premium'];
  
  
 
  
   
   public itemForm: FormGroup;
-  fileData: File = null;
-previewUrl:any = null;
-previewUrlLogo:any=null;
+  fileDatalogo: File = null;
+  parentCategory:string[]=[];
+  fileDatasidebar: File = null;
+  previewUrl:any = "assets/images/download.jpeg";
+  previewUrlLogo:any="assets/images/download.jpeg";
 fileUploadProgress: string = null;
 uploadedFilePath: string = null;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<ManagebrandsTablePopupComponent>,
     private fb: FormBuilder,
+    private service: HttpService
   ) { }
 
   fileProgress1(fileInput: any) {
-    this.fileData = <File>fileInput.target.files[0];
+    this.fileDatalogo = <File>fileInput.target.files[0];
     this.preview1();
 }
 
-preview1() {
-  // Show preview 
-  var mimeType = this.fileData.type;
-  if (mimeType.match(/image\/*/) == null) {
-    return;
-  }
 
-  var reader = new FileReader();      
-  reader.readAsDataURL(this.fileData); 
-  reader.onload = (_event) => { 
-    this.previewUrlLogo = reader.result; 
-  }
-}
 
-fileProgress(fileInput: any) {
-  this.fileData = <File>fileInput.target.files[0];
-  this.preview();
-}
+linkImg(fileName) {
+  let file=fileName.split("/")[1];
+  // base_URL returns localhost:3000 or the production URL
+      return `http://localhost:3900/${file}`;
+    }
+    preview1() {
+      // Show preview 
+      var mimeType = this.fileDatalogo.type;
+      if (mimeType.match(/image\/*/) == null) {
+        return;
+      }
+    
+      var reader = new FileReader();      
+      reader.readAsDataURL(this.fileDatalogo); 
+      reader.onload = (_event) => { 
+        this.previewUrlLogo = reader.result; 
+      }
+    }
+    fileProgress(fileInput: any) {
+      this.fileDatasidebar = <File>fileInput.target.files[0];
+      this.preview();
+    }
+    
 
-preview() {
-// Show preview 
-var mimeType = this.fileData.type;
-if (mimeType.match(/image\/*/) == null) {
-  return;
-}
+    getCategories()
+    {
+   this.service.getAllCategory().subscribe(data=>{
+     console.log(data);
+     this.parentCategory.push(...data.map(({name})=>name));
+   })
+    }
 
-var reader = new FileReader();      
-reader.readAsDataURL(this.fileData); 
-reader.onload = (_event) => { 
-  this.previewUrl = reader.result; 
-}
-}
+    preview() {
+      // Show preview 
+      var mimeType = this.fileDatasidebar.type;
+      if (mimeType.match(/image\/*/) == null) {
+        return;
+      }
+      
+      var reader = new FileReader();      
+      reader.readAsDataURL(this.fileDatasidebar); 
+      reader.onload = (_event) => { 
+        this.previewUrl = reader.result; 
+      }
+      }
 
   ngOnInit() {
-    this.buildItemForm(this.data.payload)
+    this.buildItemForm(this.data.payload);
+    this.getCategories();
   }
   buildItemForm(item) {
+
+    if(Object.keys(item).length>0)
+    {
+  this.previewUrlLogo=this.linkImg(item.imagelogo);
+  this.previewUrl=this.linkImg(item.imagesidebar);
+    //this.fileDatalogo=this.linkImg(item.imagelogo);
+    //this.fileDatasidebar=this.linkImg(item.imagesidebar);
+    }
+  
     this.itemForm = this.fb.group({
-      name: [item.name || '', Validators.required],
-      brand: [item.brand || ''],
-      metatitle: [item.metatitle || ''],
+      brand: [item.brand || '', Validators.required],
+      brandcategory: [item.brandcategory || ''],
+      title: [item.title || ''],
       heading: [item.heading || ''],
       parentcategory : [item.parentcategory || ''],
-     
-      keyword: [item.keyword || ''],
+      content:[item.content || ''],
+      keywords: [item.keywords || ''],
       description: [item.description || '']
       
     })
   }
 
   submit() {
-    this.dialogRef.close(this.itemForm.value)
+    const fd=new FormData();
+     
+    if(this.fileDatalogo && !this.fileDatasidebar )
+    {
+      let file_ext=this.fileDatalogo.name.split(".");
+   
+      fd.append('imagelogo',this.fileDatalogo,`categoryicon.${file_ext[1]}`);
+     
+      fd.append('formavalues',JSON.stringify(this.itemForm.value));
+   
+      this.dialogRef.close(fd)
+    }
+    else if(!this.fileDatalogo && this.fileDatasidebar)
+    {
+     // let file_ext=this.fileDatalogo.name.split(".");
+      let file_extt=this.fileDatasidebar.name.split(".");
+     
+      fd.append('imagesidebar',this.fileDatasidebar,`categoryicon.${file_extt[1]}`);
+      fd.append('formavalues',JSON.stringify(this.itemForm.value));
+   
+      this.dialogRef.close(fd)
+    }
+    else if(this.fileDatalogo && this.fileDatasidebar)
+    {
+      let file_ext=this.fileDatalogo.name.split(".");
+      let file_extt=this.fileDatasidebar.name.split(".");
+      fd.append('imagelogo',this.fileDatalogo,`categoryicon.${file_ext[1]}`);
+      fd.append('imagesidebar',this.fileDatasidebar,`categoryicon.${file_extt[1]}`);
+      fd.append('formavalues',JSON.stringify(this.itemForm.value));
+   
+      this.dialogRef.close(fd)
+    }
+    else{
+      console.log(this.fileDatalogo);
+      //fd.append('imagelogo',this.fileDatalogo,`categoryicon.${file_ext[1]}`);
+      //fd.append('imagesidebar',this.fileDatasidebar,`categoryicon.${file_extt[1]}`);
+      fd.append('formavalues',JSON.stringify(this.itemForm.value));
+   
+      this.dialogRef.close(fd)
+    }
+  
   }
 
 

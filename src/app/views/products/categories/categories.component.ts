@@ -30,7 +30,7 @@ export class CategoriesComponent implements OnInit ,OnDestroy{
 
 
   linkImg(fileName) {
-    let file=fileName.split("/")[1];
+    let file=fileName.replace(/\\/g, '/').split("/")[1];
     // base_URL returns localhost:3000 or the production URL
         return `http://localhost:3900/${file}`;
       }

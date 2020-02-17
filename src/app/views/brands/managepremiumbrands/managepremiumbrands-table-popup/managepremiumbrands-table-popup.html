@@ -1,0 +1,204 @@
+<h1 matDialogTitle>{{data.title}}</h1>
+{{"ADD" | translate }} {{ " PREMIUM BRAND" | translate }}
+  <form [formGroup]="itemForm" (ngSubmit)="submit($event)">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column">
+    
+    <div fxFlex="50">
+    <mat-form-field>
+      <mat-label>Brands</mat-label>
+      <mat-select [formControl]="itemForm.controls['brand']" >
+        <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="50"  class="pr-1">
+    <mat-form-field class="full-width">
+      <input
+      matInput
+      disabled
+      name="username"
+      value="Premium"
+      placeholder="Premium">
+    </mat-form-field>
+  </div>
+
+  
+
+  
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field>
+        <mat-label>Parent Category</mat-label>
+        <mat-select [formControl]="itemForm.controls['parentcategory']" >
+          <mat-option *ngFor="let topping of parentCategory" [value]="topping">{{topping}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+        
+      </div>
+
+  
+  
+    <div fxFlex="50"  class="pr-1">
+        <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Description" [formControl]="itemForm.controls['description']" ></textarea>
+          </mat-form-field>
+        </div>
+        <div fxFlex="25"  class="pr-1" >
+            <mat-form-field class="example-full-width">
+              <input
+             
+              matInput
+              name="cnf"
+             
+              [formControl]="itemForm.controls['cnf']"
+              placeholder="CNF">
+                
+              </mat-form-field>
+            </div>
+
+            <div fxFlex="25"  class="pr-1">
+                <mat-form-field class="example-full-width">
+                  <input
+                  matInput
+                  name="cnfarea"
+                 
+                  [formControl]="itemForm.controls['cnfarea']"
+                  placeholder="Area">                  </mat-form-field>
+                </div>
+
+                <div fxFlex="25"  class="pr-1">
+                  <mat-form-field class="example-full-width">
+                    <input
+                    matInput
+                    name="cnfinvestment"
+                   
+                    [formControl]="itemForm.controls['cnfinvestment']"
+                    placeholder="Investment">                    </mat-form-field>
+                  </div>
+
+                  <div fxFlex="25"  class="pr-1">
+                    <mat-form-field class="example-full-width">
+                      <input
+                      matInput
+                      name="cnfsalesteam"
+                     
+                      [formControl]="itemForm.controls['cnfsalesteam']"
+                      placeholder="Sales Team">                      </mat-form-field>
+                    </div>
+
+
+                    <div fxFlex="25"  class="pr-1" >
+                      <mat-form-field class="example-full-width">
+                        <input
+                      
+                        matInput
+                        name="distributor"
+                       
+                        [formControl]="itemForm.controls['distributor']"
+                        placeholder="Distributor">
+                          
+                        </mat-form-field>
+                      </div>
+          
+                      <div fxFlex="25"  class="pr-1">
+                          <mat-form-field class="example-full-width">
+                            <input
+                            matInput
+                            name="distributorarea"
+                           
+                            [formControl]="itemForm.controls['distributorarea']"
+                            placeholder="Area">                  </mat-form-field>
+                          </div>
+          
+                          <div fxFlex="25"  class="pr-1">
+                            <mat-form-field class="example-full-width">
+                              <input
+                              matInput
+                              name="distributorinvestment"
+                             
+                              [formControl]="itemForm.controls['distributorinvestment']"
+                              placeholder="Investment">                    </mat-form-field>
+                            </div>
+          
+                            <div fxFlex="25"  class="pr-1">
+                              <mat-form-field class="example-full-width">
+                                <input
+                                matInput
+                                name="distributorsalesteam"
+                               
+                                [formControl]="itemForm.controls['distributorsalesteam']"
+                                placeholder="Sales Team">                      </mat-form-field>
+                              </div>
+
+
+                              <div fxFlex="25"  class="pr-1" >
+                                <mat-form-field class="example-full-width">
+                                  <input
+                                
+                                  matInput
+                                  name="dealer"
+                                 
+                                  [formControl]="itemForm.controls['dealer']"
+                                  placeholder="Dealer">
+                                    
+                                  </mat-form-field>
+                                </div>
+                    
+                                <div fxFlex="25"  class="pr-1">
+                                    <mat-form-field class="example-full-width">
+                                      <input
+                                      matInput
+                                      name="dealerarea"
+                                     
+                                      [formControl]="itemForm.controls['dealerarea']"
+                                      placeholder="Area">                  </mat-form-field>
+                                    </div>
+                    
+                                    <div fxFlex="25"  class="pr-1">
+                                      <mat-form-field class="example-full-width">
+                                        <input
+                                        matInput
+                                        name="dealerinvestment"
+                                       
+                                        [formControl]="itemForm.controls['dealerinvestment']"
+                                        placeholder="Investment">                    </mat-form-field>
+                                      </div>
+                    
+                                      <div fxFlex="25"  class="pr-1">
+                                        <mat-form-field class="example-full-width">
+                                          <input
+                                          matInput
+                                          name="dealersalesteam"
+                                         
+                                          [formControl]="itemForm.controls['dealersalesteam']"
+                                          placeholder="Sales Team">                      </mat-form-field>
+                                        </div>
+                          
+                
+                <div fxFlex="50"  class="pr-1">
+                <h3>Photo Upload</h3>            
+                <div class="form-group">
+                    <input type="file" name="image"  style="display: none;" accept="image/*" #logo  (change)="fileProgress1($event)" />
+                </div>
+                <div *ngIf="fileUploadProgress1">
+                    Upload progress: {{ fileUploadProgress1 }}
+                </div>
+                <div class="image-preview mb-3" *ngIf="previewUrlLogo">
+                    <img [src]="previewUrlLogo" height="100" />                 
+                </div>
+     
+                <div class="image-preview mb-3" *ngIf="previewUrl">
+                  <button mat-raised-button color="primary" type="button" (click)="logo.click()" style="margin-top: 10px; margin-left: 10px;" >Select Image</button>           
+              </div>
+              
+
+              </div>
+             
+    <div fxFlex="100" class="mt-1">
+      <button mat-raised-button color="primary" type="submit" [disabled]="itemForm.invalid">{{"SAVE" | translate }}</button>
+      <span fxFlex></span>
+      <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">Cancel</button>
+    </div>
+  </div>
+  </form>
+

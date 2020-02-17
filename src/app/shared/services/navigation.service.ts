@@ -47,17 +47,17 @@ export class NavigationService {
       type: "link",
       tooltip: "CRUD Table",
       icon: "format_list_bulleted",
-      state: "cruds/ngx-table"
+      state: "products/categories"
     },
     {
       name: "Brands",
       type: "dropDown",
       tooltip: "Shop",
       icon: "shopping_cart",
-      state: "shop",
+      state: "",
       sub: [
-        { name: "Manage Brands",  state: "cruds/ngx-table" },
-        { name: "Manage Premium Brands",  state: "cruds/ngx-table" },
+        { name: "Manage Brands",  state: "products/managebrands" },
+        { name: "Manage Premium Brands",  state: "brands/managepremiumbrands" },
        
       ]
     },

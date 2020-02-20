@@ -192,6 +192,15 @@ return this.http.post(`http://${environment.url}:${environment.port}/admin/getAl
 
 }
 
+/**
+ * All Products
+ */
+
+getAllProducts()
+{
+return this.http.post(`http://${environment.url}:${environment.port}/admin/getAllProducts`,{});
+
+}
 
 
 }

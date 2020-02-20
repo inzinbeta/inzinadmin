@@ -1,11 +1,15 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
+import {HttpService} from '../../../../shared/services/http.service';
+import { egretAnimations } from "../../../../shared/animations/egret-animations";
+
 
 @Component({
   selector: 'app-manage-table-popup',
   templateUrl: './manage-table-popup.component.html',
-  styleUrls: ['./manage-table-popup.component.scss']
+  styleUrls: ['./manage-table-popup.component.scss'],
+  animations: egretAnimations
 })
 export class ManageTablePopupComponent implements OnInit {
   toppings = new FormControl();
@@ -14,8 +18,10 @@ export class ManageTablePopupComponent implements OnInit {
  
 
  
-  
-  public itemForm: FormGroup;
+  public items: Object;
+
+  public items_tags: Object;
+    public itemForm: FormGroup;
   fileData: File = null;
 previewUrl:any = null;
 previewUrlLogo:any=null;
@@ -25,6 +31,7 @@ uploadedFilePath: string = null;
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<ManageTablePopupComponent>,
     private fb: FormBuilder,
+    private service : HttpService
   ) { }
 
 
@@ -68,11 +75,41 @@ reader.onload = (_event) => {
 }
 }
   ngOnInit() {
+    console.log("page");
     this.buildItemForm(this.data.payload)
+    this.getItems()
+    this.getTags()
+    
   }
+  
+  getItems() {
+ 
+    this.service.getAllProducts()
+
+      .subscribe(data => {
+       
+        this.items = data;
+      })
+  }
+
+
+
+getTags(){
+  
+  this.service.getAllTags()
+
+    .subscribe(data => {
+      
+      this.items_tags = data;
+      console.log(data);
+    })
+}
+
+
+
   buildItemForm(item) {
     this.itemForm = this.fb.group({
-      name: [item.name || '', Validators.required],
+      tags: [item.tags || ''],
       brand: [item.brand || ''],
       metatitle: [item.metatitle || ''],
       heading: [item.heading || ''],

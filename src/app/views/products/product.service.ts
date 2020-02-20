@@ -18,6 +18,8 @@ export class ProductService {
   getItems(): Observable<any> {
     return  of(this.items.slice())
   }
+
+  
   addItem(item): Observable<any> {
     item._id = Math.round(Math.random() * 10000000000).toString();
     this.items.unshift(item);

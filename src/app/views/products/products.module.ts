@@ -17,7 +17,8 @@ import {
   MatSelectModule,
   MatOptionModule,
   MatGridTile,
-  MatGridListModule
+  MatGridListModule,
+
  } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
@@ -68,6 +69,7 @@ import { CdkTextareaAutosize } from '@angular/cdk/text-field';
     MatGridListModule,
     TranslateModule,
     SharedModule,
+    
     RouterModule.forChild(CrudsRoutes)
   ],
   declarations: [CrudNgxTableComponent, ManageproductsComponent, ManageTablePopupComponent, CategoriesComponent, CategoriesTablePopupComponent, TagsComponent, TagsTableGroupComponent, ManagebrandsComponent, ManagebrandsTablePopupComponent],

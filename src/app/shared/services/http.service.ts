@@ -28,10 +28,10 @@ checkUsername(username:string)
 
 }
 
-registerUser(username:string,password:string,role:string,isactive:boolean,name:string,email:string)
+registerUser(data)
 {
  
- return this.http.post(`http://${environment.url}:${environment.port}/admin/registeruser`,{username:username,password:password,isactive:isactive,name:name,email:email,role:role});
+ return this.http.post(`http://${environment.url}:${environment.port}/admin/registeruser`,data);
 
 }
 
@@ -43,14 +43,14 @@ getUsers()
 
 }
 
-deleteUser(username)
+deleteUser(data)
 {
- return this.http.post(`http://${environment.url}:${environment.port}/admin/deleteUser`,{username:username});
+ return this.http.post(`http://${environment.url}:${environment.port}/admin/deleteUser`,data);
 
 }
-editUser(username:string,password:string,role:string,isactive:boolean,name:string,email:string)
+editUser(data)
 {
- return this.http.post(`http://${environment.url}:${environment.port}/admin/registeruser`,{username:username,password:password,isactive:isactive,name:name,email:email,role:role});
+ return this.http.post(`http://${environment.url}:${environment.port}/admin/registeruser`,data);
 
 }
 
@@ -180,6 +180,36 @@ deleteTags(category)
 return this.http.post(`http://${environment.url}:${environment.port}/admin/deleteTags`,category);
 
 }
+
+
+/**
+ * Enquiries
+ */
+
+
+
+getAllEnquiries()
+{
+return this.http.post<BrandsModel[]>(`http://${environment.url}:${environment.port}/admin/getAllEnquiries`,{});
+
+}
+
+
+saveEnquiries(formdata)
+{
+console.log("fd",formdata);
+return this.http.post(`http://${environment.url}:${environment.port}/admin/saveEnquiry`,formdata);
+
+}
+
+
+deleteEnquiry(category)
+{
+return this.http.post(`http://${environment.url}:${environment.port}/admin/deleteEnquiry`,category);
+
+}
+
+
 
 
 

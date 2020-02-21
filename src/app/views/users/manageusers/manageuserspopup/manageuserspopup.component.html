@@ -1,0 +1,84 @@
+<h1 matDialogTitle>{{data.title}}</h1>
+{{"ADD" | translate }} {{"USER" | translate }}
+  <form [formGroup]="itemForm" (ngSubmit)="submit($event)">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column">
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        name="name"
+        [formControl]="itemForm.controls['name']"
+        placeholder="Name">
+      </mat-form-field>
+    </div>
+    <div>
+    <mat-form-field>
+      <mat-label>IsActive</mat-label>
+      <mat-select [formControl]="itemForm.controls['isactive']" >
+        <mat-option *ngFor="let topping of toppingList" [value]="topping.value">{{topping.label}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="50"  class="pr-1">
+    <mat-form-field class="full-width">
+      <input
+      matInput
+      name="username"
+     
+      [formControl]="itemForm.controls['username']"
+      placeholder="Username">
+    </mat-form-field>
+
+
+  </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        name="email"
+       
+        [formControl]="itemForm.controls['email']"
+        placeholder="Email">
+      </mat-form-field>
+
+ 
+    </div>
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field>
+        <mat-label>Role</mat-label>
+        <mat-select [formControl]="itemForm.controls['role']" >
+          <mat-option *ngFor="let topping of parentCategory" [value]="topping.value">{{topping.label}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+        
+      </div>
+
+      <div fxFlex="50"  class="pr-1">
+        <mat-form-field class="full-width">
+          <input
+          matInput
+          name="password"
+         
+          [formControl]="itemForm.controls['password']"
+          placeholder="Password">
+        </mat-form-field>
+      </div>
+
+  
+  
+   
+
+             
+
+               
+
+    <div fxFlex="100" class="mt-1">
+      <button mat-raised-button color="primary" type="submit" [disabled]="itemForm.invalid">{{"SAVE" | translate }}</button>
+      <span fxFlex></span>
+      <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">Cancel</button>
+    </div>
+  </div>
+  </form>
+

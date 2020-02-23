@@ -107,12 +107,56 @@
                   <div class="image-preview mb-3" *ngIf="previewUrl">
                     <button mat-raised-button color="primary"  type="button" style="margin-top: 10px; margin-left: 10px;" (click)="fileside.click()" >Select Image</button>             
                 </div>
-       
-                
-  
-                </div><br>
+              </div>
+              <div fxFlex="50"  class="pr-1"><h1>SEO Fields</h1></div>
+              <div fxFlex="50"  class="pr-1"></div>
+              <div fxFlex="50"  class="pr-1">
+                  <mat-form-field class="full-width">
+                    <input
+                    matInput
+                    name="seo_metatitle"
+                    [formControl]="itemForm.controls['seo_metatitle']"
+                    placeholder="Metatitle">
+                  </mat-form-field>
+                </div> 
 
-                <h1 matDialogTitle>SEO FIELDS</h1>
+                <div fxFlex="50"  class="pr-1">
+                    <mat-form-field class="full-width">
+                      <input
+                      matInput
+                      name="seo_metadescription"
+                      [formControl]="itemForm.controls['seo_metadescription']"
+                      placeholder="MetaDescription">
+                    </mat-form-field>
+                  </div> 
+     
+
+                  <div fxFlex="50"  class="pr-1">
+                      <mat-form-field class="full-width">
+                        <input
+                        matInput
+                        name="seo_metaheading"
+                        [formControl]="itemForm.controls['seo_metaheading']"
+                        placeholder="MetaHeading">
+                      </mat-form-field>
+                    </div> 
+                    <div fxFlex="50"  class="pr-1">
+                        <mat-form-field class="full-width">
+                          <input
+                          matInput
+                          name="seo_metaheadingdescription"
+                          [formControl]="itemForm.controls['seo_metaheadingdescription']"
+                          placeholder="MetaHeadingDescription">
+                        </mat-form-field>
+                      </div> 
+                      <div fxFlex="50"  class="pr-1">
+                          <mat-form-field class="example-full-width">
+                              <textarea matInput placeholder="Keywords"  [formControl]="itemForm.controls['seo_keywords']"></textarea>
+                            </mat-form-field>
+                          </div>
+  
+            
+
 
     <div fxFlex="100" class="mt-1">
       <button mat-raised-button color="primary" type="submit" [disabled]="itemForm.invalid">{{"SAVE" | translate }}</button>

@@ -130,6 +130,7 @@ linkImg(fileName) {
 
 
   submit() {
+    console.log(this.itemForm.value);
     const fd=new FormData();
      
     if(this.fileDatalogo && !this.fileDatasidebar )
@@ -167,7 +168,7 @@ linkImg(fileName) {
       //fd.append('imagelogo',this.fileDatalogo,`categoryicon.${file_ext[1]}`);
       //fd.append('imagesidebar',this.fileDatasidebar,`categoryicon.${file_extt[1]}`);
       fd.append('formavalues',JSON.stringify(this.itemForm.value));
-   
+      
       this.dialogRef.close(fd)
     }
   

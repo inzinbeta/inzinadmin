@@ -16,7 +16,7 @@ import { ProductService } from '../product.service';
 })
 export class ManageproductsComponent implements OnInit ,OnDestroy{
 
-  public items: any[];
+  public items: Object;
   public getItemSub: Subscription;
   constructor(
     private dialog: MatDialog,
@@ -29,6 +29,12 @@ export class ManageproductsComponent implements OnInit ,OnDestroy{
   ngOnInit() {
     this.getItems()
   }
+
+linkImg(fileName) {
+  //let file=fileName.split("/")[1];
+  // base_URL returns localhost:3000 or the production URL
+    //  return `http://localhost:3900/${file}`;
+    }
   ngOnDestroy() {
     if (this.getItemSub) {
       this.getItemSub.unsubscribe()
@@ -38,6 +44,7 @@ export class ManageproductsComponent implements OnInit ,OnDestroy{
     this.getItemSub = this.crudService.getItems()
       .subscribe(data => {
         this.items = data;
+        console.log(this.items);
       })
   }
 

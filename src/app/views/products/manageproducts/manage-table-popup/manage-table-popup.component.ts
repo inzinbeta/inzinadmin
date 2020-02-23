@@ -13,7 +13,7 @@ import { egretAnimations } from "../../../../shared/animations/egret-animations"
 })
 export class ManageTablePopupComponent implements OnInit {
   toppings = new FormControl();
-  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+  colours: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
  
  
 
@@ -21,6 +21,8 @@ export class ManageTablePopupComponent implements OnInit {
   public items: Object;
 
   public items_tags: Object;
+  public items_brands: Object;
+  public items_categories :Object;
     public itemForm: FormGroup;
   fileData: File = null;
 previewUrl:any = null;
@@ -79,6 +81,8 @@ reader.onload = (_event) => {
     this.buildItemForm(this.data.payload)
     this.getItems()
     this.getTags()
+    this.getBrands()
+    this.getCategories()
     
   }
   
@@ -104,24 +108,57 @@ getTags(){
       console.log(data);
     })
 }
+getBrands(){
+  
+  this.service.getAllBrands()
+
+    .subscribe(data => {
+      
+      this.items_brands = data;
+      console.log(data);
+    })
+}
+getCategories(){
+  this.service.getAllCategory()
+
+    .subscribe(data => {
+      
+      this.items_categories = data;
+
+      console.log(data);
+    })
+}
 
 
 
   buildItemForm(item) {
+
+   
+  
     this.itemForm = this.fb.group({
       tags: [item.tags || ''],
+      tag : [item.tag || ''],
       brand: [item.brand || ''],
+      subbrand: [item.subbrand || ''],
+      category: [item.category || ''],
+      subcategory: [item.subcategory || ''],
       metatitle: [item.metatitle || ''],
       heading: [item.heading || ''],
-      parentcategory : [item.parentcategory || ''],
-     
-      keyword: [item.keyword || ''],
+      colour: [item.colour || ''],
+      size: [item.size || ''],
+      name: [item.name || ''],
+      slug: [item.slug || ''],
+      stock: [item.stock || ''],
+    
+      keywords: [item.keyword || ''],
+      metadescription: [item.metadescription || ''],
       description: [item.description || '']
       
     })
   }
 
   submit() {
+    console.log(this.itemForm.value);
     this.dialogRef.close(this.itemForm.value)
   }
 

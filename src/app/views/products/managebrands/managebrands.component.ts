@@ -55,7 +55,7 @@ export class ManagebrandsComponent implements OnInit {
 
   openPopUp(data: any = {}, isNew?,_id:any="") {
     console.log("isnew",isNew);
-    let title = isNew ? 'Add New Category' : 'Update Category';
+    let title = isNew ? 'Add New Brand' : 'Update Brand';
     let dialogRef: MatDialogRef<any> = this.dialog.open(ManagebrandsTablePopupComponent, {
       width: '720px',
       maxHeight: '90vh' ,//you can adjust the value as per your view

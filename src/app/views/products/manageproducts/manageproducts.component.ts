@@ -7,6 +7,7 @@ import { ManageTablePopupComponent } from './manage-table-popup/manage-table-pop
 import { Subscription } from 'rxjs';
 import { egretAnimations } from "../../../shared/animations/egret-animations";
 import { ProductService } from '../product.service';
+import { HttpService } from 'app/shared/services/http.service';
 
 @Component({
   selector: 'app-manageproducts',
@@ -23,7 +24,8 @@ export class ManageproductsComponent implements OnInit ,OnDestroy{
     private snack: MatSnackBar,
     private crudService: ProductService,
     private confirmService: AppConfirmService,
-    private loader: AppLoaderService
+    private loader: AppLoaderService,
+    private service:HttpService
   ) { }
 
   ngOnInit() {
@@ -41,7 +43,7 @@ linkImg(fileName) {
     }
   }
   getItems() {
-    this.getItemSub = this.crudService.getItems()
+    this.getItemSub = this.service.getAllProducts()
       .subscribe(data => {
         this.items = data;
         console.log(this.items);
@@ -64,7 +66,8 @@ linkImg(fileName) {
         }
         this.loader.open();
         if (isNew) {
-          this.crudService.addItem(res)
+          debugger
+          this.service.saveBrand(res)
             .subscribe(data => {
               this.items = data;
               this.loader.close();

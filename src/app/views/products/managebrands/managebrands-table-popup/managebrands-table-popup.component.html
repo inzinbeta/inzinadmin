@@ -1,139 +1,213 @@
-<h1 matDialogTitle>{{data.title}}</h1>
-{{"ADD" | translate }} {{"BRAND" | translate }}
-  <form [formGroup]="itemForm" (ngSubmit)="submit($event)">
+<h1 matDialogTitle>{{ data.title }}</h1>
+{{ "ADD" | translate }} {{ "BRAND" | translate }}
+<form [formGroup]="itemForm" (ngSubmit)="submit($event)">
   <div fxLayout="row wrap" fxLayout.lt-sm="column">
-    <div fxFlex="50"  class="pr-1">
+    <div fxFlex="50" class="pr-1">
       <mat-form-field class="full-width">
         <input
-        matInput
-        name="username"
-        [formControl]="itemForm.controls['brand']"
-        placeholder="Brand">
+          matInput
+          name="username"
+          [formControl]="itemForm.controls['brand']"
+          placeholder="Brand"
+        />
       </mat-form-field>
     </div>
     <div>
-    <mat-form-field>
-      <mat-label>Brand Category</mat-label>
-      <mat-select [formControl]="itemForm.controls['brandcategory']">
-        <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-
-  <div fxFlex="50"  class="pr-1">
-    <mat-form-field class="full-width">
-      <input
-      matInput
-      name="title"
-     
-      [formControl]="itemForm.controls['title']"
-      placeholder="Title">
-    </mat-form-field>
-
-
-  </div>
-
-    <div fxFlex="50"  class="pr-1">
-      <mat-form-field class="full-width">
-        <input
-        matInput
-        name="heading"
-       
-        [formControl]="itemForm.controls['heading']"
-        placeholder="Heading">
-      </mat-form-field>
-
- 
-    </div>
-    <div fxFlex="50"  class="pr-1">
       <mat-form-field>
-        <mat-label>Parent Category</mat-label>
-        <mat-select [formControl]="itemForm.controls['parentcategory']" >
-          <mat-option *ngFor="let topping of parentCategory" [value]="topping">{{topping}}</mat-option>
+        <mat-label>Brand Category</mat-label>
+        <mat-select [formControl]="itemForm.controls['brandcategory']">
+          <mat-option *ngFor="let topping of toppingList" [value]="topping">{{
+            topping
+          }}</mat-option>
         </mat-select>
       </mat-form-field>
-        
+    </div>
+
+    <div fxFlex="50" class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          name="title"
+          [formControl]="itemForm.controls['title']"
+          placeholder="Title"
+        />
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50" class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          name="heading"
+          [formControl]="itemForm.controls['heading']"
+          placeholder="Heading"
+        />
+      </mat-form-field>
+    </div>
+    <div fxFlex="50" class="pr-1">
+      <mat-form-field>
+        <mat-label>Parent Category</mat-label>
+        <mat-select [formControl]="itemForm.controls['parentcategory']">
+          <mat-option
+            *ngFor="let topping of parentCategory"
+            [value]="topping"
+            >{{ topping }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50" class="pr-1">
+      <mat-form-field class="example-full-width">
+        <textarea
+          matInput
+          placeholder="Keywords"
+          [formControl]="itemForm.controls['keywords']"
+        ></textarea>
+      </mat-form-field>
+    </div>
+    <div fxFlex="50" class="pr-1">
+      <mat-form-field class="example-full-width">
+        <textarea
+          matInput
+          placeholder="Description"
+          [formControl]="itemForm.controls['description']"
+        ></textarea>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50" class="pr-1">
+      <mat-form-field class="example-full-width">
+        <textarea
+          matInput
+          placeholder="Content"
+          [formControl]="itemForm.controls['content']"
+        ></textarea>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50" class="pr-1">
+      <h3>Logo Upload</h3>
+      <div class="form-group">
+        <input
+          type="file"
+          name="image"
+          style="display: none;"
+          accept="image/*"
+          #logo
+          (change)="fileProgress1($event)"
+        />
+      </div>
+      <div *ngIf="fileUploadProgress1">
+        Upload progress: {{ fileUploadProgress1 }}
+      </div>
+      <div class="image-preview mb-3" *ngIf="previewUrlLogo">
+        <img [src]="previewUrlLogo" height="100" />
       </div>
 
-  
-  
-    <div fxFlex="50"  class="pr-1">
-        <mat-form-field class="example-full-width">
-            <textarea matInput placeholder="Keywords" [formControl]="itemForm.controls['keywords']" ></textarea>
-          </mat-form-field>
+      <div class="image-preview mb-3" *ngIf="previewUrl">
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="logo.click()"
+          style="margin-top: 10px; margin-left: 10px;"
+        >
+          Select Image
+        </button>
+      </div>
+    </div>
+    <div fxFlex="50" class="pr-1">
+      <h3>Sidebar Upload</h3>
+      <div class="form-group">
+        <input
+          type="file"
+          style="display: none;"
+          #fileside
+          accept="image/*"
+          name="image"
+          (change)="fileProgress($event)"
+        />
+      </div>
+      <div *ngIf="fileUploadProgress">
+        Upload progress: {{ fileUploadProgress }}
+      </div>
+      <div class="image-preview mb-3" *ngIf="previewUrl">
+        <img [src]="previewUrl" height="100" />
+      </div>
+
+      <div class="image-preview mb-3" *ngIf="previewUrl">
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          style="margin-top: 10px; margin-left: 10px;"
+          (click)="fileside.click()"
+        >
+          Select Image
+        </button>
+      </div>
+    </div>
+
+    <div
+      formArrayName="specifications"
+      style="width: 100%; padding: 10px; margin: 15px auto;"
+    >
+      <div
+        *ngFor="let item of specifications.controls; let pointIndex = index"
+        [formGroupName]="pointIndex"
+        style="display: flex;  flex-direction: row; justify-content: space-between; margin: 15px;"
+      >
+        <div style="width: 100%;">
+          <label>
+            Specification
+            <input
+              style="border-bottom: 1px grey solid; width: 90%;"
+              matInput
+              name="point"
+              formControlName="point"
+              placeholder="Specification"
+            />
+          </label>
         </div>
-        <div fxFlex="50"  class="pr-1">
-            <mat-form-field class="example-full-width">
-                <textarea matInput placeholder="Description" [formControl]="itemForm.controls['description']" ></textarea>
-              </mat-form-field>
-            </div>
-
-            <div fxFlex="50"  class="pr-1">
-                <mat-form-field class="example-full-width">
-                    <textarea matInput placeholder="Content"  [formControl]="itemForm.controls['content']"></textarea>
-                  </mat-form-field>
-                </div>
-                
-                <div fxFlex="50"  class="pr-1">
-                <h3>Logo Upload</h3>            
-                <div class="form-group">
-                    <input type="file" name="image"  style="display: none;" accept="image/*" #logo  (change)="fileProgress1($event)" />
-                </div>
-                <div *ngIf="fileUploadProgress1">
-                    Upload progress: {{ fileUploadProgress1 }}
-                </div>
-                <div class="image-preview mb-3" *ngIf="previewUrlLogo">
-                    <img [src]="previewUrlLogo" height="100" />                 
-                </div>
-     
-                <div class="image-preview mb-3" *ngIf="previewUrl">
-                  <button mat-raised-button color="primary" type="button" (click)="logo.click()" style="margin-top: 10px; margin-left: 10px;" >Select Image</button>           
-              </div>
-              
-
-              </div>
-              <div fxFlex="50"  class="pr-1">
-                  <h3>Sidebar Upload</h3>            
-                  <div class="form-group">
-                      <input type="file"  style="display: none;" #fileside accept="image/*" name="image" (change)="fileProgress($event)" />
-                  </div>
-                  <div *ngIf="fileUploadProgress">
-                      Upload progress: {{ fileUploadProgress }}
-                  </div>
-                  <div class="image-preview mb-3" *ngIf="previewUrl">
-                      <img [src]="previewUrl"  height="100" />                 
-                  </div>
-
-                  <div class="image-preview mb-3" *ngIf="previewUrl">
-                    <button mat-raised-button color="primary"  type="button" style="margin-top: 10px; margin-left: 10px;" (click)="fileside.click()" >Select Image</button>             
-                </div>
-       
-                
-  
-                </div>
-                
-
-                <div formArrayName="specifications">
-                  <div *ngFor="let item of specifications.controls; let pointIndex=index" [formGroupName]="pointIndex">
-                  <label>
-                   Specification <input
-                    matInput
-                    name="point"
-                    formControlName="point"
-                    
-                    placeholder="Specification">
-                   
-                  </label>
-                  <button mat-raised-button color="primary" (click)="deleteSellingPoint(pointIndex)" type="button"  >Delete</button>             
-                 </div>
-                  <button mat-raised-button color="primary" type="button" (click)="addSellingPoint()">Add</button>
-                </div>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="deleteSellingPoint(pointIndex)"
+          type="button"
+        >
+          Delete
+        </button>
+      </div>
+      <button
+        style="margin: 15px; left: 40%;"
+        mat-raised-button
+        color="primary"
+        type="button"
+        (click)="addSellingPoint()"
+      >
+        Add
+      </button>
+    </div>
 
     <div fxFlex="100" class="mt-1">
-      <button mat-raised-button color="primary" type="submit" [disabled]="itemForm.invalid">{{"SAVE" | translate }}</button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="itemForm.invalid"
+      >
+        {{ "SAVE" | translate }}
+      </button>
       <span fxFlex></span>
-      <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">Cancel</button>
+      <button
+        mat-button
+        color="warn"
+        type="button"
+        (click)="dialogRef.close(false)"
+      >
+        Cancel
+      </button>
     </div>
   </div>
-  </form>
-
+</form>

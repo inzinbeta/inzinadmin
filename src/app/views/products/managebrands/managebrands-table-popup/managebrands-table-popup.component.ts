@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormControl, FormArray } from '@angular/forms';
 import { HttpService } from 'app/shared/services/http.service';
 
 
@@ -108,10 +108,26 @@ linkImg(fileName) {
       parentcategory : [item.parentcategory || ''],
       content:[item.content || ''],
       keywords: [item.keywords || ''],
-      description: [item.description || '']
+      description: [item.description || ''],
+      specifications:this.fb.array([this.fb.group({point:''})])
       
     })
   }
+
+  ///////// This is new ////////
+  get specifications() {
+    return this.itemForm.get('specifications') as FormArray;
+  }
+
+
+  addSellingPoint() {
+    this.specifications.push(this.fb.group({point:''}));
+  }
+
+  deleteSellingPoint(index) {
+    this.specifications.removeAt(index);
+  }
+
 
   submit() {
     const fd=new FormData();

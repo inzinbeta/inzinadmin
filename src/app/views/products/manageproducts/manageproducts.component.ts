@@ -52,6 +52,7 @@ linkImg(fileName) {
     let title = isNew ? 'Add New Product' : 'Update Product';
     let dialogRef: MatDialogRef<any> = this.dialog.open(ManageTablePopupComponent, {
       width: '720px',
+      maxHeight: '90vh' ,//you can adjust the value as per your view
       disableClose: true,
       data: { title: title, payload: data }
     })

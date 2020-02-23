@@ -25,7 +25,7 @@ export class ManageTablePopupComponent implements OnInit {
   public items_categories :Object;
     public itemForm: FormGroup;
   fileData: File = null;
-previewUrl:any = null;
+  previewUrl:any = "assets/images/download.jpeg";
 previewUrlLogo:any=null;
 fileUploadProgress: string = null;
 uploadedFilePath: string = null;
@@ -158,8 +158,29 @@ getCategories(){
   }
 
   submit() {
-    console.log(this.itemForm.value);
-    this.dialogRef.close(this.itemForm.value)
+    const fd=new FormData();
+   
+       if(!this.fileData)
+      {
+       // let file_ext=this.fileDatalogo.name.split(".");
+        let file_extt=this.fileData.name.split(".");
+       
+        fd.append('imagesidebar',this.fileData,`categoryicon.${file_extt[1]}`);
+        fd.append('formavalues',JSON.stringify(this.itemForm.value));
+     
+        this.dialogRef.close(fd)
+      }
+      
+      else{
+        
+        
+        fd.append('formavalues',JSON.stringify(this.itemForm.value));
+     
+        this.dialogRef.close(fd)
+      }
+    
+    
+    
   }
 
 }

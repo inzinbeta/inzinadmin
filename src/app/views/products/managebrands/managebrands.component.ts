@@ -58,6 +58,7 @@ export class ManagebrandsComponent implements OnInit {
     let title = isNew ? 'Add New Category' : 'Update Category';
     let dialogRef: MatDialogRef<any> = this.dialog.open(ManagebrandsTablePopupComponent, {
       width: '720px',
+      maxHeight: '90vh' ,//you can adjust the value as per your view
       disableClose: true,
       data: { title: title, payload: data }
     })

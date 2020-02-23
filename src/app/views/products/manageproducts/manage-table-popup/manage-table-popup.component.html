@@ -17,7 +17,6 @@
     </mat-form-field>
   </div>
 
-  <div  fxFlex="50"  class="pr-1"></div>
   <div  fxFlex="50"  class="pr-1">
       <mat-form-field>
     <mat-label>Select Brand</mat-label>
@@ -128,7 +127,7 @@
     </div>
 
   
-    <div fxFlex="50"  class="pr-1"></div>
+ 
     <div fxFlex="50"  class="pr-1">
         <mat-form-field class="example-full-width">
             <textarea matInput placeholder="Keywords"  [formControl]="itemForm.controls['keywords']"></textarea>
@@ -139,7 +138,9 @@
                 <textarea matInput placeholder="Description" [formControl]="itemForm.controls['description']"></textarea>
               </mat-form-field>
             </div>
-            <mat-form-field>
+
+            <div fxFlex="50"  class="pr-1">
+              <mat-form-field>
                 <mat-label>Stock</mat-label>
                 <select matNativeControl [formControl]="itemForm.controls['stock']">
                   <option value="Yes" >Yes</option>
@@ -147,25 +148,26 @@
                  
                 </select>
               </mat-form-field>
-              <div fxFlex="50"  class="pr-1"></div>
-                
-                <div fxFlex="50"  class="pr-1">
-                <h3>Photo</h3>            
+              </div>
+           
+             
+              <div fxFlex="50"  class="pr-1">
+                <h3>Photo Upload</h3>            
                 <div class="form-group">
-                    <input type="file" name="image" (change)="fileProgress1($event)" />
+                    <input type="file"  style="display: none;" #fileside accept="image/*" name="image" (change)="fileProgress($event)" />
                 </div>
-                <div *ngIf="fileUploadProgress1">
-                    Upload progress: {{ fileUploadProgress1 }}
-                </div>
-                <div class="image-preview mb-3" *ngIf="previewUrlLogo">
-                    <img [src]="previewUrlLogo" height="100" />                 
-                </div>
-     
-                <div class="mb-3" *ngIf="uploadedFileLogo">
-                    {{uploadedFileLogo}}
+                
+                <div class="image-preview mb-3" *ngIf="previewUrl">
+                    <img [src]="previewUrl"  height="100" />                 
                 </div>
 
+                <div class="image-preview mb-3" *ngIf="previewUrl">
+                  <button mat-raised-button color="primary"  type="button" style="margin-top: 10px; margin-left: 10px;" (click)="fileside.click()" >Select Image</button>             
               </div>
+     
+              
+
+              </div><br>
               <div fxFlex="100" class="mt-1">
                 <button mat-raised-button color="primary" type="submit" [disabled]="itemForm.invalid">{{"SAVE" | translate }}</button>
                 <span fxFlex></span>

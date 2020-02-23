@@ -30,9 +30,10 @@ import { ManageuserspopupComponent } from './manageusers/manageuserspopup/manage
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { TranslateModule } from '@ngx-translate/core';
 import { ManageenquiriesComponent } from './manageenquiries/manageenquiries.component';
+import { ManagenquiriespopupComponent } from './manageenquiries/managenquiriespopup/managenquiriespopup.component';
 
 @NgModule({
-  declarations: [ManageusersComponent, ManageuserspopupComponent, ManageenquiriesComponent],
+  declarations: [ManageusersComponent, ManageuserspopupComponent, ManageenquiriesComponent, ManagenquiriespopupComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -58,6 +59,6 @@ import { ManageenquiriesComponent } from './manageenquiries/manageenquiries.comp
  
     UsersRoutingModule
   ],
-  entryComponents: [ManageuserspopupComponent]
+  entryComponents: [ManageuserspopupComponent,ManagenquiriespopupComponent]
 })
 export class UsersModule { }

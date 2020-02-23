@@ -1,0 +1,82 @@
+<h1 matDialogTitle>{{data.title}}</h1>
+{{"ADD" | translate }} {{"Enquiry" | translate }}
+  <form [formGroup]="itemForm" (ngSubmit)="submit($event)">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column">
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        name="name"
+        [formControl]="itemForm.controls['name']"
+        placeholder="Name">
+      </mat-form-field>
+    </div>
+
+
+  <div fxFlex="50"  class="pr-1">
+    <mat-form-field class="full-width">
+      <input
+      matInput
+      name="productEnquired"
+     
+      [formControl]="itemForm.controls['productEnquired']"
+      placeholder="Product Enquired">
+    </mat-form-field>
+
+
+  </div>
+
+  <div fxFlex="50"  class="pr-1">
+    <mat-form-field class="full-width">
+      <input
+      matInput
+      name="phonenumber"
+     
+      [formControl]="itemForm.controls['phonenumber']"
+      placeholder="Phone Number">
+    </mat-form-field>
+
+
+  </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        name="date"
+       
+        [formControl]="itemForm.controls['date']"
+        placeholder="Date">
+      </mat-form-field>
+
+ 
+    </div>
+    
+
+      <div fxFlex="50"  class="pr-1">
+        <mat-form-field class="full-width">
+          <input
+          matInput
+          name="email"
+         
+          [formControl]="itemForm.controls['email']"
+          placeholder="Email">
+        </mat-form-field>
+      </div>
+
+  
+  
+   
+
+             
+
+               
+
+    <div fxFlex="100" class="mt-1">
+      <button mat-raised-button color="primary" type="submit" [disabled]="itemForm.invalid">{{"SAVE" | translate }}</button>
+      <span fxFlex></span>
+      <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">Cancel</button>
+    </div>
+  </div>
+  </form>
+

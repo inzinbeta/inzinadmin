@@ -9,59 +9,148 @@
  
     
     <div  fxFlex="50"  class="pr-1">
-
-       
-    <mat-form-field>
+        <mat-form-field>
       <mat-label>Tags</mat-label>
-      <mat-select [formControl]="itemForm.controls['brand']" >
+      <mat-select [formControl]="itemForm.controls['tag']" >
         <mat-option *ngFor="let topping of items_tags" [value]="topping">{{topping.name}}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
+
+  <div  fxFlex="50"  class="pr-1"></div>
+  <div  fxFlex="50"  class="pr-1">
+      <mat-form-field>
+    <mat-label>Select Brand</mat-label>
+    <mat-select [formControl]="itemForm.controls['brand']" >
+      <mat-option *ngFor="let topping of items_brands" [value]="topping">{{topping.brand}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div  fxFlex="50"  class="pr-1">
+    <mat-form-field>
+  <mat-label>Select SubBrand</mat-label>
+  <mat-select [formControl]="itemForm.controls['subbrand']" >
+  <!---->  <mat-option *ngFor="let topping of items_brands" [value]="topping">{{topping.brand}}</mat-option>
+  </mat-select>
+</mat-form-field>
+</div>
+  
+
+ 
+  <div  fxFlex="50"  class="pr-1">
+      <mat-form-field>
+    <mat-label>Select Category</mat-label>
+    <mat-select [formControl]="itemForm.controls['category']" >
+      <mat-option *ngFor="let topping of items_categories" [value]="topping">{{topping.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div  fxFlex="50"  class="pr-1">
+    <mat-form-field>
+  <mat-label>Select SubCategory</mat-label>
+  <mat-select [formControl]="itemForm.controls['subcategory']" >
+    <mat-option *ngFor="let topping of items_categories" [value]="topping">{{topping.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+</div>
+  
+
+  
+  <div  fxFlex="50"  class="pr-1">
+     <mat-form-field>
+      <mat-label>Colours</mat-label>
+      <mat-select [formControl]="itemForm.controls['colour']">
+        <mat-option *ngFor="let topping of colours" [value]="topping">{{topping}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div  fxFlex="50"  class="pr-1">
+
+       
+    <mat-form-field>
+      <mat-label>Sizes</mat-label>
+      <mat-select [formControl]="itemForm.controls['size']">
+        <mat-option *ngFor="let topping of colours" [value]="topping">{{topping}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="50"  class="pr-1">
+    <mat-form-field class="full-width">
+      <input
+      matInput
+      name="name"
+     
+      [formControl]="itemForm.controls['name']"
+      placeholder="Name">
+    </mat-form-field>
+  </div>
+ 
 
     <div fxFlex="50"  class="pr-1">
       <mat-form-field class="full-width">
         <input
         matInput
         name="heading"
-       
         [formControl]="itemForm.controls['heading']"
         placeholder="Heading">
       </mat-form-field>
     </div>
+
     <div fxFlex="50"  class="pr-1">
-        <mat-form-field class="full-width">
-          <input
-          matInput
-          type="number"
-          width="120"
-          name="parentcategory"
-          [formControl]="itemForm.controls['parentcategory']"
-          placeholder="Parent Category">
-        </mat-form-field>
-      </div>
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        name="slug"
+        [formControl]="itemForm.controls['slug']"
+        placeholder="Slug">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        name="metatitle"
+        [formControl]="itemForm.controls['metatitle']"
+        placeholder="Metatitle">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        name="metadescription"
+        [formControl]="itemForm.controls['metadescription']"
+        placeholder="MetaDescription">
+      </mat-form-field>
+    </div>
 
   
-  
+    <div fxFlex="50"  class="pr-1"></div>
     <div fxFlex="50"  class="pr-1">
         <mat-form-field class="example-full-width">
-            <textarea matInput placeholder="Keywords"></textarea>
+            <textarea matInput placeholder="Keywords"  [formControl]="itemForm.controls['keywords']"></textarea>
           </mat-form-field>
         </div>
         <div fxFlex="50"  class="pr-1">
             <mat-form-field class="example-full-width">
-                <textarea matInput placeholder="Description"></textarea>
+                <textarea matInput placeholder="Description" [formControl]="itemForm.controls['description']"></textarea>
               </mat-form-field>
             </div>
-
-            <div fxFlex="50"  class="pr-1">
-                <mat-form-field class="example-full-width">
-                    <textarea matInput placeholder="Content"></textarea>
-                  </mat-form-field>
-                </div>
+            <mat-form-field>
+                <mat-label>Stock</mat-label>
+                <select matNativeControl [formControl]="itemForm.controls['stock']">
+                  <option value="Yes" >Yes</option>
+                  <option value="No">No</option>
+                 
+                </select>
+              </mat-form-field>
+              <div fxFlex="50"  class="pr-1"></div>
                 
                 <div fxFlex="50"  class="pr-1">
-                <h3>Logo Upload</h3>            
+                <h3>Photo</h3>            
                 <div class="form-group">
                     <input type="file" name="image" (change)="fileProgress1($event)" />
                 </div>
@@ -77,23 +166,11 @@
                 </div>
 
               </div>
-              <div fxFlex="50"  class="pr-1">
-                  <h3>Sidebar Upload</h3>            
-                  <div class="form-group">
-                      <input type="file" name="image" (change)="fileProgress($event)" />
-                  </div>
-                  <div *ngIf="fileUploadProgress">
-                      Upload progress: {{ fileUploadProgress }}
-                  </div>
-                  <div class="image-preview mb-3" *ngIf="previewUrl">
-                      <img [src]="previewUrl" height="100" />                 
-                  </div>
-       
-                  <div class="mb-3" *ngIf="uploadedFilePath">
-                      {{uploadedFilePath}}
-                  </div>
-  
-                </div>-
+              <div fxFlex="100" class="mt-1">
+                <button mat-raised-button color="primary" type="submit" [disabled]="itemForm.invalid">{{"SAVE" | translate }}</button>
+                <span fxFlex></span>
+                <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">Cancel</button>
+              </div>
      
   
   </div>

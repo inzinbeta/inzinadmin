@@ -66,10 +66,10 @@ export class NavigationService {
       type: "dropDown",
       tooltip: "Inbox",
       icon: "inbox",
-      state: "cruds/ngx-table",
+      state: "pages",
       sub: [
-        { name: "Manage Home",  state: "pages/home" },
-        { name: "Manage Banner",  state: "pages/banner" },
+        { name: "Manage Home",  state: "managehome" },
+        { name: "Manage Banner",  state: "managebanner" },
        
       ]
       
@@ -79,14 +79,27 @@ export class NavigationService {
       type: "dropDown",
       tooltip: "Inbox",
       icon: "inbox",
-      state: "",
+      state: "users",
       sub: [
-        { name: "Manage User",  state: "users/manageusers" },
-        { name: "Manage Enquiries",  state: "users/manageenquiries" },
+        { name: "Manage User",  state: "manageusers" },
+        { name: "Manage Enquiries",  state: "manageenquiries" },
        
       ]
       
-    }
+    },
+
+    {
+      name: "Settings",
+      type: "dropDown",
+      tooltip: "Settings",
+      icon: "settings",
+      state: "settings",
+      sub: [
+        { name: "Manage Sections",  state: "sections" },
+       
+       
+      ]
+    },
    
    
   ];

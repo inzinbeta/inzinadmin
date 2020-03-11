@@ -189,25 +189,122 @@
         Add
       </button>
     </div>
+    <div fxFlex="50"  class="pr-1">
+        <h1 matDialogTitle>Contact Details</h1>    
+        </div>
+        <div fxFlex="50"  class="pr-1"></div>
+        <div fxFlex="50"  class="pr-1">
+            <mat-form-field class="full-width">
+              <input
+              matInput
+              name="mobile"
+              [formControl]="itemForm.controls['mobile']"
+              placeholder="Mobile">
+            </mat-form-field>
+          </div> 
+
+          <div fxFlex="50"  class="pr-1">
+              <mat-form-field class="full-width">
+                <input
+                matInput
+                name="email"
+                [formControl]="itemForm.controls['email']"
+                placeholder="Email">
+              </mat-form-field>
+            </div> 
+
+
+            <div fxFlex="50"  class="pr-1">
+                <mat-form-field class="full-width">
+                  <input
+                  matInput
+                  name="address"
+                  [formControl]="itemForm.controls['address']"
+                  placeholder="Address">
+                </mat-form-field>
+              </div> 
+              <div fxFlex="50"  class="pr-1">
+                  <mat-form-field class="full-width">
+                    <input
+                    matInput
+                    name="web"
+                    [formControl]="itemForm.controls['web']"
+                    placeholder="Web">
+                  </mat-form-field>
+                </div> 
+                <div fxFlex="50"  class="pr-1">
+                    <mat-form-field class="example-full-width">
+                        <textarea matInput placeholder="Social Media"  
+                        [formControl]="itemForm.controls['socialmedia']"></textarea>
+                      </mat-form-field>
+                    </div>
+
+                    <div fxFlex="50"  class="pr-1"></div>
+    <div fxFlex="50"  class="pr-1">
+        <h1 matDialogTitle>SEO Fields</h1>    
+        </div>
+        <div fxFlex="50"  class="pr-1"></div>
+        <div fxFlex="50"  class="pr-1">
+            <mat-form-field class="full-width">
+              <input
+              matInput
+              name="seo_metatitle"
+              [formControl]="itemForm.controls['seo_metatitle']"
+              placeholder="Metatitle">
+            </mat-form-field>
+          </div> 
+
+          <div fxFlex="50"  class="pr-1">
+              <mat-form-field class="full-width">
+                <input
+                matInput
+                name="seo_metadescription"
+                [formControl]="itemForm.controls['seo_metadescription']"
+                placeholder="MetaDescription">
+              </mat-form-field>
+            </div> 
+
+
+            <div fxFlex="50"  class="pr-1">
+                <mat-form-field class="full-width">
+                  <input
+                  matInput
+                  name="seo_metaheading"
+                  [formControl]="itemForm.controls['seo_metaheading']"
+                  placeholder="MetaHeading">
+                </mat-form-field>
+              </div> 
+              <div fxFlex="50"  class="pr-1">
+                  <mat-form-field class="full-width">
+                    <input
+                    matInput
+                    name="seo_metaheadingdescription"
+                    [formControl]="itemForm.controls['seo_metaheadingdescription']"
+                    placeholder="MetaHeadingDescription">
+                  </mat-form-field>
+                </div> 
+                <div fxFlex="50"  class="pr-1">
+                    <mat-form-field class="example-full-width">
+                        <textarea matInput placeholder="Keywords"  [formControl]="itemForm.controls['seo_keywords']"></textarea>
+                      </mat-form-field>
+                    </div>
 
     <div fxFlex="100" class="mt-1">
       <button
         mat-raised-button
         color="primary"
         type="submit"
-        [disabled]="itemForm.invalid"
-      >
-        {{ "SAVE" | translate }}
-      </button>
+        [disabled]="itemForm.invalid" >
+        {{ "SAVE" | translate }} </button>
       <span fxFlex></span>
       <button
         mat-button
         color="warn"
         type="button"
-        (click)="dialogRef.close(false)"
-      >
+        (click)="dialogRef.close(false)" >
         Cancel
       </button>
     </div>
+  
   </div>
 </form>

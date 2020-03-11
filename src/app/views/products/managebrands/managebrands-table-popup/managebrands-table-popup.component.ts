@@ -109,7 +109,17 @@ linkImg(fileName) {
       content:[item.content || ''],
       keywords: [item.keywords || ''],
       description: [item.description || ''],
-      specifications:this.fb.array([this.fb.group({point:''})])
+      specifications:this.fb.array([this.fb.group({point:''})]),
+      seo_keywords: [item.seo_keyword || ''],
+      seo_metadescription: [item.seo_metadescription || ''],
+      seo_metatitle: [item.seo_metatitle || ''],
+      seo_metaheading: [item.seo_metaheading || ''],
+      seo_metaheadingdescription: [item.seo_metaheadingdescription || ''],
+      mobile: [item.mobile || ''],
+      address: [item.address || ''],
+      email: [item.email || ''],
+      web: [item.web || ''],
+      socialmedia: [item.socialmedia|| '']
       
     })
   }

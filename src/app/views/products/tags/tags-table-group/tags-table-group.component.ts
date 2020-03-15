@@ -9,7 +9,7 @@ import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
 })
 export class TagsTableGroupComponent implements OnInit {
   toppings = new FormControl();
-  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+  toppingList: string[] = ['Product', 'Brand'];
  
   public itemForm: FormGroup;
  
@@ -70,13 +70,12 @@ reader.onload = (_event) => {
       name: [item.name || '', Validators.required],
       slug: [item.slug || ''],
       description: [item.description || ''],
-      brand_name: [item.brand_name || '', Validators.required],
-      brand_slug: [item.brand_slug || ''],
-      brand_description: [item.brand_description || '']
+      type:[item.type || '']
     })
   }
 
   submit() {
+    console.log(this.itemForm.value);
     this.dialogRef.close(this.itemForm.value)
   }
 

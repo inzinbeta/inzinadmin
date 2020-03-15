@@ -17,6 +17,9 @@ export class ManagebrandsTablePopupComponent implements OnInit {
   toppingList: string[] = ['Premium', 'Non-Premium'];
   subcategories:string[]=[]; // these will be changed when categories is chnaged
   parentcatgeories:any[]=[];
+  description:string="Enter Description Here";
+  metadescription:string="Enter Meta Description Here";
+  metaheadingdescription:string="Enter Meta Heading Description Here";
 
 
 
@@ -70,7 +73,7 @@ export class ManagebrandsTablePopupComponent implements OnInit {
 
   getCategories() {
     this.service.getAllCategory().subscribe(data => {
-      console.log(data);
+    
       this.parentcatgeories.push(...data);
       this.parentCategory.push(...data.reduce((acc, ele) => {
 
@@ -88,10 +91,10 @@ getSubCategories(catgeory)
   
   
   this.subcategories.push(...this.parentcatgeories.reduce((acc, ele) => {
-    console.log(ele.parentcategory);
-
+    
+      
     if (ele.parentcategory==catgeory) {
-      console.log(ele.name)
+     
       acc.push(ele.name);
     }
     return acc;
@@ -114,10 +117,6 @@ getSubCategories(catgeory)
     }
   }
 
-  ngOnInit() {
-    this.buildItemForm(this.data.payload);
-    this.getCategories();
-  }
   buildItemForm(item) {
 
     if (Object.keys(item).length > 0) {
@@ -130,11 +129,11 @@ getSubCategories(catgeory)
     this.itemForm = this.fb.group({
       name: [item.name || '', Validators.required],
       brandcategory: [item.brandcategory || ''],
-      title: [item.title || ''],
-      heading: [item.heading || ''],
+      slug: [item.slug || ''],
+      tags:[item.tags || ''],
       parentcategory: [item.parentcategory || ''],
       subcategory: [item.subcategory || ''],
-      content: [item.content || ''],
+    
       keywords: [item.keywords || ''],
       description: [item.description || ''],
       specifications: this.fb.array([this.fb.group({ point: '' })]),
@@ -228,5 +227,15 @@ getSubCategories(catgeory)
 
   }
 
+
+
+  ngOnInit() {
+    this.buildItemForm(this.data.payload);
+    this.getCategories();
+
+    this.description=this.data.payload.description || "Enter Description";
+    this.metadescription=this.data.payload.seo_metadescription || "Meta Description";
+    this.metaheadingdescription=this.data.payload.seo_metaheadingdescription || "Meta Description";
+  }
 
 }

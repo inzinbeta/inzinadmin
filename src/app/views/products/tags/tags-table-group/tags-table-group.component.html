@@ -1,9 +1,9 @@
 <h1 matDialogTitle>{{data.title}}</h1>
-{{"ADD" | translate }} {{"TAG" | translate }}
+
   <form [formGroup]="itemForm" (ngSubmit)="submit()">
   <div fxLayout="row wrap" fxLayout.lt-sm="column">
-      <h1 matDialogTitle>Product Tags</h1>
-      <div fxFlex="50"  class="pr-1"></div>
+   
+    
     <div fxFlex="50"  class="pr-1">
       <mat-form-field class="full-width">
         <input
@@ -25,38 +25,17 @@
       </div>
    
         <div fxFlex="100"  class="pr-1">
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="example-full-width" [style.width.px]=427>
                 <textarea matInput placeholder="Description" [formControl]="itemForm.controls['description']"></textarea>
               </mat-form-field>
             </div>
 
-            <h1 matDialogTitle>Brand Tags</h1>
-            <div fxFlex="50"  class="pr-1"></div>
-            <div fxFlex="50"  class="pr-1">
-              <mat-form-field class="full-width">
-                <input
-                matInput
-                name="brand_name"
-                [formControl]="itemForm.controls['brand_name']"
-                placeholder="Name">
-              </mat-form-field>
-            </div>
-        
-            <div fxFlex="50"  class="pr-1">
-                <mat-form-field class="full-width">
-                  <input
-                  matInput
-                  name="brand_slug"
-                  [formControl]="itemForm.controls['brand_slug']"
-                  placeholder="Slug">
-                </mat-form-field>
-              </div>
-           
-                <div fxFlex="100"  class="pr-1">
-                    <mat-form-field class="example-full-width">
-                        <textarea matInput placeholder="Description" [formControl]="itemForm.controls['brand_description']"></textarea>
-                      </mat-form-field>
-                    </div>
+            <mat-form-field>
+              <mat-label>Tag type</mat-label>
+              <mat-select [formControl]="itemForm.controls['type']">
+                <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+              </mat-select>
+            </mat-form-field>
 
             
                 

@@ -6,9 +6,9 @@ import { ManagepremiumbrandsComponent } from './managepremiumbrands/managepremiu
 
 export const CrudsRoutes: Routes = [
   { 
-    path: 'managepremiumbrands', 
+    path: 'manageservices', 
     component: ManagepremiumbrandsComponent, 
-    data: { title: 'Manage Premium Brands', breadcrumb: 'Manage Premium Brands' } 
+    data: { title: 'Manage Services', breadcrumb: 'Manage Services' } 
   },
  
 ];

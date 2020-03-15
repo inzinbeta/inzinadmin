@@ -18,7 +18,10 @@ export class CategoriesTablePopupComponent implements OnInit {
   toppingList: string[] = [];
   parentCategory:string[]=[];
  
- 
+  categoryDescription = `Category Description`;
+  metaHeadingDescription = `Meta Heading  Description`;
+  metaDescription=`Meta Description`;
+
 
   
   
@@ -101,12 +104,8 @@ reader.onload = (_event) => {
   
     this.itemForm = this.fb.group({
       name: [item.name || '', Validators.required],
-      brand: [item.brands || ''],
-      metatitle: [item.metatitle || ''],
-      heading: [item.heading || ''],
+      slug: [item.slug || ''],
       parentcategory : [item.parentcategory || ''],
-      content:[item.content || ''],
-      keywords: [item.keywords || ''],
       description: [item.description || ''],
       seo_keywords: [item.seo_keyword || ''],
       seo_metadescription: [item.seo_metadescription || ''],
@@ -144,7 +143,7 @@ this.service.getAllCategory().subscribe(data=>{
   
   submit() {
    
-
+console.log(this.itemForm.value);
     // Append Form data here and send the data further 
 
 
@@ -204,6 +203,10 @@ this.service.getAllCategory().subscribe(data=>{
   ngOnInit() {
     this.getBrands();
     this.getCategories();
-    this.buildItemForm(this.data.payload)
+    this.buildItemForm(this.data.payload);
+  
+    this.categoryDescription = this.data.payload.description||`Category Description`;
+  this.metaHeadingDescription = this.data.payload.seo_metaheadingdescription||`Meta Heading  Description`;
+  this.metaDescription=this.data.payload.seo_metadescription ||`Meta Description`;
   }
 }

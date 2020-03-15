@@ -32,19 +32,15 @@
               
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Brands" [flexGrow]="1">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-              {{ row?.brands }}
-            </ng-template>
-          </ngx-datatable-column>
+         
           <ngx-datatable-column name="Metaitle" [flexGrow]="1">
             <ng-template let-row="row" ngx-datatable-cell-template>
-              {{ row?.metatitle }}
+              {{ row?.seo_metatitle }}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Heading" [flexGrow]="1">
             <ng-template let-row="row" ngx-datatable-cell-template>
-              {{ row?.heading  }}
+              {{ row?.seo_metaheading  }}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="ParentCategory" [flexGrow]="1">
@@ -54,12 +50,12 @@
           </ngx-datatable-column>
           <ngx-datatable-column name="Keywords" [flexGrow]="1">
             <ng-template let-row="row" ngx-datatable-cell-template>
-              {{ row?.keywords }}
+              {{ row?.seo_keywords }}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Content" [flexGrow]="1">
+          <ngx-datatable-column name="Description" [flexGrow]="1">
             <ng-template let-row="row" ngx-datatable-cell-template>
-              {{ row?.content }}
+              {{ row?.description }}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Status" [flexGrow]="1">

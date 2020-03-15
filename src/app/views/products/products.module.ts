@@ -39,8 +39,9 @@ import { TagsComponent } from './tags/tags.component';
 import { TagsTableGroupComponent } from './tags/tags-table-group/tags-table-group.component';
 import { ManagebrandsComponent } from './managebrands/managebrands.component';
 import { ManagebrandsTablePopupComponent } from './managebrands/managebrands-table-popup/managebrands-table-popup.component';
-import { QuillEditorComponent, QuillModule } from 'ngx-quill';
-import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { QuillModule } from 'ngx-quill';
+
+
 
 
 
@@ -64,11 +65,13 @@ import { CdkTextareaAutosize } from '@angular/cdk/text-field';
     MatOptionModule,
     MatSnackBarModule,
     MatSlideToggleModule,
-    QuillModule,
+   
     MatListModule,
     MatGridListModule,
     TranslateModule,
     SharedModule,
+    QuillModule,
+
     
     RouterModule.forChild(CrudsRoutes)
   ],

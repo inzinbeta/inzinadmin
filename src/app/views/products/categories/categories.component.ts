@@ -45,6 +45,7 @@ export class CategoriesComponent implements OnInit ,OnDestroy{
   getItems() {
     this.getItemSub = this.service.getAllCategory()
       .subscribe(data => {
+        debugger;
         this.items = data;
       })
   }

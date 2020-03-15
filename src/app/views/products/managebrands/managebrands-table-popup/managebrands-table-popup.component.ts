@@ -248,6 +248,7 @@ getSubCategories(catgeory)
 
 
   ngOnInit() {
+    console.log(this.data.payload);
     this.buildItemForm(this.data.payload);
     this.getCategories();
     this.getTags();

@@ -57,7 +57,7 @@ export class NavigationService {
       state: "",
       sub: [
         { name: "Manage Brands",  state: "products/managebrands" },
-        { name: "Manage Premium Brands",  state: "brands/managepremiumbrands" },
+        { name: "Manage Services",  state: "brands/manageservices" },
        
       ]
     },

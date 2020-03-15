@@ -135,7 +135,16 @@ this.toppingList.push(...data.map(({title})=>title));
  getCategories()
  {
 this.service.getAllCategory().subscribe(data=>{
-  this.parentCategory.push(...data.map(({name})=>name));
+  this.parentCategory.push(...data.reduce((acc,ele)=>{
+    if(ele.isParent)
+    {
+      acc.push(ele.name);
+    }
+
+    return acc;
+
+
+  },[]));
 })
  }
 

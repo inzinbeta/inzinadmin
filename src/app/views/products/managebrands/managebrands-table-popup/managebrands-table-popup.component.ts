@@ -15,6 +15,7 @@ export class ManagebrandsTablePopupComponent implements OnInit {
 
   toppings = new FormControl();
   toppingList: string[] = ['Premium', 'Non-Premium'];
+  tags: string[] = [];
   subcategories:string[]=[]; // these will be changed when categories is chnaged
   parentcatgeories:any[]=[];
   description:string="Enter Description Here";
@@ -86,6 +87,23 @@ export class ManagebrandsTablePopupComponent implements OnInit {
     })
   }
 
+  getTags()
+  {
+    this.service.getAllTags().subscribe(data=>{
+       this.tags.push(...data.reduce((acc,ele)=>{
+
+        if(ele["type"]=="Brand")
+        {
+        acc.push(ele["name"]);
+        }
+      return acc;
+
+       },[]))
+
+
+    })
+  }
+
 getSubCategories(catgeory)
 {
   
@@ -134,10 +152,10 @@ getSubCategories(catgeory)
       parentcategory: [item.parentcategory || ''],
       subcategory: [item.subcategory || ''],
     
-      keywords: [item.keywords || ''],
+    
       description: [item.description || ''],
       specifications: this.fb.array([this.fb.group({ point: '' })]),
-      seo_keywords: [item.seo_keyword || ''],
+      seo_keywords: [item.seo_keywords || ''],
       seo_metadescription: [item.seo_metadescription || ''],
       seo_metatitle: [item.seo_metatitle || ''],
       seo_metaheading: [item.seo_metaheading || ''],
@@ -232,6 +250,7 @@ getSubCategories(catgeory)
   ngOnInit() {
     this.buildItemForm(this.data.payload);
     this.getCategories();
+    this.getTags();
 
     this.description=this.data.payload.description || "Enter Description";
     this.metadescription=this.data.payload.seo_metadescription || "Meta Description";

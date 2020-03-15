@@ -107,7 +107,7 @@ reader.onload = (_event) => {
       slug: [item.slug || ''],
       parentcategory : [item.parentcategory || ''],
       description: [item.description || ''],
-      seo_keywords: [item.seo_keyword || ''],
+      seo_keywords: [item.seo_keywords || ''],
       seo_metadescription: [item.seo_metadescription || ''],
       seo_metatitle: [item.seo_metatitle || ''],
       seo_metaheading: [item.seo_metaheading || ''],

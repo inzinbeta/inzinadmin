@@ -200,6 +200,17 @@
 Requirements
 -->
 <div fxFlex="100"  class="pr-1">
+  <h1 matDialogTitle>Services</h1>   
+</div>
+<section *ngFor="let item of services">
+  <div fxFlex="25"  class="pr-1">
+    <mat-checkbox value="{{item}}" (change)="checkboxtoggle($event)">{{item}}</mat-checkbox>
+  </div>
+  
+  
+</section>
+
+<div fxFlex="100"  class="pr-1" style="margin-top: 30px;">
   <h1 matDialogTitle>Requirements</h1>   
 </div>
 

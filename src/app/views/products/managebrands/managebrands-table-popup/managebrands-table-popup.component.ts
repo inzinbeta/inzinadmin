@@ -21,7 +21,8 @@ export class ManagebrandsTablePopupComponent implements OnInit {
   description:string="Enter Description Here";
   metadescription:string="Enter Meta Description Here";
   metaheadingdescription:string="Enter Meta Heading Description Here";
-
+  services:string[]=[];
+  selectedservice:string[]=[];
 
 
 
@@ -202,8 +203,21 @@ getSubCategories(catgeory)
     this.specifications.removeAt(index);
   }
 
+getServices()
+{
+  this.service.getAllServices().subscribe(data=>{
+this.services.push(...data.reduce((acc,ele)=>{
+
+acc.push(ele.title);
+return acc;
+},[]))
+  })
+}
+
 
   submit() {
+    
+    this.itemForm.value["services"]=this.selectedservice;
     console.log(this.itemForm.value);
     const fd = new FormData();
 
@@ -244,7 +258,18 @@ getSubCategories(catgeory)
     }
 
   }
+checkboxtoggle(event)
+{
+  console.log(event.checked);
+  if(event.checked)
+  {
+this.selectedservice.push(event.source.value)
+  }
+  else{
+    this.selectedservice=this.selectedservice.filter(ele=>ele!=event.source.value);
 
+  }
+}
 
 
   ngOnInit() {
@@ -252,6 +277,7 @@ getSubCategories(catgeory)
     this.buildItemForm(this.data.payload);
     this.getCategories();
     this.getTags();
+    this.getServices();
 
     this.description=this.data.payload.description || "Enter Description";
     this.metadescription=this.data.payload.seo_metadescription || "Meta Description";

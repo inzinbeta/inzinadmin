@@ -126,24 +126,25 @@ return this.http.post(`http://${environment.url}:${environment.port}/admin/updat
 * Premium Brands
 */
 
-getAllPremiumBrands()
+getAllServices()
 {
-return this.http.post<BrandsModel[]>(`http://${environment.url}:${environment.port}/admin/getAllPremiumBrands`,{});
+return this.http.post<BrandsModel[]>(`http://${environment.url}:${environment.port}/admin/getAllServices`,{});
 
 }
 
 
-savePremiumBrand(formdata)
+saveServices(formdata)
 {
 console.log("fd",formdata);
-return this.http.post(`http://${environment.url}:${environment.port}/admin/savePremiumBrand`,formdata);
+return this.http.post(`http://${environment.url}:${environment.port}/admin/saveServices`,formdata);
 
 }
 
 
-deletePremiumrand(category)
+deleteServices(category)
 {
-return this.http.post(`http://${environment.url}:${environment.port}/admin/deletePremiumBrand`,category);
+ 
+return this.http.post(`http://${environment.url}:${environment.port}/admin/deleteServices`,category);
 
 }
 editPremiumBrand(formdata)

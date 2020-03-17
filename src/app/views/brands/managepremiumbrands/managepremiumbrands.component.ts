@@ -45,7 +45,7 @@ export class ManagepremiumbrandsComponent implements OnInit {
     }
   }
   getItems() {
-    this.getItemSub = this.service.getAllPremiumBrands()
+    this.getItemSub = this.service.getAllServices()
       .subscribe(data => {
         this.items = data;
       })
@@ -53,9 +53,10 @@ export class ManagepremiumbrandsComponent implements OnInit {
 
   openPopUp(data: any = {}, isNew?,_id:any="") {
     console.log("isnew",isNew);
-    let title = isNew ? 'Add New Premium Brand' : 'Update Premium Brand';
+    let title = isNew ? 'Add New Service' : 'Update Service';
     let dialogRef: MatDialogRef<any> = this.dialog.open(ManagePremiumBrandsTablePopupComponent, {
       width: '720px',
+      height:'590px',
       disableClose: true,
       data: { title: title, payload: data }
     })
@@ -70,7 +71,7 @@ export class ManagepremiumbrandsComponent implements OnInit {
           // Adding item here in the database
           console.log("the data entered premium brand",res);
           res.append("save","yes");
-          this.service.savePremiumBrand(res)
+          this.service.saveServices(res)
             .subscribe(data => {
               console.log("incoming data after save",data);
               this.items = data["data"];
@@ -84,7 +85,7 @@ export class ManagepremiumbrandsComponent implements OnInit {
           });
           res.append("update","yes");
           res.append("_id",_id);
-          this.service.savePremiumBrand(res)
+          this.service.saveServices(res)
             .subscribe(data => {
               this.items = data["data"];
               this.loader.close();
@@ -94,12 +95,12 @@ export class ManagepremiumbrandsComponent implements OnInit {
       })
   }
   deleteItem(row) {
-    console.log(row);
+    
     this.confirmService.confirm({message: `Delete ${row.name}?`})
       .subscribe(res => {
         if (res) {
           this.loader.open();
-          this.service.deleteCategory({brandid:row})
+          this.service.deleteServices({brandid:row})
             .subscribe(data => {
               this.items = data["data"];
               this.loader.close();

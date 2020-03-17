@@ -39,7 +39,8 @@ export class NavigationService {
         { name: "All Products",  state: "manageproducts" },
         { name: "Tags",  state: "tags" },
         { name: "Categories",  state: "categories" },
-        { name: "Manage Brand", state: "managebrands" }
+        { name: "Manage Brand", state: "managebrands" },
+        { name: "Manage Offers", state: "manageoffers" }
       ]
     },
     {
@@ -50,16 +51,12 @@ export class NavigationService {
       state: "products/categories"
     },
     {
-      name: "Brands",
-      type: "dropDown",
+      name: "Manage Services",
+      type: "link",
       tooltip: "Shop",
       icon: "shopping_cart",
-      state: "",
-      sub: [
-        { name: "Manage Brands",  state: "products/managebrands" },
-        { name: "Manage Services",  state: "brands/manageservices" },
-       
-      ]
+      state: "brands/manageservices",
+      
     },
     {
       name: "Pages",

@@ -16,8 +16,10 @@ import {
   MatSlideToggleModule,
   MatSelectModule,
   MatOptionModule,
-  MatGridTile,
+
   MatGridListModule,
+
+  MatCheckboxModule,
 
  } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -40,6 +42,7 @@ import { TagsTableGroupComponent } from './tags/tags-table-group/tags-table-grou
 import { ManagebrandsComponent } from './managebrands/managebrands.component';
 import { ManagebrandsTablePopupComponent } from './managebrands/managebrands-table-popup/managebrands-table-popup.component';
 import { QuillModule } from 'ngx-quill';
+import { OffersComponent } from './offers/offers.component';
 
 
 
@@ -71,11 +74,12 @@ import { QuillModule } from 'ngx-quill';
     TranslateModule,
     SharedModule,
     QuillModule,
+    MatCheckboxModule,
 
     
     RouterModule.forChild(CrudsRoutes)
   ],
-  declarations: [CrudNgxTableComponent, ManageproductsComponent, ManageTablePopupComponent, CategoriesComponent, CategoriesTablePopupComponent, TagsComponent, TagsTableGroupComponent, ManagebrandsComponent, ManagebrandsTablePopupComponent],
+  declarations: [CrudNgxTableComponent, ManageproductsComponent, ManageTablePopupComponent, CategoriesComponent, CategoriesTablePopupComponent, TagsComponent, TagsTableGroupComponent, ManagebrandsComponent, ManagebrandsTablePopupComponent, OffersComponent],
   providers: [ProductService],
   entryComponents: [ManageTablePopupComponent,CategoriesTablePopupComponent,TagsTableGroupComponent, ManagebrandsTablePopupComponent]
 })

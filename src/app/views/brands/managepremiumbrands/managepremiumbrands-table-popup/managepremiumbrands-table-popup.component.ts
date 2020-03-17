@@ -18,7 +18,9 @@ export class ManagePremiumBrandsTablePopupComponent implements OnInit {
   toppingList: string[] = [];
   parentCategory:string[]=[];
  
- 
+  categoryDescription = ``;
+  metaHeadingDescription = ``;
+  metaDescription=``;
 
   
   
@@ -101,24 +103,13 @@ reader.onload = (_event) => {
   
     this.itemForm = this.fb.group({
       
-      brand: [item.brand || ''],
-    
-      parentcategory : [item.parentcategory || ''],
-      cnf:[item.cnf || ''],
-      cnfarea:[item.cnfarea || ''],
-      cnfinvestment:[item.cnfinvestment || ''],
-      cnfsalesteam:[item.cnfsalesteam || ''],
-      distributor:[item.distributor || ''],
-      distributorarea:[item.distributorarea || ''],
-      distributorinvestment:[item.distributorinvestment || ''],
-      distributorsalesteam:[item.distributorsalesteam || ''],
-      ////
-      dealer:[item.dealer || ''],
-      dealerarea:[item.dealerarea || ''],
-      dealerinvestment:[item.dealerinvestment || ''],
-      dealersalesteam:[item.dealersalesteam || ''],
-     
-      description: [item.description || '']
+      title: [item.title || ''],
+      description: [item.description || ''],
+      seo_keywords: [item.seo_keywords || ''],
+      seo_metadescription: [item.seo_metadescription || ''],
+      seo_metatitle: [item.seo_metatitle || ''],
+      seo_metaheading: [item.seo_metaheading || ''],
+      seo_metaheadingdescription: [item.seo_metaheadingdescription || ''],
       
       
    
@@ -187,6 +178,9 @@ this.service.getAllCategory().subscribe(data=>{
   ngOnInit() {
     this.getBrands();
     this.getCategories();
-    this.buildItemForm(this.data.payload)
+    this.buildItemForm(this.data.payload);
+    this.categoryDescription = this.data.payload.description||``;
+    this.metaHeadingDescription = this.data.payload.seo_metaheadingdescription||``;
+    this.metaDescription=this.data.payload.seo_metadescription ||``;
   }
 }

@@ -4,6 +4,7 @@ import { ManageproductsComponent } from './manageproducts/manageproducts.compone
 import { CategoriesComponent } from './categories/categories.component';
 import { TagsComponent } from './tags/tags.component';
 import { ManagebrandsComponent } from './managebrands/managebrands.component';
+import { OffersComponent } from './offers/offers.component';
 
 
 export const CrudsRoutes: Routes = [
@@ -31,5 +32,10 @@ export const CrudsRoutes: Routes = [
     path: 'managebrands', 
     component:ManagebrandsComponent, 
     data: { title: 'Manage Brands', breadcrumb: 'Manage Brands' } 
+  },
+  { 
+    path: 'manageoffers', 
+    component:OffersComponent, 
+    data: { title: 'Manage Offers', breadcrumb: 'Manage Offers' } 
   }
 ];

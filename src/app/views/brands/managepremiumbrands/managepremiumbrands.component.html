@@ -1,6 +1,6 @@
 <div class="m-333">
     <!-- <span fxFlex></span> -->
-    <button mat-raised-button class="mb-05" color="primary" (click)="openPopUp({}, true)">{{"ADD" | translate }} {{" Premium Brand" | translate }}</button>
+    <button mat-raised-button class="mb-05" color="primary" (click)="openPopUp({}, true)">{{"ADD" | translate }} {{"Services" | translate }}</button>
   </div>
   <mat-card class="p-0" [@animate]="{value:'*',params:{y:'50px',delay:'300ms'}}">
     <mat-card-content class="p-0">
@@ -25,100 +25,34 @@
             </ngx-datatable-column>
   
             
-            <ngx-datatable-column name="Brands" [flexGrow]="1">
+            <ngx-datatable-column name="Title" [flexGrow]="1">
               <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row?.brand }}
+                {{ row?.title }}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Metaitle" [flexGrow]="1">
+            <ngx-datatable-column name="Description" [flexGrow]="1">
               <ng-template let-row="row" ngx-datatable-cell-template>
                 {{ row?.description }}
               </ng-template>
             </ngx-datatable-column>
          
-            <ngx-datatable-column name="ParentCategory" [flexGrow]="1">
+            <ngx-datatable-column name="SEO Title" [flexGrow]="1">
               <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row?.parentcategory }}
+                {{ row?.seo_metatitle }}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="CNF" [flexGrow]="1">
+            <ngx-datatable-column name="SEO-Metaheading
+            " [flexGrow]="1">
               <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row?.cnf }}
+                {{ row?.seo_metaheading
+                }}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="CNF AREA" [flexGrow]="1">
-              <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row?.cnfarea }}
-              </ng-template>
-            </ngx-datatable-column>
+           
 
-            <ngx-datatable-column name="CNF INVESTMENT" [flexGrow]="1">
-              <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row?.cnfinvestment }}
-              </ng-template>
-            </ngx-datatable-column>
+          
 
-            <ngx-datatable-column name="CNF SALES TEAM" [flexGrow]="1">
-              <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row?.cnfsalesteam }}
-              </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="Distributor" [flexGrow]="1">
-              <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row?.distributor }}
-              </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="Distributor Area" [flexGrow]="1">
-              <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row?.distributorarea }}
-              </ng-template>
-            </ngx-datatable-column>
-
-
-            <ngx-datatable-column name="Distributor Investement" [flexGrow]="1">
-              <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row?.distributorinvestment }}
-              </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="Distributor Salesteam" [flexGrow]="1">
-              <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row?.distributorsalesteam }}
-              </ng-template>
-            </ngx-datatable-column>
-
-
-            <ngx-datatable-column name="Dealer" [flexGrow]="1">
-              <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row?.dealer }}
-              </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="Dealer Area" [flexGrow]="1">
-              <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row?.dealerarea }}
-              </ng-template>
-            </ngx-datatable-column>
-
-
-            <ngx-datatable-column name="Dealer Investement" [flexGrow]="1">
-              <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row?.dealerinvestment }}
-              </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="Dealer Salesteam" [flexGrow]="1">
-              <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row?.dealersalesteam }}
-              </ng-template>
-            </ngx-datatable-column>
-            <ngx-datatable-column name="Status" [flexGrow]="1">
-              <ng-template let-row="row" ngx-datatable-cell-template>
-                <mat-chip mat-sm-chip [color]="'primary'" [selected]="row.isActive">{{row.isParent ? 'parent' : 'child'}}</mat-chip>
-              </ng-template>
-            </ngx-datatable-column>
+        
             <ngx-datatable-column name="Actions" [flexGrow]="1">
               <ng-template let-row="row" ngx-datatable-cell-template>
                 <button mat-icon-button mat-sm-button color="primary" class="mr-1" (click)="openPopUp(row,false,row._id)"><mat-icon>edit</mat-icon></button>

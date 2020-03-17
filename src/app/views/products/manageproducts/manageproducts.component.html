@@ -34,17 +34,13 @@
           </ngx-datatable-column>
           <ngx-datatable-column name="Meta Description" [flexGrow]="1">
             <ng-template let-row="row" ngx-datatable-cell-template>
-              {{ row?.metadescription }}
+              {{ row?.seo_metadescription }}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Category" [flexGrow]="1">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-              {{row?.heading}}
-            </ng-template>
-          </ngx-datatable-column>
+         
           <ngx-datatable-column name="Tag" [flexGrow]="1">
               <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row?.tag}}
+                {{ row?.tags}}
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Stock" [flexGrow]="1">

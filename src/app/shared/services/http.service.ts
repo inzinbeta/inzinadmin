@@ -234,4 +234,21 @@ return this.http.post(`http://${environment.url}:${environment.port}/admin/getAl
 }
 
 
+saveProduct(formdata)
+{
+  
+console.log("fd",formdata);
+return this.http.post(`http://${environment.url}:${environment.port}/admin/saveProduct`,formdata);
+
+}
+
+
+deleteProduct(category)
+{
+return this.http.post(`http://${environment.url}:${environment.port}/admin/deleteProduct`,category);
+
+}
+
+
+
 }

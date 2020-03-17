@@ -14,8 +14,13 @@ import { egretAnimations } from "../../../../shared/animations/egret-animations"
 export class ManageTablePopupComponent implements OnInit {
   toppings = new FormControl();
   colours: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
- 
- 
+  
+  brands:string[]=[];
+  
+  Description = ``;
+  metaHeadingDescription = ``;
+  metaDescription=``;
+
 
  
   public items: Object;
@@ -23,6 +28,8 @@ export class ManageTablePopupComponent implements OnInit {
   public items_tags: Object;
   public items_brands: Object;
   public items_categories :Object;
+  public items_allcategories :any=[];
+  public items_subcategories :any=[];
     public itemForm: FormGroup;
   fileData: File = null;
   previewUrl:any = "assets/images/download.jpeg";
@@ -82,7 +89,11 @@ reader.onload = (_event) => {
     this.getItems()
     this.getTags()
     this.getBrands()
-    this.getCategories()
+    this.getCategories();
+
+    this.Description = this.data.payload.description||``;
+  this.metaHeadingDescription = this.data.payload.seo_metaheadingdescription||``;
+  this.metaDescription=this.data.payload.seo_metadescription ||``;
     
   }
   
@@ -96,6 +107,11 @@ reader.onload = (_event) => {
       })
   }
 
+  getChildCategories(value)
+  {
+   
+   this.items_subcategories= this.items_allcategories.filter(ele=>ele.parentcategory==value.name);
+  }
 
 
 getTags(){
@@ -122,8 +138,8 @@ getCategories(){
   this.service.getAllCategory()
 
     .subscribe(data => {
-      
-      this.items_categories = data;
+      this,this.items_allcategories=data;
+      this.items_categories = data.filter(ele=>ele.isParent);
 
       console.log(data);
     })
@@ -137,27 +153,26 @@ getCategories(){
   
     this.itemForm = this.fb.group({
       tags: [item.tags || ''],
-      tag : [item.tag || ''],
+     
       brand: [item.brand || ''],
-      subbrand: [item.subbrand || ''],
+      
       category: [item.category || ''],
       subcategory: [item.subcategory || ''],
-      metatitle: [item.metatitle || ''],
-      heading: [item.heading || ''],
+     
+     
       colour: [item.colour || ''],
       size: [item.size || ''],
       name: [item.name || ''],
       slug: [item.slug || ''],
       stock: [item.stock || ''],
     
-      keywords: [item.keyword || ''],
-      metadescription: [item.metadescription || ''],
+      
       description: [item.description || ''],
-     seo_keywords: [item.seo_keyword || ''],
+      seo_keywords: [item.seo_keywords || ''],
       seo_metadescription: [item.seo_metadescription || ''],
       seo_metatitle: [item.seo_metatitle || ''],
       seo_metaheading: [item.seo_metaheading || ''],
-      seo_metaheadingdescription: [item.seo_metaheadingdescription || '']
+      seo_metaheadingdescription: [item.seo_metaheadingdescription || ''],
       
     })
   }
@@ -165,19 +180,20 @@ getCategories(){
   submit() {
     const fd=new FormData();
    
-       if(!this.fileData)
+       if(this.fileData)
       {
+      
        // let file_ext=this.fileDatalogo.name.split(".");
         let file_extt=this.fileData.name.split(".");
        
-        fd.append('imagesidebar',this.fileData,`categoryicon.${file_extt[1]}`);
+        fd.append('imagelogo',this.fileData,`categoryicon.${file_extt[1]}`);
         fd.append('formavalues',JSON.stringify(this.itemForm.value));
      
         this.dialogRef.close(fd)
       }
       
       else{
-        
+       
         
         fd.append('formavalues',JSON.stringify(this.itemForm.value));
      

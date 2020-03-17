@@ -33,9 +33,9 @@ export class ManageproductsComponent implements OnInit ,OnDestroy{
   }
 
 linkImg(fileName) {
-  //let file=fileName.split("/")[1];
+  let file=fileName.split("/")[1];
   // base_URL returns localhost:3000 or the production URL
-    //  return `http://localhost:3900/${file}`;
+      return `http://localhost:3900/${file}`;
     }
   ngOnDestroy() {
     if (this.getItemSub) {
@@ -50,7 +50,7 @@ linkImg(fileName) {
       })
   }
 
-  openPopUp(data: any = {}, isNew?) {
+  openPopUp(data: any = {}, isNew?,row:any="") {
     let title = isNew ? 'Add New Product' : 'Update Product';
     let dialogRef: MatDialogRef<any> = this.dialog.open(ManageTablePopupComponent, {
       width: '720px',
@@ -66,19 +66,25 @@ linkImg(fileName) {
         }
         this.loader.open();
         if (isNew) {
-          debugger
-          this.service.saveBrand(res)
+       
+          console.log(...res);
+        
+          res.append("save","yes");
+          this.service.saveProduct(res)
             .subscribe(data => {
-              this.items = data;
+              debugger;
+              this.items = data["data"];
               this.loader.close();
-              this.snack.open('Member Added!', 'OK', { duration: 4000 })
+              this.snack.open(data["message"], 'OK', { duration: 4000 })
             })
         } else {
-          this.crudService.updateItem(data._id, res)
+          res.append("update","yes");
+          res.append("_id",row);
+          this.service.saveProduct(res)
             .subscribe(data => {
               this.items = data;
               this.loader.close();
-              this.snack.open('Member Updated!', 'OK', { duration: 4000 })
+              this.snack.open(data["message"], 'OK', { duration: 4000 })
             })
         }
       })
@@ -88,11 +94,11 @@ linkImg(fileName) {
       .subscribe(res => {
         if (res) {
           this.loader.open();
-          this.crudService.removeItem(row)
+          this.service.deleteProduct(row)
             .subscribe(data => {
-              this.items = data;
+              this.items = data["data"];
               this.loader.close();
-              this.snack.open('Member deleted!', 'OK', { duration: 4000 })
+              this.snack.open(data["message"], 'OK', { duration: 4000 })
             })
         }
       })

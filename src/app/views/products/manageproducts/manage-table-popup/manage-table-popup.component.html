@@ -4,76 +4,6 @@
  <div fxLayout="row wrap" fxLayout.lt-sm="column">
 
   
-
-
- 
-    
-    <div  fxFlex="50"  class="pr-1">
-        <mat-form-field>
-      <mat-label>Tags</mat-label>
-      <mat-select [formControl]="itemForm.controls['tag']" >
-        <mat-option *ngFor="let topping of items_tags" [value]="topping">{{topping.name}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-
-  <div  fxFlex="50"  class="pr-1">
-      <mat-form-field>
-    <mat-label>Select Brand</mat-label>
-    <mat-select [formControl]="itemForm.controls['brand']" >
-      <mat-option *ngFor="let topping of items_brands" [value]="topping">{{topping.brand}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-<div  fxFlex="50"  class="pr-1">
-    <mat-form-field>
-  <mat-label>Select SubBrand</mat-label>
-  <mat-select [formControl]="itemForm.controls['subbrand']" >
-  <!---->  <mat-option *ngFor="let topping of items_brands" [value]="topping">{{topping.brand}}</mat-option>
-  </mat-select>
-</mat-form-field>
-</div>
-  
-
- 
-  <div  fxFlex="50"  class="pr-1">
-      <mat-form-field>
-    <mat-label>Select Category</mat-label>
-    <mat-select [formControl]="itemForm.controls['category']" >
-      <mat-option *ngFor="let topping of items_categories" [value]="topping">{{topping.name}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-<div  fxFlex="50"  class="pr-1">
-    <mat-form-field>
-  <mat-label>Select SubCategory</mat-label>
-  <mat-select [formControl]="itemForm.controls['subcategory']" >
-    <mat-option *ngFor="let topping of items_categories" [value]="topping">{{topping.name}}</mat-option>
-  </mat-select>
-</mat-form-field>
-</div>
-  
-
-  
-  <div  fxFlex="50"  class="pr-1">
-     <mat-form-field>
-      <mat-label>Colours</mat-label>
-      <mat-select [formControl]="itemForm.controls['colour']">
-        <mat-option *ngFor="let topping of colours" [value]="topping">{{topping}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div  fxFlex="50"  class="pr-1">
-
-       
-    <mat-form-field>
-      <mat-label>Sizes</mat-label>
-      <mat-select [formControl]="itemForm.controls['size']">
-        <mat-option *ngFor="let topping of colours" [value]="topping">{{topping}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-
   <div fxFlex="50"  class="pr-1">
     <mat-form-field class="full-width">
       <input
@@ -84,62 +14,96 @@
       placeholder="Name">
     </mat-form-field>
   </div>
- 
 
-    <div fxFlex="50"  class="pr-1">
-      <mat-form-field class="full-width">
-        <input
-        matInput
-        name="heading"
-        [formControl]="itemForm.controls['heading']"
-        placeholder="Heading">
-      </mat-form-field>
-    </div>
 
-    <div fxFlex="50"  class="pr-1">
-      <mat-form-field class="full-width">
-        <input
-        matInput
-        name="slug"
-        [formControl]="itemForm.controls['slug']"
-        placeholder="Slug">
-      </mat-form-field>
-    </div>
+  <div fxFlex="50"  class="pr-1">
+    <mat-form-field class="full-width">
+      <input
+      matInput
+      name="slug"
+      [formControl]="itemForm.controls['slug']"
+      placeholder="Slug">
+    </mat-form-field>
+  </div>
 
-    <div fxFlex="50"  class="pr-1">
-      <mat-form-field class="full-width">
-        <input
-        matInput
-        name="metatitle"
-        [formControl]="itemForm.controls['metatitle']"
-        placeholder="Metatitle">
-      </mat-form-field>
-    </div>
 
-    <div fxFlex="50"  class="pr-1">
-      <mat-form-field class="full-width">
-        <input
-        matInput
-        name="metadescription"
-        [formControl]="itemForm.controls['metadescription']"
-        placeholder="MetaDescription">
-      </mat-form-field>
+
+
+  <div fxFlex="100"  class="pr-1">
+    <mat-label>Description</mat-label>
+    <quill-editor
+    [formControl]="itemForm.controls['description']"
+    theme="snow" 
+    [(ngModel)]="Description" 
+    
+    ></quill-editor>
+
+   
     </div>
+    
+    <div  fxFlex="100"  class="pr-1" style="margin-top: 90px;">
+        <mat-form-field [style.width.px]=327>
+      <mat-label>Tags</mat-label>
+      <mat-select [formControl]="itemForm.controls['tags']"  multiple>
+        <mat-option *ngFor="let topping of items_tags" [value]="topping">{{topping.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div  fxFlex="50"  class="pr-1">
+      <mat-form-field >
+    <mat-label>Select Brand</mat-label>
+    <mat-select [formControl]="itemForm.controls['brand']" >
+      <mat-option *ngFor="let topping of items_brands" [value]="topping">{{topping.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
 
   
- 
-    <div fxFlex="50"  class="pr-1">
-        <mat-form-field class="example-full-width">
-            <textarea matInput placeholder="Keywords"  [formControl]="itemForm.controls['keywords']"></textarea>
-          </mat-form-field>
-        </div>
-        <div fxFlex="50"  class="pr-1">
-            <mat-form-field class="example-full-width">
-                <textarea matInput placeholder="Description" [formControl]="itemForm.controls['description']"></textarea>
-              </mat-form-field>
-            </div>
+<div  fxFlex="50"  class="pr-1">
+      <mat-form-field>
+    <mat-label>Select Category</mat-label>
+    <mat-select [formControl]="itemForm.controls['category']" (selectionChange)="getChildCategories($event.value)" >
+      <mat-option *ngFor="let topping of items_categories"  [value]="topping">{{topping.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
 
-            <div fxFlex="50"  class="pr-1">
+<div  fxFlex="50"  class="pr-1">
+    <mat-form-field>
+  <mat-label>Select SubCategory</mat-label>
+  <mat-select [formControl]="itemForm.controls['subcategory']"  multiple>
+    <mat-option *ngFor="let topping of items_subcategories" [value]="topping">{{topping.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+</div>
+  
+
+  
+  <div  fxFlex="50"  class="pr-1">
+     <mat-form-field>
+      <input
+      matInput
+      name="slug"
+      [formControl]="itemForm.controls['colour']"
+      placeholder="Colour">
+    </mat-form-field>
+  </div>
+  <div  fxFlex="50"  class="pr-1">
+
+       
+    <mat-form-field>
+      <mat-label>Sizes</mat-label>
+      <input
+      matInput
+      name="slug"
+      [formControl]="itemForm.controls['size']"
+      placeholder="Size">
+    </mat-form-field>
+  </div>
+
+
+   <div fxFlex="50"  class="pr-1">
               <mat-form-field>
                 <mat-label>Stock</mat-label>
                 <select matNativeControl [formControl]="itemForm.controls['stock']">
@@ -151,7 +115,7 @@
               </div>
            
              
-              <div fxFlex="50"  class="pr-1">
+              <div fxFlex="100"  class="pr-1">
                 <h3>Photo Upload</h3>            
                 <div class="form-group">
                     <input type="file"  style="display: none;" #fileside accept="image/*" name="image" (change)="fileProgress($event)" />
@@ -168,7 +132,7 @@
               
 
               </div><br>
-              <h1 matDialogTitle>SEO Fields</h1>    
+              <h2 matDialogTitle style="margin-top: 40px;">SEO Fields</h2>    
               <div fxFlex="50"  class="pr-1"></div>
               <div fxFlex="50"  class="pr-1">
                   <mat-form-field class="full-width">
@@ -180,42 +144,46 @@
                   </mat-form-field>
                 </div> 
 
-                <div fxFlex="50"  class="pr-1">
-                    <mat-form-field class="full-width">
-                      <input
-                      matInput
-                      name="seo_metadescription"
-                      [formControl]="itemForm.controls['seo_metadescription']"
-                      placeholder="MetaDescription">
-                    </mat-form-field>
-                  </div> 
-     
-
-                  <div fxFlex="50"  class="pr-1">
-                      <mat-form-field class="full-width">
-                        <input
-                        matInput
-                        name="seo_metaheading"
-                        [formControl]="itemForm.controls['seo_metaheading']"
-                        placeholder="MetaHeading">
+                <div fxFlex="100"  class="pr-1">
+                  <mat-label>Meta Description</mat-label>
+                  <quill-editor
+                  [formControl]="itemForm.controls['seo_metadescription']"
+                  theme="snow" 
+                  [(ngModel)]="metaDescription" 
+                  
+                  ></quill-editor>
+              
+                 
+                  </div>
+                  <div fxFlex="50"  class="pr-1" style="margin-top: 90px;">
+                    <mat-form-field class="example-full-width">
+                        <textarea matInput placeholder="Keywords"  [formControl]="itemForm.controls['seo_keywords']"></textarea>
                       </mat-form-field>
-                    </div> 
-                    <div fxFlex="50"  class="pr-1">
-                        <mat-form-field class="full-width">
-                          <input
-                          matInput
-                          name="seo_metaheadingdescription"
-                          [formControl]="itemForm.controls['seo_metaheadingdescription']"
-                          placeholder="MetaHeadingDescription">
-                        </mat-form-field>
-                      </div> 
-                      <div fxFlex="50"  class="pr-1">
-                          <mat-form-field class="example-full-width">
-                              <textarea matInput placeholder="Keywords"  [formControl]="itemForm.controls['seo_keywords']"></textarea>
-                            </mat-form-field>
-                          </div>
+                    </div>
 
-              <div fxFlex="100" class="mt-1">
+
+                    <div fxFlex="50"  class="pr-1" style="margin-top: 90px;">
+                      <mat-form-field class="example-full-width">
+                          <textarea matInput placeholder="SEO Metaheading"  [formControl]="itemForm.controls['seo_metaheading']"></textarea>
+                        </mat-form-field>
+                      </div>
+  
+
+
+                  <div fxFlex="100"  class="pr-1" >
+                    <mat-label>Meta Heading Description</mat-label>
+                    <quill-editor
+                    [formControl]="itemForm.controls['seo_metaheadingdescription']"
+                    theme="snow" 
+                    [(ngModel)]="metaHeadingDescription" 
+                    
+                    ></quill-editor>
+                
+                   
+                    </div>
+       
+                    <div fxFlex="100" class="pr-1"></div>
+              <div fxFlex="100"class="pr-1" style="margin-top: 100px;">
                 <button mat-raised-button color="primary" type="submit" [disabled]="itemForm.invalid">{{"SAVE" | translate }}</button>
                 <span fxFlex></span>
                 <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">Cancel</button>

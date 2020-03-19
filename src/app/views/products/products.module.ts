@@ -43,6 +43,7 @@ import { ManagebrandsComponent } from './managebrands/managebrands.component';
 import { ManagebrandsTablePopupComponent } from './managebrands/managebrands-table-popup/managebrands-table-popup.component';
 import { QuillModule } from 'ngx-quill';
 import { OffersComponent } from './offers/offers.component';
+import { OfferstablepopupComponent } from './offers/offerstablepopup/offerstablepopup.component';
 
 
 
@@ -79,8 +80,8 @@ import { OffersComponent } from './offers/offers.component';
     
     RouterModule.forChild(CrudsRoutes)
   ],
-  declarations: [CrudNgxTableComponent, ManageproductsComponent, ManageTablePopupComponent, CategoriesComponent, CategoriesTablePopupComponent, TagsComponent, TagsTableGroupComponent, ManagebrandsComponent, ManagebrandsTablePopupComponent, OffersComponent],
+  declarations: [CrudNgxTableComponent, ManageproductsComponent, ManageTablePopupComponent, CategoriesComponent, CategoriesTablePopupComponent, TagsComponent, TagsTableGroupComponent, ManagebrandsComponent, ManagebrandsTablePopupComponent, OffersComponent, OfferstablepopupComponent],
   providers: [ProductService],
-  entryComponents: [ManageTablePopupComponent,CategoriesTablePopupComponent,TagsTableGroupComponent, ManagebrandsTablePopupComponent]
+  entryComponents: [OfferstablepopupComponent,ManageTablePopupComponent,CategoriesTablePopupComponent,TagsTableGroupComponent, ManagebrandsTablePopupComponent]
 })
 export class ProductsModule { }

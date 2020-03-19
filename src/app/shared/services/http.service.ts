@@ -147,6 +147,39 @@ deleteServices(category)
 return this.http.post(`http://${environment.url}:${environment.port}/admin/deleteServices`,category);
 
 }
+
+
+/**
+ * 
+ * offers
+ */
+
+
+getAllOffers()
+{
+return this.http.post<BrandsModel[]>(`http://${environment.url}:${environment.port}/admin/getAllOffers`,{});
+
+}
+
+
+saveOffer(formdata)
+{
+console.log("fd",formdata);
+return this.http.post(`http://${environment.url}:${environment.port}/admin/saveOffer`,formdata);
+
+}
+
+
+deleteOffer(category)
+{
+ 
+return this.http.post(`http://${environment.url}:${environment.port}/admin/deleteOffer`,category);
+
+}
+
+
+
+
 editPremiumBrand(formdata)
 {
 return this.http.post(`http://${environment.url}:${environment.port}/admin/updatePremiumBrand`,formdata);

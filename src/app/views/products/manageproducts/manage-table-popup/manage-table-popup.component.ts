@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormControl, FormArray } from '@angular/forms';
 import {HttpService} from '../../../../shared/services/http.service';
 import { egretAnimations } from "../../../../shared/animations/egret-animations";
 
@@ -165,7 +165,7 @@ getCategories(){
       name: [item.name || ''],
       slug: [item.slug || ''],
       stock: [item.stock || ''],
-    
+      specifications: this.fb.array([this.fb.group({ point: '' })]),
       
       description: [item.description || ''],
       seo_keywords: [item.seo_keywords || ''],
@@ -177,6 +177,18 @@ getCategories(){
     })
   }
 
+    ///////// This is new ////////
+    get specifications() {
+      return this.itemForm.get('specifications') as FormArray;
+    }
+  
+  addSellingPoint() {
+    this.specifications.push(this.fb.group({ point: '' }));
+  }
+
+  deleteSellingPoint(index) {
+    this.specifications.removeAt(index);
+  }
   submit() {
     const fd=new FormData();
    

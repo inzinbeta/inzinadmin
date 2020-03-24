@@ -24,7 +24,18 @@
 
               </div>
               
-
+              <div fxFlex="100"  class="pr-1" style="margin-top: 20px;">
+                <mat-form-field class="full-width">
+                  <input
+                  matInput
+                  name="landingurl"
+                 
+                  [formControl]="itemForm.controls['landingurl']"
+                  placeholder="Landing URL">
+                </mat-form-field>
+            
+            
+              </div>
 
     <div fxFlex="100" class="mt-1">
       <button mat-raised-button color="primary" type="submit" [disabled]="itemForm.invalid">{{"SAVE" | translate }}</button>

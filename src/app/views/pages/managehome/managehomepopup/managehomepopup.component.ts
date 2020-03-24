@@ -99,7 +99,7 @@ reader.onload = (_event) => {
     }
   
     this.itemForm = this.fb.group({
-      
+      landingurl: [item.landingurl || '', Validators.required],
      
       
    

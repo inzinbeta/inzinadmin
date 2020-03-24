@@ -93,21 +93,14 @@ reader.onload = (_event) => {
     if(Object.keys(item).length>0)
     {
   this.previewUrlLogo=this.linkImg(item.imagelogo);
-  this.previewUrl=this.linkImg(item.imagesidebar);
+ 
     //this.fileDatalogo=this.linkImg(item.imagelogo);
     //this.fileDatasidebar=this.linkImg(item.imagesidebar);
     }
   
     this.itemForm = this.fb.group({
-      name: [item.name || '', Validators.required],
-      brand: [item.brands || ''],
-      metatitle: [item.metatitle || ''],
-      heading: [item.heading || ''],
-      parentcategory : [item.parentcategory || ''],
-      content:[item.content || ''],
-      keywords: [item.keywords || ''],
-      description: [item.description || '']
       
+     
       
    
     })
@@ -118,21 +111,8 @@ reader.onload = (_event) => {
  * Get Brands
  */
 
- getBrands()
- {
-this.service.getAllBrands().subscribe(data=>{
-  
-this.toppingList.push(...data.map(({title})=>title));
-  
-})
- }
 
- getCategories()
- {
-this.service.getAllCategory().subscribe(data=>{
-  this.parentCategory.push(...data.map(({name})=>name));
-})
- }
+
 
 
   
@@ -196,8 +176,7 @@ this.service.getAllCategory().subscribe(data=>{
 
 
   ngOnInit() {
-    this.getBrands();
-    this.getCategories();
+   
     this.buildItemForm(this.data.payload)
   }
 

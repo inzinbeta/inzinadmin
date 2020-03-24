@@ -155,6 +155,30 @@ return this.http.post(`http://${environment.url}:${environment.port}/admin/delet
  */
 
 
+getAllHome()
+{
+return this.http.post<BrandsModel[]>(`http://${environment.url}:${environment.port}/admin/getAllHome`,{});
+
+}
+
+
+saveHome(formdata)
+{
+console.log("fd",formdata);
+return this.http.post(`http://${environment.url}:${environment.port}/admin/saveHome`,formdata);
+
+}
+
+
+deleteHome(category)
+{
+ 
+return this.http.post(`http://${environment.url}:${environment.port}/admin/deleteHome`,category);
+
+}
+
+
+
 getAllOffers()
 {
 return this.http.post<BrandsModel[]>(`http://${environment.url}:${environment.port}/admin/getAllOffers`,{});

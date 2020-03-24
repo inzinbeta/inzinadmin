@@ -41,7 +41,7 @@ export class ManagehomeComponent implements OnInit {
     }
   }
   getItems() {
-    this.getItemSub = this.service.getAllCategory()
+    this.getItemSub = this.service.getAllHome()
       .subscribe(data => {
         this.items = data;
       })
@@ -66,7 +66,7 @@ export class ManagehomeComponent implements OnInit {
           // Adding item here in the database
           console.log("the data entered by user",res);
           res.append("save","yes");
-          this.service.saveCategory(res)
+          this.service.saveHome(res)
             .subscribe(data => {
               console.log("incoming data after save",data);
               this.items = data["data"];
@@ -80,7 +80,7 @@ export class ManagehomeComponent implements OnInit {
           });
           res.append("update","yes");
           res.append("_id",_id);
-          this.service.saveCategory(res)
+          this.service.saveHome(res)
             .subscribe(data => {
               this.items = data["data"];
               this.loader.close();
@@ -95,7 +95,7 @@ export class ManagehomeComponent implements OnInit {
       .subscribe(res => {
         if (res) {
           this.loader.open();
-          this.service.deleteCategory({categoryid:row})
+          this.service.deleteHome({categoryid:row})
             .subscribe(data => {
               this.items = data["data"];
               this.loader.close();

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ManagehomeComponent } from './managehome/managehome.component';
 import { ManagebannerComponent } from './managebanner/managebanner.component';
+import { TopheaderComponent } from './topheader/topheader.component';
 
 const routes: Routes = [
   { 
@@ -10,9 +11,15 @@ const routes: Routes = [
     data: { title: 'Manage Home Page', breadcrumb: 'Manage Home Page' } 
   },
   { 
-    path: 'managebanner', 
+    path: 'howitworks', 
     component:ManagebannerComponent, 
-    data: { title: 'Manage Banner', breadcrumb: 'Manage Banner' } 
+    data: { title: 'Manage How It Works', breadcrumb: 'Manage How It Works' } 
+  },
+
+  { 
+    path: 'topheader', 
+    component:TopheaderComponent, 
+    data: { title: 'Manage Top Header', breadcrumb: 'Manage Top Header' } 
   },
 ];
 

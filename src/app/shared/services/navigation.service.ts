@@ -66,7 +66,8 @@ export class NavigationService {
       state: "pages",
       sub: [
         { name: "Manage Home",  state: "managehome" },
-        { name: "Manage Banner",  state: "managebanner" },
+        { name: "How It Works",  state: "howitworks" },
+        { name: "Top Header",  state: "topheader" },
        
       ]
       
@@ -86,13 +87,14 @@ export class NavigationService {
     },
 
     {
-      name: "Settings",
+      name: "Business Partner",
       type: "dropDown",
       tooltip: "Settings",
-      icon: "settings",
-      state: "settings",
+      icon: "inbox",
+      state: "",
       sub: [
-        { name: "Manage Sections",  state: "sections" },
+        { name: "Manage Business Profile",  state: "businessprofile" },
+        { name: "Manage Availability",  state: "availability" },
        
        
       ]

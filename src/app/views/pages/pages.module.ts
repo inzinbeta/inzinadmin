@@ -34,9 +34,10 @@ import { ManagebannerComponent } from './managebanner/managebanner.component';
 import { ManagehomepopupComponent } from './managehome/managehomepopup/managehomepopup.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { QuillModule } from 'ngx-quill';
+import { TopheaderComponent } from './topheader/topheader.component';
 
 @NgModule({
-  declarations: [ManagehomeComponent, ManagebannerComponent, ManagehomepopupComponent],
+  declarations: [ManagehomeComponent, ManagebannerComponent, ManagehomepopupComponent, TopheaderComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

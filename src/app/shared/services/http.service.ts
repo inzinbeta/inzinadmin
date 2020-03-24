@@ -179,6 +179,30 @@ return this.http.post(`http://${environment.url}:${environment.port}/admin/delet
 
 
 
+getAllHowItworks()
+{
+return this.http.post<BrandsModel[]>(`http://${environment.url}:${environment.port}/admin/getAllHowItworks`,{});
+
+}
+
+
+saveHowItworks(formdata)
+{
+console.log("fd",formdata);
+return this.http.post(`http://${environment.url}:${environment.port}/admin/saveHowItworks`,formdata);
+
+}
+
+
+deleteHowItworks(category)
+{
+ 
+return this.http.post(`http://${environment.url}:${environment.port}/admin/deleteHowItworks`,category);
+
+}
+
+
+
 getAllOffers()
 {
 return this.http.post<BrandsModel[]>(`http://${environment.url}:${environment.port}/admin/getAllOffers`,{});

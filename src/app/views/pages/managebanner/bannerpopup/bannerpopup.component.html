@@ -1,0 +1,61 @@
+<h1 matDialogTitle>{{data.title}}</h1>
+
+  <form [formGroup]="itemForm" (ngSubmit)="submit($event)">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column">
+    
+
+
+    <div fxFlex="50"  class="pr-1">
+                <h3>Banner Upload</h3>            
+                <div class="form-group">
+                    <input type="file" name="image"  style="display: none;" accept="image/*" #logo  (change)="fileProgress1($event)" />
+                </div>
+                <div *ngIf="fileUploadProgress1">
+                    Upload progress: {{ fileUploadProgress1 }}
+                </div>
+                <div class="image-preview mb-3" *ngIf="previewUrlLogo">
+                    <img [src]="previewUrlLogo" height="100" />                 
+                </div>
+     
+                <div class="image-preview mb-3" *ngIf="previewUrl">
+                  <button mat-raised-button color="primary" type="button" (click)="logo.click()" style="margin-top: 10px; margin-left: 10px;" >Select Image</button>           
+              </div>
+              
+
+              </div>
+
+              <div fxFlex="100"  class="pr-1" style="margin-top: 20px;">
+        
+                <quill-editor
+                [formControl]="itemForm.controls['content']"
+                theme="snow" 
+                [(ngModel)]="content" 
+                
+                ></quill-editor>
+          
+              </div>
+              
+              <div fxFlex="100"  class="pr-1" style="margin-top: 90px;">
+                <mat-form-field class="full-width">
+                  <input
+                  matInput
+                  name="landingurl"
+                 
+                  [formControl]="itemForm.controls['landingurl']"
+                  placeholder="Landing URL">
+                </mat-form-field>
+            
+            
+              </div>
+
+
+              
+
+    <div fxFlex="100" class="mt-1" style="margin-top: 90px;">
+      <button mat-raised-button color="primary" type="submit" [disabled]="itemForm.invalid">{{"SAVE" | translate }}</button>
+      <span fxFlex></span>
+      <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">Cancel</button>
+    </div>
+  </div>
+  </form>
+

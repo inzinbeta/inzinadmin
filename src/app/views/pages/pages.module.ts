@@ -20,7 +20,9 @@ import {
   MatDialogModule,
   MatSelectModule,
   MatOptionModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+
+
  } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
@@ -63,7 +65,13 @@ import { BannerpopupComponent } from './managebanner/bannerpopup/bannerpopup.com
     MatGridListModule,
     TranslateModule,
     SharedModule,
-    PagesRoutingModule
+    PagesRoutingModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    MatTabsModule,
+    MatProgressBarModule,
+    FileUploadModule,
+    FormsModule
   ],
   entryComponents:[ManagehomepopupComponent,BannerpopupComponent]
 })

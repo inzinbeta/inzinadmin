@@ -144,12 +144,22 @@ getCategories(){
       console.log(data);
     })
 }
-
+linkImg(fileName) {
+  let file=fileName.split("/")[1];
+  // base_URL returns localhost:3000 or the production URL
+      return `http://localhost:3900/${file}`;
+    }
 
 
   buildItemForm(item) {
 
-   
+    if(Object.keys(item).length>0)
+    {
+ // this.previewUrlLogo=this.linkImg(item.imagelogo);
+ this.previewUrl=this.linkImg(item.imagelogo);
+    //this.fileDatalogo=this.linkImg(item.imagelogo);
+    //this.fileDatasidebar=this.linkImg(item.imagesidebar);
+    }
   
     this.itemForm = this.fb.group({
       tags: [item.tags || ''],

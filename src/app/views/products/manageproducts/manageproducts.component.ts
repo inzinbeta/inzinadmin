@@ -80,9 +80,10 @@ linkImg(fileName) {
         } else {
           res.append("update","yes");
           res.append("_id",row);
+
           this.service.saveProduct(res)
             .subscribe(data => {
-              this.items = data;
+              this.items = data["data"];
               this.loader.close();
               this.snack.open(data["message"], 'OK', { duration: 4000 })
             })

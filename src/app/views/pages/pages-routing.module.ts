@@ -19,7 +19,7 @@ const routes: Routes = [
   { 
     path: 'topheader', 
     component:TopheaderComponent, 
-    data: { title: 'Manage Top Header', breadcrumb: 'Manage Top Header' } 
+    data: { title: 'Manage Settings', breadcrumb: 'Manage Settings' } 
   },
 ];
 

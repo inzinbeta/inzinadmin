@@ -67,7 +67,7 @@ export class NavigationService {
       sub: [
         { name: "Manage Home",  state: "managehome" },
         { name: "How It Works",  state: "howitworks" },
-        { name: "Top Header",  state: "topheader" },
+        { name: "Settings",  state: "topheader" },
        
       ]
       

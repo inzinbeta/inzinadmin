@@ -235,6 +235,29 @@ return this.http.post(`http://${environment.url}:${environment.port}/admin/updat
 }
 
 
+
+/**
+ * Site Info
+ */
+
+saveInfo(formdata)
+{
+console.log("fd",formdata);
+return this.http.post(`http://${environment.url}:${environment.port}/admin/saveSiteInfo`,formdata);
+
+}
+
+
+
+getSiteInfo()
+{
+return this.http.post<BrandsModel[]>(`http://${environment.url}:${environment.port}/admin/getSiteInfo`,{});
+
+}
+
+
+
+
 /**
  * Tags
  */

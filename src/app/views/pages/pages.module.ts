@@ -38,9 +38,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { QuillModule } from 'ngx-quill';
 import { TopheaderComponent } from './topheader/topheader.component';
 import { BannerpopupComponent } from './managebanner/bannerpopup/bannerpopup.component';
+import { BusinessprofileComponent } from './businessprofile/businessprofile.component';
+import { BusinesspopupComponent } from './businessprofile/businesspopup/businesspopup.component';
 
 @NgModule({
-  declarations: [ManagehomeComponent, ManagebannerComponent, ManagehomepopupComponent, TopheaderComponent, BannerpopupComponent],
+  declarations: [ManagehomeComponent, ManagebannerComponent, ManagehomepopupComponent, TopheaderComponent, BannerpopupComponent, BusinessprofileComponent, BusinesspopupComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -73,6 +75,6 @@ import { BannerpopupComponent } from './managebanner/bannerpopup/bannerpopup.com
     FileUploadModule,
     FormsModule
   ],
-  entryComponents:[ManagehomepopupComponent,BannerpopupComponent]
+  entryComponents:[ManagehomepopupComponent,BannerpopupComponent,BusinesspopupComponent]
 })
 export class PagesModule { }

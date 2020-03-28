@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ManagehomeComponent } from './managehome/managehome.component';
 import { ManagebannerComponent } from './managebanner/managebanner.component';
 import { TopheaderComponent } from './topheader/topheader.component';
+import { BusinessprofileComponent } from './businessprofile/businessprofile.component';
 
 const routes: Routes = [
   { 
@@ -21,6 +22,12 @@ const routes: Routes = [
     component:TopheaderComponent, 
     data: { title: 'Manage Settings', breadcrumb: 'Manage Settings' } 
   },
+  { 
+    path: 'businessprofile', 
+    component:BusinessprofileComponent, 
+    data: { title: 'Manage Business Profile', breadcrumb: 'Manage Business Profile' } 
+  },
+
 ];
 
 @NgModule({

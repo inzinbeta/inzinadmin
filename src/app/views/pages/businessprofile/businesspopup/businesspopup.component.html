@@ -1,0 +1,185 @@
+<h1 matDialogTitle>{{data.title}}</h1>
+{{"ADD" | translate }} {{"PRODUCT" | translate }}
+  <form [formGroup]="itemForm" (ngSubmit)="submit()">
+ <div fxLayout="row wrap" fxLayout.lt-sm="column">
+
+  
+  <div fxFlex="50"  class="pr-1">
+    <mat-form-field class="full-width">
+      <input
+      matInput
+      name="title"
+     
+      [formControl]="itemForm.controls['title']"
+      placeholder="Title">
+    </mat-form-field>
+  </div>
+
+
+  <div fxFlex="50"  class="pr-1">
+    <mat-form-field class="full-width">
+      <input
+      matInput
+      name="heading"
+      [formControl]="itemForm.controls['heading']"
+      placeholder="Heading">
+    </mat-form-field>
+  </div>
+
+
+
+
+  <div fxFlex="100"  class="pr-1">
+    <mat-label>Description</mat-label>
+    <quill-editor
+    [formControl]="itemForm.controls['description']"
+    theme="snow" 
+    [(ngModel)]="Description" 
+    
+    ></quill-editor>
+
+   
+    </div>
+  
+
+  
+
+
+
+
+
+              <div
+              formArrayName="specifications"
+              style="width: 100%; padding: 10px; margin: 15px auto; margin-top: 90px;"
+            >
+              <div
+                *ngFor="let item of specifications.controls; let pointIndex = index"
+                [formGroupName]="pointIndex"
+                style="display: flex;  flex-direction: row; justify-content: space-between; margin: 15px;"
+              >
+                <div style="width: 100%;">
+                  <label>
+                     Specification
+                    <input
+                      style="border-bottom: 1px grey solid; width: 90%;"
+                      matInput
+                      name="point+'pointIndex'"
+                      formControlName="point"
+                      placeholder="Specification"
+                    />
+                  </label>
+                </div>
+                <button
+                  mat-raised-button
+                  color="primary"
+                  (click)="deleteSellingPoint(pointIndex)"
+                  type="button"
+                >
+                  Delete
+                </button>
+              </div>
+              <button
+                style="margin: 15px; "
+                mat-raised-button
+                color="primary"
+                type="button"
+                (click)="addSellingPoint()"
+              >
+                Add
+              </button>
+            </div>
+               
+           
+             
+              <div fxFlex="50"  class="pr-1">
+                <h3>Slider Upload</h3>            
+                <div class="form-group">
+                    <input type="file"  style="display: none;" #fileside1 accept="image/*" name="image" (change)="fileProgress($event,1)" />
+                </div>
+                
+                <div class="image-preview mb-3" *ngIf="previewUrl1">
+                    <img [src]="previewUrl1"  height="100" />                 
+                </div>
+
+                <div class="image-preview mb-3" *ngIf="previewUrl1">
+                  <button mat-raised-button color="primary"  type="button" style="margin-top: 10px; margin-left: 10px;" (click)="fileside1.click()" >Select Image</button>             
+              </div>
+     
+              
+
+              </div><br>
+              <div fxFlex="50"  class="pr-1">
+                <h3>Slider Upload</h3>            
+                <div class="form-group">
+                    <input type="file"  style="display: none;" #fileside2 accept="image/*" name="image" (change)="fileProgress($event,2)" />
+                </div>
+                
+                <div class="image-preview mb-3" *ngIf="previewUrl2">
+                    <img [src]="previewUrl2"  height="100" />                 
+                </div>
+
+                <div class="image-preview mb-3" *ngIf="previewUrl2">
+                  <button mat-raised-button color="primary"  type="button" style="margin-top: 10px; margin-left: 10px;" (click)="fileside2.click()" >Select Image</button>             
+              </div>
+     
+              
+
+              </div><br>
+
+              <div fxFlex="50"  class="pr-1" style="margin-top: 30px;">
+                <h3>Slider Upload</h3>            
+                <div class="form-group">
+                    <input type="file"  style="display: none;" #fileside3 accept="image/*" name="image" (change)="fileProgress($event,3)" />
+                </div>
+                
+                <div class="image-preview mb-3" *ngIf="previewUrl3">
+                    <img [src]="previewUrl3"  height="100" />                 
+                </div>
+
+                <div class="image-preview mb-3" *ngIf="previewUrl3">
+                  <button mat-raised-button color="primary"  type="button" style="margin-top: 10px; margin-left: 10px;" (click)="fileside3.click()" >Select Image</button>             
+              </div>
+     
+              
+
+              </div><br>
+
+
+              <div fxFlex="50"  class="pr-1" style="margin-top: 30px;">
+                <h3>Slider Upload</h3>            
+                <div class="form-group">
+                    <input type="file"  style="display: none;" #fileside4 accept="image/*" name="image" (change)="fileProgress($event,4)" />
+                </div>
+                
+                <div class="image-preview mb-3" *ngIf="previewUrl4">
+                    <img [src]="previewUrl4"  height="100" />                 
+                </div>
+
+                <div class="image-preview mb-3" *ngIf="previewUrl4">
+                  <button mat-raised-button color="primary"  type="button" style="margin-top: 10px; margin-left: 10px;" (click)="fileside4.click()" >Select Image</button>             
+              </div>
+     
+              
+
+              </div><br>
+              
+
+             
+
+
+                  
+  
+
+
+              
+       
+                    <div fxFlex="100" class="pr-1"></div>
+              <div fxFlex="100"class="pr-1" style="margin-top: 100px;">
+                <button mat-raised-button color="primary" type="submit" [disabled]="itemForm.invalid">{{"SAVE" | translate }}</button>
+                <span fxFlex></span>
+                <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">Cancel</button>
+              </div>
+     
+  
+  </div>
+  </form>

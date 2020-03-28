@@ -256,6 +256,28 @@ return this.http.post<BrandsModel[]>(`http://${environment.url}:${environment.po
 }
 
 
+saveBusinessProfile(formdata)
+{
+console.log("fd",formdata);
+return this.http.post(`http://${environment.url}:${environment.port}/admin/saveBusinessProfile`,formdata);
+
+}
+
+
+getBusinessProfile()
+{
+
+return this.http.post(`http://${environment.url}:${environment.port}/admin/getBusinessProfile`,{});
+
+}
+
+deleteBusinessProfile(formdata)
+{
+console.log("fd",formdata);
+return this.http.post(`http://${environment.url}:${environment.port}/admin/deleteBusinessProfile`,formdata);
+
+}
+
 
 
 /**

@@ -68,6 +68,8 @@ export class NavigationService {
         { name: "Manage Home",  state: "managehome" },
         { name: "How It Works",  state: "howitworks" },
         { name: "Settings",  state: "topheader" },
+        { name: "Manage Business Profile",  state: "businessprofile" },
+        { name: "Manage Availability",  state: "availability" },
        
       ]
       
@@ -86,19 +88,6 @@ export class NavigationService {
       
     },
 
-    {
-      name: "Business Partner",
-      type: "dropDown",
-      tooltip: "Settings",
-      icon: "inbox",
-      state: "",
-      sub: [
-        { name: "Manage Business Profile",  state: "businessprofile" },
-        { name: "Manage Availability",  state: "availability" },
-       
-       
-      ]
-    },
    
    
   ];

@@ -40,9 +40,11 @@ import { TopheaderComponent } from './topheader/topheader.component';
 import { BannerpopupComponent } from './managebanner/bannerpopup/bannerpopup.component';
 import { BusinessprofileComponent } from './businessprofile/businessprofile.component';
 import { BusinesspopupComponent } from './businessprofile/businesspopup/businesspopup.component';
+import { AvailabilityComponent } from './availability/availability.component';
+import { AvailabilitypopupComponent } from './availability/availabilitypopup/availabilitypopup.component';
 
 @NgModule({
-  declarations: [ManagehomeComponent, ManagebannerComponent, ManagehomepopupComponent, TopheaderComponent, BannerpopupComponent, BusinessprofileComponent, BusinesspopupComponent],
+  declarations: [ManagehomeComponent, ManagebannerComponent, ManagehomepopupComponent, TopheaderComponent, BannerpopupComponent, BusinessprofileComponent, BusinesspopupComponent, AvailabilityComponent, AvailabilitypopupComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -75,6 +77,6 @@ import { BusinesspopupComponent } from './businessprofile/businesspopup/business
     FileUploadModule,
     FormsModule
   ],
-  entryComponents:[ManagehomepopupComponent,BannerpopupComponent,BusinesspopupComponent]
+  entryComponents:[ManagehomepopupComponent,BannerpopupComponent,BusinesspopupComponent,AvailabilitypopupComponent]
 })
 export class PagesModule { }

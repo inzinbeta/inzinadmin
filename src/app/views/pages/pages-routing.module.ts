@@ -4,6 +4,7 @@ import { ManagehomeComponent } from './managehome/managehome.component';
 import { ManagebannerComponent } from './managebanner/managebanner.component';
 import { TopheaderComponent } from './topheader/topheader.component';
 import { BusinessprofileComponent } from './businessprofile/businessprofile.component';
+import { AvailabilityComponent } from './availability/availability.component';
 
 const routes: Routes = [
   { 
@@ -25,6 +26,12 @@ const routes: Routes = [
   { 
     path: 'businessprofile', 
     component:BusinessprofileComponent, 
+    data: { title: 'Manage Business Profile', breadcrumb: 'Manage Business Profile' } 
+  },
+
+  { 
+    path: 'availability', 
+    component:AvailabilityComponent, 
     data: { title: 'Manage Business Profile', breadcrumb: 'Manage Business Profile' } 
   },
 

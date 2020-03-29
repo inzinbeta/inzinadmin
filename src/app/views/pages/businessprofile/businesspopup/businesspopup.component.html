@@ -162,6 +162,67 @@
               
 
               </div><br>
+
+<div fxFlex="100"  class="pr-1" style="margin-top: 30px;">
+  <h2>Related Images</h2>   
+</div>
+
+
+              <div fxFlex="50"  class="pr-1" style="margin-top: 30px;">
+                <h3>Related Image 1</h3>            
+                <div class="form-group">
+                    <input type="file"  style="display: none;" #filesidec4 accept="image/*" name="image" (change)="fileProgressa($event,1)" />
+                </div>
+                
+                <div class="image-preview mb-3" *ngIf="rep1">
+                    <img [src]="rep1"  height="100" />                 
+                </div>
+
+                <div class="image-preview mb-3" *ngIf="rep1">
+                  <button mat-raised-button color="primary"  type="button" style="margin-top: 10px; margin-left: 10px;" (click)="filesidec4.click()" >Select Image</button>             
+              </div>
+     
+              
+
+              </div><br>
+
+
+              <div fxFlex="50"  class="pr-1" style="margin-top: 30px;">
+                <h3>Related Image 2</h3>            
+                <div class="form-group">
+                    <input type="file"  style="display: none;" #filesideb4 accept="image/*" name="image" (change)="fileProgressa($event,2)" />
+                </div>
+                
+                <div class="image-preview mb-3" *ngIf="rep2">
+                    <img [src]="rep2"  height="100" />                 
+                </div>
+
+                <div class="image-preview mb-3" *ngIf="rep2">
+                  <button mat-raised-button color="primary"  type="button" style="margin-top: 10px; margin-left: 10px;" (click)="filesideb4.click()" >Select Image</button>             
+              </div>
+     
+              
+
+              </div><br>
+
+
+              <div fxFlex="50"  class="pr-1" style="margin-top: 30px;">
+                <h3>Related Image 3</h3>            
+                <div class="form-group">
+                    <input type="file"  style="display: none;" #filesidea4 accept="image/*" name="image" (change)="fileProgressa($event,3)" />
+                </div>
+                
+                <div class="image-preview mb-3" *ngIf="rep3">
+                    <img [src]="rep3"  height="100" />                 
+                </div>
+
+                <div class="image-preview mb-3" *ngIf="rep3">
+                  <button mat-raised-button color="primary"  type="button" style="margin-top: 10px; margin-left: 10px;" (click)="filesidea4.click()" >Select Image</button>             
+              </div>
+     
+              
+
+              </div><br>
               
 
              

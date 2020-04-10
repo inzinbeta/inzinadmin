@@ -104,14 +104,14 @@ reader.onload = (_event) => {
   
     this.itemForm = this.fb.group({
       name: [item.name || '', Validators.required],
-      slug: [item.slug || ''],
-      parentcategory : [item.parentcategory || ''],
-      description: [item.description || ''],
-      seo_keywords: [item.seo_keywords || ''],
-      seo_metadescription: [item.seo_metadescription || ''],
-      seo_metatitle: [item.seo_metatitle || ''],
-      seo_metaheading: [item.seo_metaheading || ''],
-      seo_metaheadingdescription: [item.seo_metaheadingdescription || ''],
+      slug: [item.slug || '',Validators.required],
+      parentcategory : [item.parentcategory || '',Validators.required],
+      description: [item.description || '',Validators.required],
+      seo_metadescription: [item.seo_metadescription || '',Validators.required],
+      seo_keywords: [item.seo_keywords || '',Validators.required],
+      seo_metatitle: [item.seo_metatitle || '',Validators.required],
+      seo_metaheading: [item.seo_metaheading || '',Validators.required],
+      seo_metaheadingdescription: [item.seo_metaheadingdescription || '',Validators.required],
       
       
    
@@ -152,8 +152,10 @@ this.service.getAllCategory().subscribe(data=>{
   
   submit() {
    
-console.log(this.itemForm.value);
+
     // Append Form data here and send the data further 
+
+
 
 
 
@@ -201,8 +203,7 @@ console.log(this.itemForm.value);
     
     
     
-
-    
+  
 
     
   }
@@ -214,8 +215,8 @@ console.log(this.itemForm.value);
     this.getCategories();
     this.buildItemForm(this.data.payload);
   
-    this.categoryDescription = this.data.payload.description||`Category Description`;
-  this.metaHeadingDescription = this.data.payload.seo_metaheadingdescription||`Meta Heading  Description`;
-  this.metaDescription=this.data.payload.seo_metadescription ||`Meta Description`;
+    this.categoryDescription = this.data.payload.description||``;
+  this.metaHeadingDescription = this.data.payload.seo_metaheadingdescription||``;
+  this.metaDescription=this.data.payload.seo_metadescription ||``;
   }
 }

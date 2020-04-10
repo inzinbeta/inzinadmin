@@ -71,7 +71,7 @@ return this.http.post<CategoryModel[]>(`http://${environment.url}:${environment.
 
 saveCategory(formdata)
 {
-console.log("fd",formdata);
+
 return this.http.post(`http://${environment.url}:${environment.port}/admin/saveCategory`,formdata);
 
 }
@@ -115,13 +115,17 @@ deleteBrand(category)
 return this.http.post(`http://${environment.url}:${environment.port}/admin/deleteBrand`,category);
 
 }
-editBrand(formdata)
+editBrandCity(formdata)
 {
-return this.http.post(`http://${environment.url}:${environment.port}/admin/updateBrand`,formdata);
+return this.http.post(`http://${environment.url}:${environment.port}/admin/updateBrandCity`,formdata);
 
 }
 
+getAllBrandavailability()
+{
+return this.http.post<BrandsModel[]>(`http://${environment.url}:${environment.port}/admin/getAllBrandavailability`,{});
 
+}
 /**
 * Premium Brands
 */

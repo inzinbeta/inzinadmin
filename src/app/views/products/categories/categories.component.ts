@@ -45,7 +45,7 @@ export class CategoriesComponent implements OnInit ,OnDestroy{
   getItems() {
     this.getItemSub = this.service.getAllCategory()
       .subscribe(data => {
-        debugger;
+   
         this.items = data;
       })
   }
@@ -68,17 +68,31 @@ export class CategoriesComponent implements OnInit ,OnDestroy{
         this.loader.open();
         if (isNew) {
           // Adding item here in the database
-          console.log("the data entered by user",res);
+        
           res.append("save","yes");
           this.service.saveCategory(res)
             .subscribe(data => {
-              console.log("incoming data after save",data);
-              this.items = data["data"];
-              this.loader.close();
-              this.snack.open(data["message"], 'OK', { duration: 4000 })
+              console.log(data);
+             
+              if(data["data"])
+              {
+                this.items = data["data"];
+                this.loader.close();
+                this.snack.open(data["message"], 'OK', { duration: 4000 })
+              }
+              else{
+                this.snack.open(data["errors"][0], 'OK', { duration: 4000 })
+                this.loader.close();
+            
+               
+           
+              }
+              
+              
+              
             })
         } else {
-          console.log("update called",_id);
+       
           res.forEach(element => {
             console.log(element);
           });

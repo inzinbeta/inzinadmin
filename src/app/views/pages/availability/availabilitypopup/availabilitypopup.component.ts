@@ -1,9 +1,12 @@
-import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, Validators, FormGroup, FormControl, FormArray } from '@angular/forms';
 import { HttpService } from '../../../../shared/services/http.service';
 import { egretAnimations } from "../../../../shared/animations/egret-animations";
-
+import { Bank, BANKS } from '../demo-data';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild,Inject } from '@angular/core';
+import { ReplaySubject, Subject } from 'rxjs';
+import { take, takeUntil } from 'rxjs/operators';
+import { MatSelect } from '@angular/material/select';
 @Component({
   selector: 'app-availabilitypopup',
   templateUrl: './availabilitypopup.component.html',
@@ -11,16 +14,6 @@ import { egretAnimations } from "../../../../shared/animations/egret-animations"
   animations: egretAnimations
 })
 export class AvailabilitypopupComponent implements OnInit {
-
-  
-  toppings = new FormControl();
-  colours: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
-
-  brands: string[] = [];
-
-  Description = ``;
- 
-
 
   public items: Object;
 
@@ -30,11 +23,26 @@ export class AvailabilitypopupComponent implements OnInit {
   public items_allcategories: any = [];
   public items_subcategories: any = [];
   public itemForm: FormGroup;
-  fileData: File = null;
-  previewUrl: any = "assets/images/download.jpeg";
-  previewUrlLogo: any = "assets/images/download.jpeg";
-  fileUploadProgress: string = null;
-  uploadedFilePath: string = null;
+
+    /** list of banks */
+    protected banks: Bank[] = BANKS;
+
+    protected colours: any[] = ["Booked","Available"];
+
+    /** control for the selected bank for multi-selection */
+    public bankMultiCtrl: FormControl = new FormControl();
+  
+    /** control for the MatSelect filter keyword multi-selection */
+    public bankMultiFilterCtrl: FormControl = new FormControl();
+  
+    /** list of banks filtered by search keyword */
+    public filteredBanksMulti: ReplaySubject<Bank[]> = new ReplaySubject<Bank[]>(1);
+  
+    @ViewChild('multiSelect', { static: true }) multiSelect: MatSelect;
+  
+    /** Subject that emits when the component has been destroyed. */
+    protected _onDestroy = new Subject<void>();
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<AvailabilitypopupComponent>,
@@ -45,73 +53,74 @@ export class AvailabilitypopupComponent implements OnInit {
 
 
 
-  fileProgress1(fileInput: any) {
-    this.fileData = <File>fileInput.target.files[0];
-    this.preview1();
-  }
 
-  preview1() {
-    // Show preview 
-    var mimeType = this.fileData.type;
-    if (mimeType.match(/image\/*/) == null) {
-      return;
-    }
 
-    var reader = new FileReader();
-    reader.readAsDataURL(this.fileData);
-    reader.onload = (_event) => {
-      this.previewUrlLogo = reader.result;
-    }
-  }
 
-  fileProgress(fileInput: any) {
-    this.fileData = <File>fileInput.target.files[0];
-    this.preview();
-  }
-
-  preview() {
-    // Show preview 
-    var mimeType = this.fileData.type;
-    if (mimeType.match(/image\/*/) == null) {
-      return;
-    }
-
-    var reader = new FileReader();
-    reader.readAsDataURL(this.fileData);
-    reader.onload = (_event) => {
-      this.previewUrl = reader.result;
-    }
-  }
   ngOnInit() {
-   
+
     this.buildItemForm(this.data.payload)
-    this.getItems()
+
 
     this.getBrands()
-    
 
-    this.Description = this.data.payload.description || ``;
-   
+ // set initial selection
+ this.bankMultiCtrl.setValue([this.banks[10], this.banks[11], this.banks[12]]);
+
+ // load the initial bank list
+ this.filteredBanksMulti.next(this.banks.slice());
+
+ // listen for search field value changes
+ this.bankMultiFilterCtrl.valueChanges
+   .pipe(takeUntil(this._onDestroy))
+   .subscribe(() => {
+     this.filterBanksMulti();
+   });
+
+
 
   }
-
-  linkImg(fileName) {
-    let file=fileName.split("/")[1];
-    // base_URL returns localhost:3000 or the production URL
-        return `http://localhost:3900/${file}`;
-      }
-
-
-  getItems() {
-
-    this.service.getAllProducts()
-
-      .subscribe(data => {
-
-        this.items = data;
-      })
+  ngAfterViewInit() {
+   this.setInitialValue();
   }
 
+  ngOnDestroy() {
+    this._onDestroy.next();
+    this._onDestroy.complete();
+  }
+
+  /**
+   * Sets the initial value after the filteredBanks are loaded initially
+   */
+  protected setInitialValue() {
+    this.filteredBanksMulti
+      .pipe(take(1), takeUntil(this._onDestroy))
+      .subscribe(() => {
+        // setting the compareWith property to a comparison function
+        // triggers initializing the selection according to the initial value of
+        // the form control (i.e. _initializeSelection())
+        // this needs to be done after the filteredBanks are loaded initially
+        // and after the mat-option elements are available
+        this.multiSelect.compareWith = (a: Bank, b: Bank) => a && b && a.id === b.id;
+      });
+  }
+
+  protected filterBanksMulti() {
+    if (!this.banks) {
+      return;
+    }
+    // get the search keyword
+    let search = this.bankMultiFilterCtrl.value;
+    if (!search) {
+      this.filteredBanksMulti.next(this.banks.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+    // filter the banks
+    this.filteredBanksMulti.next(
+      this.banks.filter(bank => bank.name.toLowerCase().indexOf(search) > -1)
+    );
+  }
 
 
   getBrands() {
@@ -120,54 +129,44 @@ export class AvailabilitypopupComponent implements OnInit {
 
       .subscribe(data => {
 
-        this.items_brands = data.map(ele=>ele["name"]);
-        
+        this.items_brands = data.map(ele => {
+          
+          return {
+            name :ele["name"],
+            id:ele["_id"]
+          }
+          });
+
       })
   }
- 
+
 
 
 
   buildItemForm(item) {
 
-    if(Object.keys(item).length>0)
-    {
-  this.previewUrlLogo=this.linkImg(item.imagelogo);
-  
-    //this.fileDatalogo=this.linkImg(item.imagelogo);
-    //this.fileDatasidebar=this.linkImg(item.imagesidebar);
-    }
+
 
     this.itemForm = this.fb.group({
-     
-     brand: [item.brand || ''],
-    city: [item.city || ''],
-    state: [item.state || ''],
+
+      brand: [item.brand || ''],
+      availability:[item.availability]
 
 
     })
   }
 
   submit() {
-    const fd = new FormData();
+    this.itemForm.value.district=this.bankMultiCtrl.value;
 
-    if (this.fileData) {
+    let data=this.itemForm.value.district.reduce((acc,ele)=>{
 
-      // let file_ext=this.fileDatalogo.name.split(".");
-      let file_extt = this.fileData.name.split(".");
-
-      fd.append('imagelogo', this.fileData, `categoryicon.${file_extt[1]}`);
-      fd.append('formavalues', JSON.stringify(this.itemForm.value));
-
-      this.dialogRef.close(fd)
-    }
-
-    else {
-
-
-      fd.append('formavalues', JSON.stringify(this.itemForm.value));
-
-      this.dialogRef.close(fd)
-    }
-}
+      acc["districts"].push({name:ele.name,id:ele.id});
+      acc["status"]=this.itemForm.value.availability;
+return acc;
+    },{districts:[],status:""})
+    console.log(this.itemForm.value.brand);
+    let _brand=this.itemForm.value.brand.split("-");
+    this.dialogRef.close({districts:data["districts"],brandid:_brand[0],brandname:_brand[1],status:data["status"]});
+  }
 }

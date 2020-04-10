@@ -15,35 +15,30 @@
           [rowHeight]="50">
 
           
-          <ngx-datatable-column name="Logo" [flexGrow]="1">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-              <div class="image-preview mb-3" >
-                <img [src]="linkImg(row?.imagelogo)"  width="42" height="42" />                 
-            </div>
-              
-            </ng-template>
-          </ngx-datatable-column>
+        
 
     
         
      
 
-          <ngx-datatable-column name="Content" [flexGrow]="1">
+          <ngx-datatable-column name="Brand" [flexGrow]="1">
             <ng-template let-row="row" ngx-datatable-cell-template>
-              {{ row?.description }}
+             {{row?.brandname}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Title" [flexGrow]="1">
+          <ngx-datatable-column name="Districts" [flexGrow]="1">
             <ng-template let-row="row" ngx-datatable-cell-template>
-              {{ row?.title }}
+              {{row?.districts.join(",")}}
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="Brand" [flexGrow]="1">
+          <ngx-datatable-column name="Status" [flexGrow]="1">
             <ng-template let-row="row" ngx-datatable-cell-template>
-              {{ row?.brand }}
+              {{row?.status}}
             </ng-template>
           </ngx-datatable-column>
+
+        
         
         
           <ngx-datatable-column name="Actions" [flexGrow]="1">

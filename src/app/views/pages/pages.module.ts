@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+
 import { 
   MatListModule,
   MatIconModule,
@@ -43,6 +45,7 @@ import { BusinesspopupComponent } from './businessprofile/businesspopup/business
 import { AvailabilityComponent } from './availability/availability.component';
 import { AvailabilitypopupComponent } from './availability/availabilitypopup/availabilitypopup.component';
 
+
 @NgModule({
   declarations: [ManagehomeComponent, ManagebannerComponent, ManagehomepopupComponent, TopheaderComponent, BannerpopupComponent, BusinessprofileComponent, BusinesspopupComponent, AvailabilityComponent, AvailabilitypopupComponent],
   imports: [
@@ -75,7 +78,9 @@ import { AvailabilitypopupComponent } from './availability/availabilitypopup/ava
     MatTabsModule,
     MatProgressBarModule,
     FileUploadModule,
-    FormsModule
+    FormsModule,
+    NgxMatSelectSearchModule,
+   
   ],
   entryComponents:[ManagehomepopupComponent,BannerpopupComponent,BusinesspopupComponent,AvailabilitypopupComponent]
 })

@@ -14,7 +14,8 @@ import { AvailabilitypopupComponent } from './availabilitypopup/availabilitypopu
 @Component({
   selector: 'app-availability',
   templateUrl: './availability.component.html',
-  styleUrls: ['./availability.component.scss']
+  styleUrls: ['./availability.component.scss'],
+  animations: egretAnimations
 })
 export class AvailabilityComponent implements OnInit {
 
@@ -45,9 +46,10 @@ export class AvailabilityComponent implements OnInit {
     }
   }
   getItems() {
-    this.getItemSub = this.service.getAllOffers()
+    this.getItemSub = this.service.getAllBrandavailability()
       .subscribe(data => {
-        this.items = data;
+        this.items = data["data"];
+        console.log(this.items);
       })
   }
 
@@ -69,9 +71,8 @@ export class AvailabilityComponent implements OnInit {
         this.loader.open();
         if (isNew) {
           // Adding item here in the database
-          console.log("the data entered by user",res);
-          res.append("save","yes");
-          this.service.saveOffer(res)
+         
+          this.service.editBrandCity(res)
             .subscribe(data => {
               console.log("incoming data after save",data);
               this.items = data["data"];

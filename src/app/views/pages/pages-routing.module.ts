@@ -32,7 +32,7 @@ const routes: Routes = [
   { 
     path: 'availability', 
     component:AvailabilityComponent, 
-    data: { title: 'Manage Business Profile', breadcrumb: 'Manage Business Profile' } 
+    data: { title: 'Manage Availability', breadcrumb: 'Manage Availability' } 
   },
 
 ];

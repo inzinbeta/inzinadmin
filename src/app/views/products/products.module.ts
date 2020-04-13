@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { 
   MatInputModule,
   MatIconModule,
@@ -76,6 +77,7 @@ import { OfferstablepopupComponent } from './offers/offerstablepopup/offerstable
     SharedModule,
     QuillModule,
     MatCheckboxModule,
+    NgxMatSelectSearchModule,
 
     
     RouterModule.forChild(CrudsRoutes)

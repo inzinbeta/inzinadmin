@@ -33,7 +33,7 @@ export class ManageproductsComponent implements OnInit ,OnDestroy{
   }
 
 linkImg(fileName) {
-  let file=fileName.split("/")[1];
+  let file=fileName.replace(/\\/g, '/').split("/")[1];
   // base_URL returns localhost:3000 or the production URL
       return `http://localhost:3900/${file}`;
     }
@@ -72,7 +72,7 @@ linkImg(fileName) {
           res.append("save","yes");
           this.service.saveProduct(res)
             .subscribe(data => {
-              debugger;
+            
               this.items = data["data"];
               this.loader.close();
               this.snack.open(data["message"], 'OK', { duration: 4000 })

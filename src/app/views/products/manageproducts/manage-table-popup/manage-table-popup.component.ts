@@ -20,6 +20,7 @@ export class ManageTablePopupComponent implements OnInit {
   Description = ``;
   metaHeadingDescription = ``;
   metaDescription=``;
+  slug="";
 
 
  
@@ -97,6 +98,14 @@ reader.onload = (_event) => {
     
   }
   
+
+  onSearchChange(value)
+  {
+    
+   let _data=value.split(/[ ,]+/g).join("-");
+   delete this.itemForm.value["slug"];
+   this.itemForm.setValue({"slug":_data,...this.itemForm.value});
+  }
   getItems() {
  
     this.service.getAllProducts()
@@ -110,7 +119,8 @@ reader.onload = (_event) => {
   getChildCategories(value)
   {
    
-   this.items_subcategories= this.items_allcategories.filter(ele=>ele.parentcategory==value.name);
+   this.items_subcategories= this.items_allcategories.filter(ele=>ele.parentcategory==value);
+   console.log(this.items_subcategories);
   }
 
 
@@ -145,7 +155,7 @@ getCategories(){
     })
 }
 linkImg(fileName) {
-  let file=fileName.split("/")[1];
+  let file=fileName.replace(/\\/g, '/').split("/")[1];
   // base_URL returns localhost:3000 or the production URL
       return `http://localhost:3900/${file}`;
     }

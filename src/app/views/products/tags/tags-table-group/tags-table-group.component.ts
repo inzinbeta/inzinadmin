@@ -29,6 +29,15 @@ uploadedFilePath: string = null;
     this.preview1();
 }
 
+
+onSearchChange(value)
+ {
+   
+  let _data=value.split(/[ ,]+/g).join("-");
+  delete this.itemForm.value["slug"];
+  this.itemForm.setValue({"slug":_data,...this.itemForm.value});
+ }
+
 preview1() {
   // Show preview 
   var mimeType = this.fileData.type;

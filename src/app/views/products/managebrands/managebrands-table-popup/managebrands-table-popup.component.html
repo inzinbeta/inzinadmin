@@ -8,6 +8,7 @@
           matInput
           name="username"
           [formControl]="itemForm.controls['name']"
+          (input)="onSearchChange($event.target.value)"
           placeholder="Name"
         />
       </mat-form-field>

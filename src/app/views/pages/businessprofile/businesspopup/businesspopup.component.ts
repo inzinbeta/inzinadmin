@@ -267,8 +267,13 @@ preview(filedata, num) {
       title: [item.title || ''],
       heading: [item.heading || ''],
       specifications: this.fb.array([this.fb.group({ point: '' })]),
-
+      slug: [item.slug || '',Validators.required],
       description: [item.description || ''],
+      seo_metadescription: [item.seo_metadescription || '',Validators.required],
+      seo_keywords: [item.seo_keywords || '',Validators.required],
+      seo_metatitle: [item.seo_metatitle || '',Validators.required],
+      seo_metaheading: [item.seo_metaheading || '',Validators.required],
+      seo_metaheadingdescription: [item.seo_metaheadingdescription || '',Validators.required],
 
 
     })
@@ -279,6 +284,14 @@ preview(filedata, num) {
     return this.itemForm.get('specifications') as FormArray;
   }
 
+  onSearchChange(value)
+  {
+    
+   let _data=value.split(/[ ,]+/g).join("-");
+   delete this.itemForm.value["slug"];
+   this.itemForm.setValue({"slug":_data,...this.itemForm.value});
+  }
+ 
   addSellingPoint() {
     this.specifications.push(this.fb.group({ point: '' }));
   }

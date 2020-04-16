@@ -73,6 +73,14 @@ export class ManagebrandsTablePopupComponent implements OnInit {
   }
 
 
+  onSearchChange(value)
+ {
+   
+  let _data=value.split(/[ ,]+/g).join("-");
+  delete this.itemForm.value["slug"];
+  this.itemForm.setValue({"slug":_data,...this.itemForm.value});
+ }
+
   getCategories() {
     this.service.getAllCategory().subscribe(data => {
     

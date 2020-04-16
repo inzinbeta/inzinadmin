@@ -16,7 +16,7 @@ import {HttpService} from '../../../../shared/services/http.service';
 export class CategoriesTablePopupComponent implements OnInit {
   toppings = new FormControl();
   toppingList: string[] = [];
-  parentCategory:string[]=[];
+  parentCategory:string[]=["None"];
  
   categoryDescription = `Category Description`;
   metaHeadingDescription = `Meta Heading  Description`;
@@ -131,6 +131,16 @@ this.toppingList.push(...data.map(({title})=>title));
   
 })
  }
+
+
+ onSearchChange(value)
+ {
+   
+  let _data=value.split(/[ ,]+/g).join("-");
+  delete this.itemForm.value["slug"];
+  this.itemForm.setValue({"slug":_data,...this.itemForm.value});
+ }
+
 
  getCategories()
  {

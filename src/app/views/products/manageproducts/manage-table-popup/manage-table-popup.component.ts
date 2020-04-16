@@ -1,10 +1,12 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject , ViewChild} from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, Validators, FormGroup, FormControl, FormArray } from '@angular/forms';
 import {HttpService} from '../../../../shared/services/http.service';
 import { egretAnimations } from "../../../../shared/animations/egret-animations";
-
-
+import { ReplaySubject, Subject } from 'rxjs';
+import { Bank, BANKS } from '../../../pages/availability/demo-data';
+import { MatSelect } from '@angular/material/select';
+import { take, takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'app-manage-table-popup',
   templateUrl: './manage-table-popup.component.html',
@@ -14,13 +16,41 @@ import { egretAnimations } from "../../../../shared/animations/egret-animations"
 export class ManageTablePopupComponent implements OnInit {
   toppings = new FormControl();
   colours: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
-  
+  protected banks: Bank[] = BANKS;
   brands:string[]=[];
   
   Description = ``;
   metaHeadingDescription = ``;
   metaDescription=``;
   slug="";
+
+
+
+/**
+ * Mat select search
+ */
+
+
+  /** control for the selected bank for multi-selection */
+  public bankMultiCtrl: FormControl = new FormControl();
+  
+  /** control for the MatSelect filter keyword multi-selection */
+  public bankMultiFilterCtrl: FormControl = new FormControl();
+
+  /** list of banks filtered by search keyword */
+  public filteredBanksMulti: ReplaySubject<Bank[]> = new ReplaySubject<Bank[]>(1);
+
+  @ViewChild('multiSelect', { static: true }) multiSelect: MatSelect;
+
+  /** Subject that emits when the component has been destroyed. */
+  protected _onDestroy = new Subject<void>();
+
+
+
+
+ /**
+  * MAt select search
+  */
 
 
  
@@ -85,8 +115,9 @@ reader.onload = (_event) => {
 }
 }
   ngOnInit() {
-    console.log("page");
+   
     this.buildItemForm(this.data.payload)
+    this.bankMultiCtrl.setValue(this.data.payload.tags);
     this.getItems()
     this.getTags()
     this.getBrands()
@@ -95,9 +126,83 @@ reader.onload = (_event) => {
     this.Description = this.data.payload.description||``;
   this.metaHeadingDescription = this.data.payload.seo_metaheadingdescription||``;
   this.metaDescription=this.data.payload.seo_metadescription ||``;
+
+
+
+
+ // listen for search field value changes
+ this.bankMultiFilterCtrl.valueChanges
+   .pipe(takeUntil(this._onDestroy))
+   .subscribe(() => {
+     this.filterBanksMulti();
+   });
     
   }
-  
+
+
+  ngAfterViewInit() {
+    this.setInitialValue();
+   }
+ 
+   ngOnDestroy() {
+     this._onDestroy.next();
+     this._onDestroy.complete();
+   }
+ 
+
+
+  protected setInitialValue() {
+    
+    this.filteredBanksMulti
+      .pipe(take(1), takeUntil(this._onDestroy))
+      .subscribe(() => {
+        // setting the compareWith property to a comparison function
+        // triggers initializing the selection according to the initial value of
+        // the form control (i.e. _initializeSelection())
+        // this needs to be done after the filteredBanks are loaded initially
+        // and after the mat-option elements are available
+        this.multiSelect.compareWith = (a: Bank, b: Bank) => a && b && a.id === b.id;
+      });
+  }
+
+  protected filterBanksMulti() {
+   
+
+    this.service.getAllTags()
+
+    .subscribe(data => {
+      
+      this.items_tags = data;
+
+      let banks=data.map(ele=>{
+        return{
+          name:ele["name"],
+          id:ele["_id"]
+        }
+
+      })
+       
+      if (!banks) {
+        return;
+      }
+      // get the search keyword
+      let search = this.bankMultiFilterCtrl.value;
+      if (!search) {
+        this.filteredBanksMulti.next(banks.slice());
+        return;
+      } else {
+        search = search.toLowerCase();
+      }
+      // filter the banks
+      this.filteredBanksMulti.next(
+        banks.filter(bank => bank.name.toLowerCase().indexOf(search) > -1)
+      );
+    
+    })
+
+
+    
+  }
 
   onSearchChange(value)
   {
@@ -131,7 +236,28 @@ getTags(){
     .subscribe(data => {
       
       this.items_tags = data;
-      console.log(data);
+
+      let _tag=data.map(ele=>{
+        return{
+          name:ele["name"],
+          id:ele["_id"]
+        }
+
+      })
+
+      if(Object.keys(this.data.payload).length==0)
+
+      {
+               // set initial selection
+ this.bankMultiCtrl.setValue([_tag[0], _tag[1], _tag[2]]);
+
+      }
+
+
+ // load the initial bank list
+ this.filteredBanksMulti.next(_tag.slice());
+
+    
     })
 }
 getBrands(){
@@ -172,7 +298,7 @@ linkImg(fileName) {
     }
   
     this.itemForm = this.fb.group({
-      tags: [item.tags || ''],
+      
      
       brand: [item.brand || ''],
       
@@ -210,6 +336,12 @@ linkImg(fileName) {
     this.specifications.removeAt(index);
   }
   submit() {
+
+  
+
+
+    this.itemForm.value.tags=this.bankMultiCtrl.value;
+    console.log(this.itemForm.value);
     const fd=new FormData();
    
        if(this.fileData)

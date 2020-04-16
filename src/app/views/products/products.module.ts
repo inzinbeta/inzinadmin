@@ -45,6 +45,7 @@ import { ManagebrandsTablePopupComponent } from './managebrands/managebrands-tab
 import { QuillModule } from 'ngx-quill';
 import { OffersComponent } from './offers/offers.component';
 import { OfferstablepopupComponent } from './offers/offerstablepopup/offerstablepopup.component';
+import { TagsPipe } from 'app/shared/pipes/tags.pipe';
 
 
 
@@ -78,11 +79,12 @@ import { OfferstablepopupComponent } from './offers/offerstablepopup/offerstable
     QuillModule,
     MatCheckboxModule,
     NgxMatSelectSearchModule,
+   
 
     
     RouterModule.forChild(CrudsRoutes)
   ],
-  declarations: [CrudNgxTableComponent, ManageproductsComponent, ManageTablePopupComponent, CategoriesComponent, CategoriesTablePopupComponent, TagsComponent, TagsTableGroupComponent, ManagebrandsComponent, ManagebrandsTablePopupComponent, OffersComponent, OfferstablepopupComponent],
+  declarations: [CrudNgxTableComponent, ManageproductsComponent, ManageTablePopupComponent, CategoriesComponent, CategoriesTablePopupComponent, TagsComponent, TagsTableGroupComponent, ManagebrandsComponent, ManagebrandsTablePopupComponent, OffersComponent, OfferstablepopupComponent, TagsPipe,],
   providers: [ProductService],
   entryComponents: [OfferstablepopupComponent,ManageTablePopupComponent,CategoriesTablePopupComponent,TagsTableGroupComponent, ManagebrandsTablePopupComponent]
 })

@@ -168,7 +168,7 @@ reader.onload = (_event) => {
   protected filterBanksMulti() {
    
 
-    this.service.getAllTags()
+    this.service.getAllTags("Product")
 
     .subscribe(data => {
       
@@ -231,7 +231,7 @@ reader.onload = (_event) => {
 
 getTags(){
   
-  this.service.getAllTags()
+  this.service.getAllTags("Product")
 
     .subscribe(data => {
       

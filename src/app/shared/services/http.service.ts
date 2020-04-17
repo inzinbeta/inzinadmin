@@ -291,9 +291,9 @@ return this.http.post(`http://${environment.url}:${environment.port}/admin/delet
 
 
 
-getAllTags()
+getAllTags(type)
 {
-return this.http.post<BrandsModel[]>(`http://${environment.url}:${environment.port}/admin/getAllTags`,{});
+return this.http.post<BrandsModel[]>(`http://${environment.url}:${environment.port}/admin/getAllTags`,{type:type});
 
 }
 

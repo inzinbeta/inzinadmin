@@ -205,7 +205,7 @@ preview(filedata, num) {
 
   getTags() {
 
-    this.service.getAllTags()
+    this.service.getAllTags("all")
 
       .subscribe(data => {
 

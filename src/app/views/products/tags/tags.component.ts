@@ -39,7 +39,7 @@ export class TagsComponent implements OnInit , OnDestroy {
     }
   }
   getItems() {
-    this.getItemSub = this.service.getAllTags()
+    this.getItemSub = this.service.getAllTags("all")
       .subscribe(data => {
         debugger;
         this.items = data;

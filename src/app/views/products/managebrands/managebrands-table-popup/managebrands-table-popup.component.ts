@@ -1,9 +1,11 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject,ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, Validators, FormGroup, FormControl, FormArray } from '@angular/forms';
 import { HttpService } from 'app/shared/services/http.service';
-import { CategoryModel } from 'app/shared/models/CategoryModel';
-import { CategoriesComponent } from '../../categories/categories.component';
+import { ReplaySubject, Subject } from 'rxjs';
+import { Bank, BANKS } from '../../../pages/availability/demo-data';
+import { MatSelect } from '@angular/material/select';
+import { take, takeUntil } from 'rxjs/operators';
 
 
 @Component({
@@ -15,7 +17,7 @@ export class ManagebrandsTablePopupComponent implements OnInit {
 
   toppings = new FormControl();
   toppingList: string[] = ['Premium', 'Non-Premium'];
-  tags: string[] = [];
+  public items_tags: Object;
   subcategories:string[]=[]; // these will be changed when categories is chnaged
   parentcatgeories:any[]=[];
   description:string="Enter Description Here";
@@ -24,7 +26,19 @@ export class ManagebrandsTablePopupComponent implements OnInit {
   services:string[]=[];
   selectedservice:string[]=[];
 
+/** control for the selected bank for multi-selection */
+public bankMultiCtrl: FormControl = new FormControl();
+  
+/** control for the MatSelect filter keyword multi-selection */
+public bankMultiFilterCtrl: FormControl = new FormControl();
 
+/** list of banks filtered by search keyword */
+public filteredBanksMulti: ReplaySubject<Bank[]> = new ReplaySubject<Bank[]>(1);
+
+@ViewChild('multiSelect', { static: true }) multiSelect: MatSelect;
+
+/** Subject that emits when the component has been destroyed. */
+protected _onDestroy = new Subject<void>();
 
 
   public itemForm: FormGroup;
@@ -35,6 +49,7 @@ export class ManagebrandsTablePopupComponent implements OnInit {
   previewUrlLogo: any = "assets/images/download.jpeg";
   fileUploadProgress: string = null;
   uploadedFilePath: string = null;
+  protected banks: Bank[] = BANKS;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<ManagebrandsTablePopupComponent>,
@@ -96,23 +111,37 @@ export class ManagebrandsTablePopupComponent implements OnInit {
     })
   }
 
-  getTags()
-  {
-    this.service.getAllTags().subscribe(data=>{
-       this.tags.push(...data.reduce((acc,ele)=>{
-
-        if(ele["type"]=="Brand")
+  getTags(){
+  
+    this.service.getAllTags("Brand")
+  
+      .subscribe(data => {
+        
+        this.items_tags = data;
+  
+        let _tag=data.map(ele=>{
+          return{
+            name:ele["name"],
+            id:ele["_id"]
+          }
+  
+        })
+  
+        if(Object.keys(this.data.payload).length==0)
+  
         {
-        acc.push(ele["name"]);
+                 // set initial selection
+   this.bankMultiCtrl.setValue([_tag[0], _tag[1], _tag[2]]);
+  
         }
-      return acc;
-
-       },[]))
-
-
-    })
+  
+  
+   // load the initial bank list
+   this.filteredBanksMulti.next(_tag.slice());
+  
+      
+      })
   }
-
 getSubCategories(catgeory)
 {
   
@@ -280,6 +309,61 @@ this.selectedservice.push(event.source.value)
 }
 
 
+
+protected setInitialValue() {
+    
+  this.filteredBanksMulti
+    .pipe(take(1), takeUntil(this._onDestroy))
+    .subscribe(() => {
+      // setting the compareWith property to a comparison function
+      // triggers initializing the selection according to the initial value of
+      // the form control (i.e. _initializeSelection())
+      // this needs to be done after the filteredBanks are loaded initially
+      // and after the mat-option elements are available
+      this.multiSelect.compareWith = (a: Bank, b: Bank) => a && b && a.id === b.id;
+    });
+}
+
+protected filterBanksMulti() {
+ 
+
+  this.service.getAllTags("Product")
+
+  .subscribe(data => {
+    
+    this.items_tags = data;
+
+    let banks=data.map(ele=>{
+      return{
+        name:ele["name"],
+        id:ele["_id"]
+      }
+
+    })
+     
+    if (!banks) {
+      return;
+    }
+    // get the search keyword
+    let search = this.bankMultiFilterCtrl.value;
+    if (!search) {
+      this.filteredBanksMulti.next(banks.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+    // filter the banks
+    this.filteredBanksMulti.next(
+      banks.filter(bank => bank.name.toLowerCase().indexOf(search) > -1)
+    );
+  
+  })
+
+
+  
+}
+
+
   ngOnInit() {
     console.log(this.data.payload);
     this.buildItemForm(this.data.payload);
@@ -290,6 +374,25 @@ this.selectedservice.push(event.source.value)
     this.description=this.data.payload.description || "Enter Description";
     this.metadescription=this.data.payload.seo_metadescription || "Meta Description";
     this.metaheadingdescription=this.data.payload.seo_metaheadingdescription || "Meta Description";
+
+
+     // listen for search field value changes
+ this.bankMultiFilterCtrl.valueChanges
+ .pipe(takeUntil(this._onDestroy))
+ .subscribe(() => {
+   this.filterBanksMulti();
+ });
   }
+
+
+  ngAfterViewInit() {
+    this.setInitialValue();
+   }
+ 
+   ngOnDestroy() {
+     this._onDestroy.next();
+     this._onDestroy.complete();
+   }
+ 
 
 }

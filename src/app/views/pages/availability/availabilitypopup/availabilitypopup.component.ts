@@ -14,8 +14,9 @@ import { MatSelect } from '@angular/material/select';
   animations: egretAnimations
 })
 export class AvailabilitypopupComponent implements OnInit {
-
+ public states:any=["Andaman and Nicobar Islands","Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chandigarh","Chhattisgarh","Dadra and Nagar Haveli","Daman and Diu","Delhi","Goa","Gujarat","Haryana","Himachal Pradesh","Jammu and Kashmir","Jharkhand","Karnataka","Kerala","Ladakh","Lakshadweep","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Puducherry","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura","Uttar Pradesh","Uttarakhand","West Bengal"];
   public items: Object;
+  public businessprofile:any=[];
 
   public items_tags: Object;
   public items_brands: Object;
@@ -52,7 +53,13 @@ export class AvailabilitypopupComponent implements OnInit {
 
 
 
+getBusinessProfile()
+{
+  this.service.getBusinessProfile().subscribe(data=>{
+  this.businessprofile=data["data"].map(ele=>ele.title);
 
+  })
+}
 
 
 
@@ -61,7 +68,8 @@ export class AvailabilitypopupComponent implements OnInit {
     this.buildItemForm(this.data.payload)
 
 
-    this.getBrands()
+    this.getBrands();
+    this.getBusinessProfile();
 
  // set initial selection
  this.bankMultiCtrl.setValue([this.banks[10], this.banks[11], this.banks[12]]);
@@ -150,7 +158,9 @@ export class AvailabilitypopupComponent implements OnInit {
     this.itemForm = this.fb.group({
 
       brand: [item.brand || ''],
-      availability:[item.availability]
+      availability:[item.availability],
+      state:[item.state],
+      businessprofile:[item.businessprofile]
 
 
     })
@@ -163,10 +173,11 @@ export class AvailabilitypopupComponent implements OnInit {
 
       acc["districts"].push({name:ele.name,id:ele.id});
       acc["status"]=this.itemForm.value.availability;
+     
 return acc;
     },{districts:[],status:""})
     console.log(this.itemForm.value.brand);
     let _brand=this.itemForm.value.brand.split("-");
-    this.dialogRef.close({districts:data["districts"],brandid:_brand[0],brandname:_brand[1],status:data["status"]});
+    this.dialogRef.close({districts:data["districts"],brandid:_brand[0],brandname:_brand[1],status:data["status"],businessprofile:this.itemForm.value.businessprofile,state:this.itemForm.value.state});
   }
 }

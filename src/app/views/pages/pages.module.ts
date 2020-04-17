@@ -44,10 +44,11 @@ import { BusinessprofileComponent } from './businessprofile/businessprofile.comp
 import { BusinesspopupComponent } from './businessprofile/businesspopup/businesspopup.component';
 import { AvailabilityComponent } from './availability/availability.component';
 import { AvailabilitypopupComponent } from './availability/availabilitypopup/availabilitypopup.component';
+import { AvailabilityDistrictsPipe } from 'app/shared/pipes/availability-districts.pipe';
 
 
 @NgModule({
-  declarations: [ManagehomeComponent, ManagebannerComponent, ManagehomepopupComponent, TopheaderComponent, BannerpopupComponent, BusinessprofileComponent, BusinesspopupComponent, AvailabilityComponent, AvailabilitypopupComponent],
+  declarations: [AvailabilityDistrictsPipe,ManagehomeComponent, ManagebannerComponent, ManagehomepopupComponent, TopheaderComponent, BannerpopupComponent, BusinessprofileComponent, BusinesspopupComponent, AvailabilityComponent, AvailabilitypopupComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -80,6 +81,7 @@ import { AvailabilitypopupComponent } from './availability/availabilitypopup/ava
     FileUploadModule,
     FormsModule,
     NgxMatSelectSearchModule,
+    
    
   ],
   entryComponents:[ManagehomepopupComponent,BannerpopupComponent,BusinesspopupComponent,AvailabilitypopupComponent]

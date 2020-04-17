@@ -72,22 +72,10 @@ export class CategoriesComponent implements OnInit ,OnDestroy{
           res.append("save","yes");
           this.service.saveCategory(res)
             .subscribe(data => {
-              console.log(data);
+              this.items = data["data"];
+              this.loader.close();
+              this.snack.open(data["message"], 'OK', { duration: 4000 })
              
-              if(data["data"])
-              {
-                this.items = data["data"];
-                this.loader.close();
-                this.snack.open(data["message"], 'OK', { duration: 4000 })
-              }
-              else{
-                this.snack.open(data["errors"][0], 'OK', { duration: 4000 })
-                this.loader.close();
-            
-               
-           
-              }
-              
               
               
             })

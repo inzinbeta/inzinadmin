@@ -167,6 +167,7 @@ this.service.getAllCategory().subscribe(data=>{
 
 
 
+console.log(this.itemForm.value);
 
 
  
@@ -199,7 +200,7 @@ this.service.getAllCategory().subscribe(data=>{
         fd.append('imagelogo',this.fileDatalogo,`categoryicon.${file_ext[1]}`);
         fd.append('imagesidebar',this.fileDatasidebar,`categoryicon.${file_extt[1]}`);
         fd.append('formavalues',JSON.stringify(this.itemForm.value));
-     
+
         this.dialogRef.close(fd)
       }
       else{

@@ -43,10 +43,12 @@ linkImg(fileName) {
     }
   }
   getItems() {
+    this.loader.open();
     this.getItemSub = this.service.getAllProducts()
       .subscribe(data => {
         this.items = data;
-        console.log(this.items);
+        this.loader.close();
+        
       })
   }
 

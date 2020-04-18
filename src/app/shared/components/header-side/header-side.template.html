@@ -53,25 +53,19 @@
     [matMenuTriggerFor]="accountMenu"
     class="topbar-button-right img-button"
   >
-    <img src="assets/images/inzin_logo.png" alt="" />
+    <img src="{{profileimage}}" alt="" />
   </button>
 
   <mat-menu #accountMenu="matMenu">
-    <button mat-menu-item [routerLink]="['/profile/overview']">
-      <mat-icon>account_box</mat-icon>
-      <span>Profile</span>
-    </button>
-    <button mat-menu-item [routerLink]="['/profile/settings']">
+ 
+    <button mat-menu-item [routerLink]="['/pages/topheader']">
       <mat-icon>settings</mat-icon>
       <span>Account Settings</span>
     </button>
+    
     <button mat-menu-item>
-      <mat-icon>notifications_off</mat-icon>
-      <span>Disable alerts</span>
-    </button>
-    <button mat-menu-item [routerLink]="['/sessions/signin']">
       <mat-icon>exit_to_app</mat-icon>
-      <span>Sign out</span>
+      <span (click)="signout()"> Sign Out</span>
     </button>
   </mat-menu>
 </mat-toolbar>

@@ -2,6 +2,8 @@ import { Component, OnInit, EventEmitter, Input, Output, Renderer2 } from '@angu
 import { ThemeService } from '../../services/theme.service';
 import { LayoutService } from '../../services/layout.service';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from 'app/shared/services/auth/auth.service';
+import { HttpService } from 'app/shared/services/http.service';
 
 @Component({
   selector: 'app-header-side',
@@ -20,18 +22,23 @@ export class HeaderSideComponent implements OnInit {
   }]
   currentLang = this.availableLangs[0];
 
+  
   public egretThemes;
+  public profileimage:any;
   public layoutConf:any;
   constructor(
     private themeService: ThemeService,
     private layout: LayoutService,
     public translate: TranslateService,
-    private renderer: Renderer2
-  ) {}
+    private renderer: Renderer2,
+    public authservice:AuthService,
+    public service:HttpService
+    ) {}
   ngOnInit() {
     this.egretThemes = this.themeService.egretThemes;
     this.layoutConf = this.layout.layoutConf;
     this.translate.use(this.currentLang.code);
+    this.linkImg();
   }
   setLang(lng) {
     this.currentLang = lng;
@@ -43,6 +50,19 @@ export class HeaderSideComponent implements OnInit {
   toggleNotific() {
     this.notificPanel.toggle();
   }
+
+  linkImg() {
+
+    this.service.getProfilePic("profile").subscribe(data=>{
+console.log(data["data"]);
+      this.profileimage=`http://localhost:3900/${data["data"][0].url.replace(/\\/g, '/').split("/")[1]}`;
+      // base_URL returns localhost:3000 or the production URL
+         
+    })
+
+   
+      }
+
   toggleSidenav() {
     if(this.layoutConf.sidebarStyle === 'closed') {
       return this.layout.publishLayoutChange({
@@ -74,4 +94,12 @@ export class HeaderSideComponent implements OnInit {
   onSearch(e) {
     //   console.log(e)
   }
+
+signout()
+{
+
+  this.authservice.logout();
+}
+
+
 }

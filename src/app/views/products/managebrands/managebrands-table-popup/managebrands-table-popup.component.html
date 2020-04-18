@@ -26,15 +26,15 @@
       </mat-form-field>
     </div>
 
-    <div fxFlex="50" class="pr-1">
+    <div fxFlex="100" class="pr-1">
       <mat-form-field [style.width.px]=427>
-        <mat-select [formControl]="bankMultiCtrl" placeholder="Districts" [multiple]="true" #multiSelect>
+        <mat-select [formControl]="bankMultiCtrl" placeholder="Tags" [multiple]="true" #multiSelect>
           <ngx-mat-select-search [formControl]="bankMultiFilterCtrl"
           
           placeholderLabel="Find Tags..." 
           noEntriesFoundLabel="No matching tag found"
           ></ngx-mat-select-search>
-          <mat-option *ngFor="let bank of filteredBanksMulti | async" [value]="bank">
+          <mat-option *ngFor="let bank of filteredBanksMulti | async" [value]="bank.name">
             {{bank.name}}
           </mat-option>
         </mat-select>
@@ -99,7 +99,7 @@
     </div>
 
 
-    <div fxFlex="50" class="pr-1" style="margin-top: 90px;">
+    <div fxFlex="50" class="pr-1" style="margin-top: 130px;">
       <h3>Logo Upload</h3>
       <div class="form-group">
         <input
@@ -131,7 +131,7 @@
       </div>
     </div>
 
-    <div fxFlex="50" class="pr-1" style="margin-top: 90px;"> 
+    <div fxFlex="50" class="pr-1" style="margin-top: 130px;"> 
       <h3>Sidebar Upload</h3>
       <div class="form-group">
         <input
@@ -167,6 +167,7 @@
       formArrayName="specifications"
       style="width: 100%; padding: 10px; margin: 15px auto;"
     >
+     <h2>Specifications</h2>
       <div
         *ngFor="let item of specifications.controls; let pointIndex = index"
         [formGroupName]="pointIndex"
@@ -212,8 +213,9 @@ Requirements
   <h1 matDialogTitle>Services</h1>   
 </div>
 <section *ngFor="let item of services">
+ 
   <div fxFlex="25"  class="pr-1">
-    <mat-checkbox value="{{item}}" (change)="checkboxtoggle($event)">{{item}}</mat-checkbox>
+    <mat-checkbox value="{{item.title}}" [checked]="item.checked" (change)="checkboxtoggle($event)">{{item.title}}</mat-checkbox>
   </div>
   
   
@@ -477,7 +479,7 @@ Requirements
       
 
 
-            <div fxFlex="50"  class="pr-1" style="margin-top: 80px;">
+            <div fxFlex="50"  class="pr-1" style="margin-top: 120px;">
                 <mat-form-field class="full-width">
                   <input
                   matInput
@@ -497,7 +499,7 @@ Requirements
                
               </div>
 
-                <div fxFlex="50"  class="pr-1" style="margin-top: 80px;">
+                <div fxFlex="50"  class="pr-1" style="margin-top: 120px;">
                     <mat-form-field class="example-full-width">
                         <textarea matInput placeholder="Keywords"  [formControl]="itemForm.controls['seo_keywords']"></textarea>
                       </mat-form-field>
@@ -511,13 +513,8 @@ Requirements
         [disabled]="itemForm.invalid" >
         {{ "SAVE" | translate }} </button>
       <span fxFlex></span>
-      <button
-        mat-button
-        color="warn"
-        type="button"
-        (click)="dialogRef.close(false)" >
-        Cancel
-      </button>
+      <button mat-raised-button color="warn" type="button" (click)="dialogRef.close(false)">Cancel</button>
+
     </div>
   
   </div>

@@ -380,5 +380,11 @@ return this.http.post(`http://${environment.url}:${environment.port}/admin/delet
 }
 
 
+getProfilePic(type)
+{
+  return this.http.post(`http://${environment.url}:${environment.port}/admin/getPic`,{type:type});
+
+}
+
 
 }

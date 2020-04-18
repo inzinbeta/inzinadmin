@@ -47,8 +47,10 @@ export class ManagebrandsComponent implements OnInit {
     }
   }
   getItems() {
+    this.loader.open();
     this.getItemSub = this.service.getAllBrands()
       .subscribe(data => {
+        this.loader.close();
         this.items = data;
       })
   }

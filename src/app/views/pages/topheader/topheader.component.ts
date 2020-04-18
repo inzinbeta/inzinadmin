@@ -12,11 +12,12 @@ import { AppLoaderService } from 'app/shared/services/app-loader/app-loader.serv
 })
 export class TopheaderComponent implements OnInit {
 
-  public uploader: FileUploader = new FileUploader({ url: 'upload_url' });
+  public uploader: FileUploader = new FileUploader({ url: 'http://localhost:3900/admin/savePic' });
   public hasBaseDropZoneOver: boolean = false;
   public itemForm: FormGroup;
   private data:any=[];
- 
+  public oldpassword:any;
+  public newpassword:any;
   
   
  
@@ -24,7 +25,8 @@ export class TopheaderComponent implements OnInit {
     private fb: FormBuilder,
     private service:HttpService,
     private snack: MatSnackBar,
-    private loader: AppLoaderService
+    private loader: AppLoaderService,
+   
    
 
   ) { 
@@ -67,6 +69,22 @@ getData()
     
   })
 }
+
+Changepassword()
+{
+ if(this.oldpassword=="" || this.newpassword=="")
+ {
+  this.snack.open("Please Enter Both the Fields", 'OK', { duration: 4000 })
+ }
+else{
+
+ // service start
+ this.snack.open("Work in progress,Please change password from user section", 'OK', { duration: 4000 })
+
+}
+ 
+}
+
 
   submit() {
     this.loader.open();

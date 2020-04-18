@@ -34,19 +34,14 @@ export class CategoriesComponent implements OnInit ,OnDestroy{
     // base_URL returns localhost:3000 or the production URL
         return `http://localhost:3900/${file}`;
       }
-  ngOnInit() {
-    this.getItems()
-  }
-  ngOnDestroy() {
-    if (this.getItemSub) {
-      this.getItemSub.unsubscribe()
-    }
-  }
+ 
   getItems() {
+    this.loader.open();
     this.getItemSub = this.service.getAllCategory()
       .subscribe(data => {
-   
+      
         this.items = data;
+        this.loader.close();
       })
   }
 
@@ -110,5 +105,12 @@ export class CategoriesComponent implements OnInit ,OnDestroy{
         }
       })
   }
-
+  ngOnInit() {
+    this.getItems()
+  }
+  ngOnDestroy() {
+    if (this.getItemSub) {
+      this.getItemSub.unsubscribe()
+    }
+  }
 }

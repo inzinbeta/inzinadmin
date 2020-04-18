@@ -3,10 +3,11 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { HttpClient } from  "@angular/common/http";
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
+import { Router } from '@angular/router';
 @Injectable({ providedIn: 'root' })
 
 export class AuthService {
-  constructor(public jwtHelper: JwtHelperService,private http: HttpClient) {}
+  constructor(public jwtHelper: JwtHelperService,private http: HttpClient,public router: Router) {}
   // ...
   public isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
@@ -32,6 +33,8 @@ logout()
     localStorage.removeItem('currentUser');
     localStorage.removeItem('role');
     localStorage.removeItem('dl');
+
+    this.router.navigate(['/admin/signin']);
 
 
 }

@@ -127,11 +127,11 @@ protected _onDestroy = new Subject<void>();
   
         })
   
-        if(Object.keys(this.data.payload).length==0)
+        if(Object.keys(this.data.payload).length>0)
   
         {
                  // set initial selection
-   this.bankMultiCtrl.setValue([_tag[0], _tag[1], _tag[2]]);
+   this.bankMultiCtrl.setValue([this.data.payload.tags]);
   
         }
   
@@ -182,6 +182,15 @@ getSubCategories(catgeory)
       //this.fileDatasidebar=this.linkImg(item.imagesidebar);
     }
 
+
+    let form_group = []
+    if (item.specifications) {
+      form_group = item.specifications.map(ele => {
+        return this.fb.group({ point: ele.point })
+      })
+
+
+    }
     this.itemForm = this.fb.group({
       name: [item.name || '', Validators.required],
       brandcategory: [item.brandcategory || ''],
@@ -192,7 +201,7 @@ getSubCategories(catgeory)
     
     
       description: [item.description || ''],
-      specifications: this.fb.array([this.fb.group({ point: '' })]),
+      specifications: this.fb.array([...form_group]),
       seo_keywords: [item.seo_keywords || ''],
       seo_metadescription: [item.seo_metadescription || ''],
       seo_metatitle: [item.seo_metatitle || ''],
@@ -242,18 +251,45 @@ getSubCategories(catgeory)
 
 getServices()
 {
-  this.service.getAllServices().subscribe(data=>{
-this.services.push(...data.reduce((acc,ele)=>{
 
-acc.push(ele.title);
+
+  let existing={}
+  if( this.data.payload.services){
+    existing= this.data.payload.services.reduce((acc,curr)=>{
+      if (typeof acc[curr] == 'undefined') {
+        acc[curr] = 1;
+      } else {
+        acc[curr] += 1;
+      }
+    
+      return acc;
+    
+      },{})
+    
+  
+  }
+  this.service.getAllServices().subscribe(data=>{
+this.services.push(...data.reduce((acc,ele:any)=>{
+
+
+if(existing[ele.title])
+{
+  acc.push({title:ele.title,checked:true});
+}
+else{
+  acc.push({title:ele.title,checked:false});
+}
 return acc;
 },[]))
+
+
+
   })
 }
 
 
   submit() {
-    
+    this.itemForm.value.tags = this.bankMultiCtrl.value;
     this.itemForm.value["services"]=this.selectedservice;
     console.log(this.itemForm.value);
     const fd = new FormData();
@@ -371,9 +407,9 @@ protected filterBanksMulti() {
     this.getTags();
     this.getServices();
 
-    this.description=this.data.payload.description || "Enter Description";
-    this.metadescription=this.data.payload.seo_metadescription || "Meta Description";
-    this.metaheadingdescription=this.data.payload.seo_metaheadingdescription || "Meta Description";
+    this.description=this.data.payload.description || "";
+    this.metadescription=this.data.payload.seo_metadescription || "";
+    this.metaheadingdescription=this.data.payload.seo_metaheadingdescription || "";
 
 
      // listen for search field value changes

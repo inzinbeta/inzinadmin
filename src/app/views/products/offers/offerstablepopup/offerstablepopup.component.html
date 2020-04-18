@@ -37,7 +37,7 @@
     </div>
 
 
-    <div fxFlex="50" class="pr-1" style="margin-top: 140px;">
+    <div fxFlex="100" class="pr-1" style="margin-top: 140px;">
       <h3>Logo Upload</h3>
       <div class="form-group">
         <input
@@ -79,7 +79,7 @@ Requirements
 
 
 
-<div fxFlex="100" class="mt-1">
+<div fxFlex="100" class="mt-1" style="margin-top: 80px;">
       <button
         mat-raised-button
         color="primary"
@@ -87,13 +87,8 @@ Requirements
         [disabled]="itemForm.invalid" >
         {{ "SAVE" | translate }} </button>
       <span fxFlex></span>
-      <button
-        mat-button
-        color="warn"
-        type="button"
-        (click)="dialogRef.close(false)" >
-        Cancel
-      </button>
+      <button mat-raised-button color="warn" type="button" (click)="dialogRef.close(false)">Cancel</button>
+
     </div>
   
   </div>

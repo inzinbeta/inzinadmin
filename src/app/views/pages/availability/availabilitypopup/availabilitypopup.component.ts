@@ -28,7 +28,7 @@ export class AvailabilitypopupComponent implements OnInit {
     /** list of banks */
     protected banks: Bank[] = BANKS;
 
-    protected colours: any[] = ["Booked","Available"];
+    public colours: any[] = ["Booked","Available"];
 
     /** control for the selected bank for multi-selection */
     public bankMultiCtrl: FormControl = new FormControl();

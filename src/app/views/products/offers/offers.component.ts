@@ -9,7 +9,7 @@ import { egretAnimations } from "../../../shared/animations/egret-animations";
 import { ProductService } from '../product.service';
 import { HttpService } from 'app/shared/services/http.service';
 import { OfferstablepopupComponent } from './offerstablepopup/offerstablepopup.component';
-
+import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'app-offers',
   templateUrl: './offers.component.html',
@@ -33,7 +33,7 @@ export class OffersComponent implements OnInit {
   linkImg(fileName) {
     let file=fileName.replace(/\\/g, '/').split("/")[1];
     // base_URL returns localhost:3000 or the production URL
-        return `http://localhost:3900/${file}`;
+        return `http://${environment.url}:${environment.port}/${file}`;
       }
 
   ngOnInit() {

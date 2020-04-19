@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng serve -o",
     "serveProd": "ng serve --environment=prod",
-    "build": "ng build --prod=true --aot=true --extractCss=true --optimization=true --environment=prod",
+    "build": "ng build --prod=true --aot=true --extractCss=true --optimization=true",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -57,17 +57,18 @@
     "ngx-pagination": "3.2.1",
     "ngx-perfect-scrollbar": "^8.0.0",
     "ngx-quill": "4.8.0",
-    "npm": "6.9.0",
+    "npm": "^6.14.4",
     "perfect-scrollbar": "1.4.0",
-    "quill": "1.3.6",
+    "quill": "^1.3.7",
     "rxjs": "6.5.2",
     "rxjs-compat": "6.1.0",
     "tinycolor2": "^1.4.1",
     "web-animations-js": "github:angular/web-animations-js#release_pr208",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "@babel/compat-data": "7.8.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.800.0",
+    "@angular-devkit/build-angular": "^0.803.24",
     "@angular-devkit/core": "7.3.8",
     "@angular/cli": "8.0.2",
     "@angular/compiler-cli": "8.0.0",
@@ -90,6 +91,7 @@
     "protractor": "~5.1.0",
     "ts-node": "2.0.0",
     "tslint": "4.5.0",
-    "typescript": "3.4.5"
+    "typescript": "3.8.3",
+    "@babel/compat-data": "7.8.0"
   }
 }

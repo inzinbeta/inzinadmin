@@ -10,7 +10,7 @@ import { egretAnimations } from "../../../shared/animations/egret-animations";
 import { HttpService } from 'app/shared/services/http.service';
 import { AvailabilitypopupComponent } from './availabilitypopup/availabilitypopup.component';
 
-
+import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'app-availability',
   templateUrl: './availability.component.html',
@@ -34,8 +34,9 @@ export class AvailabilityComponent implements OnInit {
   linkImg(fileName) {
     let file=fileName.replace(/\\/g, '/').split("/")[1];
     // base_URL returns localhost:3000 or the production URL
-        return `http://localhost:3900/${file}`;
+        return `http://${environment.url}:${environment.port}/${file}`;
       }
+
 
   ngOnInit() {
     this.getItems()

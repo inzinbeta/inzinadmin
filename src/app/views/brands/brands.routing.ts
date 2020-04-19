@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { ManagebrandsComponent } from './managebrands/managebrands.component';
+
 import { ManagepremiumbrandsComponent } from './managepremiumbrands/managepremiumbrands.component';
 
 

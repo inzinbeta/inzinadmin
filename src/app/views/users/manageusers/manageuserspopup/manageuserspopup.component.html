@@ -2,7 +2,7 @@
 0;position:absoloute;cursor: pointer;">cancel</mat-icon>
 <h1 matDialogTitle>{{data.title}}</h1>
 {{"ADD" | translate }} {{"USER" | translate }}
-  <form [formGroup]="itemForm" (ngSubmit)="submit($event)">
+  <form [formGroup]="itemForm" (ngSubmit)="submit()">
   <div fxLayout="row wrap" fxLayout.lt-sm="column">
     <div fxFlex="50"  class="pr-1">
       <mat-form-field class="full-width">

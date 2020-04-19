@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, Validators, FormGroup, FormControl, FormArray } from '@angular/forms';
 import { HttpService } from '../../../../shared/services/http.service';
 import { egretAnimations } from "../../../../shared/animations/egret-animations";
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-offerstablepopup',
@@ -99,9 +100,8 @@ export class OfferstablepopupComponent implements OnInit {
   linkImg(fileName) {
     let file=fileName.replace(/\\/g, '/').split("/")[1];
     // base_URL returns localhost:3000 or the production URL
-        return `http://localhost:3900/${file}`;
+        return `http://${environment.url}:${environment.port}/${file}`;
       }
-
 
   getItems() {
 

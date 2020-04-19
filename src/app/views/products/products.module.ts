@@ -26,11 +26,11 @@ import {
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { SharedModule } from '../../shared/shared.module';
-import { CrudNgxTableComponent } from './crud-ngx-table/crud-ngx-table.component';
+
 
 import { CrudsRoutes } from './products.routing';
 
-import { NgxTablePopupComponent } from './crud-ngx-table/ngx-table-popup/ngx-table-popup.component'
+
 import { TranslateModule } from '@ngx-translate/core';
 import { ProductService } from './product.service';
 import { ManageproductsComponent } from './manageproducts/manageproducts.component';
@@ -84,7 +84,7 @@ import { TagsPipe } from 'app/shared/pipes/tags.pipe';
     
     RouterModule.forChild(CrudsRoutes)
   ],
-  declarations: [CrudNgxTableComponent, ManageproductsComponent, ManageTablePopupComponent, CategoriesComponent, CategoriesTablePopupComponent, TagsComponent, TagsTableGroupComponent, ManagebrandsComponent, ManagebrandsTablePopupComponent, OffersComponent, OfferstablepopupComponent, TagsPipe,],
+  declarations: [ManageproductsComponent, ManageTablePopupComponent, CategoriesComponent, CategoriesTablePopupComponent, TagsComponent, TagsTableGroupComponent, ManagebrandsComponent, ManagebrandsTablePopupComponent, OffersComponent, OfferstablepopupComponent, TagsPipe,],
   providers: [ProductService],
   entryComponents: [OfferstablepopupComponent,ManageTablePopupComponent,CategoriesTablePopupComponent,TagsTableGroupComponent, ManagebrandsTablePopupComponent]
 })

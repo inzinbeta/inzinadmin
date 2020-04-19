@@ -1,4 +1,6 @@
 export const environment = {
   production: true,
-  apiURL: 'productionApi'
+  url:"localhost",
+  port:3900,
+  path:'../inzinbackend/'
 };

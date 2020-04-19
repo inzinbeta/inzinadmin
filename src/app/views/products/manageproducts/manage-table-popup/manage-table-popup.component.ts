@@ -7,6 +7,7 @@ import { ReplaySubject, Subject } from 'rxjs';
 import { Bank, BANKS } from '../../../pages/availability/demo-data';
 import { MatSelect } from '@angular/material/select';
 import { take, takeUntil } from 'rxjs/operators';
+import { environment } from '../../../../../environments/environment';
 @Component({
   selector: 'app-manage-table-popup',
   templateUrl: './manage-table-popup.component.html',
@@ -278,10 +279,10 @@ export class ManageTablePopupComponent implements OnInit {
       })
   }
   linkImg(fileName) {
-    let file = fileName.replace(/\\/g, '/').split("/")[1];
+    let file=fileName.replace(/\\/g, '/').split("/")[1];
     // base_URL returns localhost:3000 or the production URL
-    return `http://localhost:3900/${file}`;
-  }
+        return `http://${environment.url}:${environment.port}/${file}`;
+      }
 
 
   buildItemForm(item) {

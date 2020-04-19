@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
 import { egretAnimations } from "../../../shared/animations/egret-animations";
 import { ProductService } from '../product.service';
 import { HttpService } from 'app/shared/services/http.service';
-
+import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'app-manageproducts',
   templateUrl: './manageproducts.component.html',
@@ -32,11 +32,11 @@ export class ManageproductsComponent implements OnInit ,OnDestroy{
     this.getItems()
   }
 
-linkImg(fileName) {
-  let file=fileName.replace(/\\/g, '/').split("/")[1];
-  // base_URL returns localhost:3000 or the production URL
-      return `http://localhost:3900/${file}`;
-    }
+  linkImg(fileName) {
+    let file=fileName.replace(/\\/g, '/').split("/")[1];
+    // base_URL returns localhost:3000 or the production URL
+        return `http://${environment.url}:${environment.port}/${file}`;
+      }
   ngOnDestroy() {
     if (this.getItemSub) {
       this.getItemSub.unsubscribe()

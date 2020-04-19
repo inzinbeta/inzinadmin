@@ -9,6 +9,7 @@ import { egretAnimations } from "../../../shared/animations/egret-animations";
 import { ProductService } from '../product.service';
 import { CategoriesTablePopupComponent } from './categories-table-popup/categories-table-popup.component';
 import {HttpService} from '../../../shared/services/http.service';
+import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
@@ -32,7 +33,7 @@ export class CategoriesComponent implements OnInit ,OnDestroy{
   linkImg(fileName) {
     let file=fileName.replace(/\\/g, '/').split("/")[1];
     // base_URL returns localhost:3000 or the production URL
-        return `http://localhost:3900/${file}`;
+        return `http://${environment.url}:${environment.port}/${file}`;
       }
  
   getItems() {

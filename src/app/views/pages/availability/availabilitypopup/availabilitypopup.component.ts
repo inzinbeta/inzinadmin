@@ -72,7 +72,7 @@ getBusinessProfile()
     this.getBusinessProfile();
 
  // set initial selection
- this.bankMultiCtrl.setValue([this.banks[10], this.banks[11], this.banks[12]]);
+ this.bankMultiCtrl.setValue([]);
 
  // load the initial bank list
  this.filteredBanksMulti.next(this.banks.slice());

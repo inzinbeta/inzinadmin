@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  url:"localhost",
+  url:"104.237.10.152",
   port:3900,
   path:'../inzinbackend/'
 };

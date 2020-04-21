@@ -224,7 +224,7 @@ export class ManageTablePopupComponent implements OnInit {
   getChildCategories(value) {
 
     this.items_subcategories = this.items_allcategories.filter(ele => ele.parentcategory == value);
-    console.log(this.items_subcategories);
+ 
   }
 
 

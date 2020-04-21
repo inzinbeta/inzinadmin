@@ -10,7 +10,7 @@ import { egretAnimations } from "../../../shared/animations/egret-animations";
 
 import {HttpService} from '../../../shared/services/http.service';
 import { ManagePremiumBrandsTablePopupComponent } from './managepremiumbrands-table-popup/managepremiumbrands-table-popup.component';
-
+import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'app-managepremiumbrands',
   templateUrl: './managepremiumbrands.component.html',
@@ -34,7 +34,7 @@ export class ManagepremiumbrandsComponent implements OnInit {
   linkImg(fileName) {
     let file=fileName.replace(/\\/g, '/').split("/")[1];
     // base_URL returns localhost:3000 or the production URL
-        return `http://localhost:3900/${file}`;
+        return `http://${environment.url}:${environment.port}/${file}`;
       }
   ngOnInit() {
     this.getItems()

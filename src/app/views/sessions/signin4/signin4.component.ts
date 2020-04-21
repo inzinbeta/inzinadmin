@@ -4,7 +4,9 @@ import { CustomValidators } from 'ng2-validation';
 import { egretAnimations } from 'app/shared/animations/egret-animations';
 import { AuthService } from 'app/shared/services/auth/auth.service';
 import decode from 'jwt-decode';
+import { AppLoaderService } from '../../../shared/services/app-loader/app-loader.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 @Component({
   selector: 'app-signin4',
   templateUrl: './signin4.component.html',
@@ -15,7 +17,7 @@ export class Signin4Component implements OnInit {
 
   signupForm: FormGroup;
 
-  constructor(private fb: FormBuilder ,private auth:AuthService,private router:Router) {}
+  constructor(private fb: FormBuilder ,private auth:AuthService,private router:Router, private loader: AppLoaderService,private snack: MatSnackBar,) {}
 
   ngOnInit() {
 
@@ -38,9 +40,9 @@ export class Signin4Component implements OnInit {
 
     if (!this.signupForm.invalid) {
       // do what you wnat with your data
-
+      this.loader.open();
       this.auth.login(this.signupForm.value.email,this.signupForm.value.password).subscribe(data=>{
-        console.log(data);
+        this.loader.close();
         if(data.token && data.status)
         {  
           // checking if the token is present
@@ -58,13 +60,22 @@ export class Signin4Component implements OnInit {
           
       
         }
+        else{
+          this.snack.open("Username or Password Invalid", 'OK', { duration: 4000 })
+        }
         
       
       })
 
 
-      console.log(this.signupForm.value.email);
+    
     }
+
+    else{
+      this.snack.open("Please Fill All the Fields", 'OK', { duration: 4000 })
+    }
+
+
   }
 
 }

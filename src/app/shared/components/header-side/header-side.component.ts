@@ -4,6 +4,7 @@ import { LayoutService } from '../../services/layout.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'app/shared/services/auth/auth.service';
 import { HttpService } from 'app/shared/services/http.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-header-side',
@@ -55,7 +56,7 @@ export class HeaderSideComponent implements OnInit {
 
     this.service.getProfilePic("profile").subscribe(data=>{
 console.log(data["data"]);
-      this.profileimage=`http://localhost:3900/${data["data"][0].url.replace(/\\/g, '/').split("/")[1]}`;
+      this.profileimage=`http://${environment.url}:${environment.port}/${data["data"][0].url.replace(/\\/g, '/').split("/")[1]}`;
       // base_URL returns localhost:3000 or the production URL
          
     })

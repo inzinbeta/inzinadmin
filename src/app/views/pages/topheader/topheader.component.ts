@@ -5,6 +5,8 @@ import {FormControl} from '@angular/forms';
 import { HttpService } from 'app/shared/services/http.service';
 import { MatDialogRef, MatDialog, MatSnackBar } from '@angular/material';
 import { AppLoaderService } from 'app/shared/services/app-loader/app-loader.service';
+import { environment } from '../../../../environments/environment';
+
 @Component({
   selector: 'app-topheader',
   templateUrl: './topheader.component.html',
@@ -12,7 +14,7 @@ import { AppLoaderService } from 'app/shared/services/app-loader/app-loader.serv
 })
 export class TopheaderComponent implements OnInit {
 
-  public uploader: FileUploader = new FileUploader({ url: 'http://localhost:3900/admin/savePic' });
+  public uploader: FileUploader = new FileUploader({ url: `http://${environment.url}:${environment.port}/admin/savePic` });
   public hasBaseDropZoneOver: boolean = false;
   public itemForm: FormGroup;
   private data:any=[];

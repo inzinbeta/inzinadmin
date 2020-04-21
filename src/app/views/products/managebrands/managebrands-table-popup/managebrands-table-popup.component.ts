@@ -146,11 +146,12 @@ protected _onDestroy = new Subject<void>();
 getSubCategories(catgeory)
 {
   
+  this.subcategories=[];
   
   this.subcategories.push(...this.parentcatgeories.reduce((acc, ele) => {
     
       
-    if (ele.parentcategory==catgeory) {
+    if (catgeory.includes(ele.parentcategory)) {
      
       acc.push(ele.name);
     }

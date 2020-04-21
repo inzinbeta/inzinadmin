@@ -6,7 +6,7 @@ import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { take } from "rxjs/operators";
 import {HttpService} from '../../../../shared/services/http.service';
 
-
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-managepremiumbrands-table-popup',
@@ -50,7 +50,7 @@ uploadedFilePath: string = null;
   linkImg(fileName) {
     let file=fileName.replace(/\\/g, '/').split("/")[1];
     // base_URL returns localhost:3000 or the production URL
-        return `http://localhost:3900/${file}`;
+        return `http://${environment.url}:${environment.port}/${file}`;
       }
 
   fileProgress1(fileInput: any) {

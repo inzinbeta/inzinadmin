@@ -9,7 +9,7 @@ import { egretAnimations } from "../../../shared/animations/egret-animations";
 
 import { HttpService } from 'app/shared/services/http.service';
 import { BusinesspopupComponent } from './businesspopup/businesspopup.component';
-
+import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'app-businessprofile',
   templateUrl: './businessprofile.component.html',
@@ -39,7 +39,7 @@ linkImg(fileName) {
   {
     let file=fileName.replace(/\\/g, '/').split("/")[1];
     // base_URL returns localhost:3000 or the production URL
-        return `http://localhost:3900/${file}`;
+        return `http://${environment.url}:${environment.port}/${file}`;
   }
 
   else{

@@ -16,7 +16,7 @@ import { InMemoryDataService } from './shared/inmemory-db/inmemory-db.service';
 import { rootRouterConfig } from './app.routing';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
-
+import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -63,6 +63,7 @@ export function getToken() {
   ],
   declarations: [AppComponent],
   providers: [
+    {provide : LocationStrategy , useClass: HashLocationStrategy},
     {provide: HTTP_INTERCEPTORS, useClass: HttpinterceptorService, multi: true},
     { provide: ErrorHandler, useClass: ErrorHandlerService },
     { provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig },
